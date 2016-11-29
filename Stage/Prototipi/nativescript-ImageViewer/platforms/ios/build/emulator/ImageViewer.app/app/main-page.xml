@@ -1,0 +1,48 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <TabView id="tabView" cssClass="content">
+    <TabView.items>
+      <TabViewItem title="Gallery">
+        <TabViewItem.view>
+            <GridLayout columns="280,*" rows="*">
+              <ListView col="0" row="0" items="{{filters}}" itemTap="filterListTap" cssClass="filters-list" separatorColor="#e3e3e3">
+                <ListView.itemTemplate>
+                  <StackLayout cssClass="filter">
+                    <Label text="{{title}}" cssClass="filter-title"/>
+                  </StackLayout>
+                </ListView.itemTemplate>
+              </ListView>
+
+              <ScrollView col="1" row="0" cssClass="assets-container">
+                <Repeater items="{{ assets }}">
+                  <Repeater.itemsLayout>
+                     <WrapLayout />
+                  </Repeater.itemsLayout>
+                  <Repeater.itemTemplate>
+                    <StackLayout cssClass="asset">
+                      <Border borderWidth="1" borderColor="#263238">
+                        <Image src="{{ url }}" stretch="aspectFill" cssClass="asset-image" />
+                      </Border>
+
+                      <Border borderWidth="1" borderColor="#263238">
+                        <GridLayout rows="auto,auto,auto" columns="auto,auto" cssClass="asset-detail">
+                          <Label row="0" col="0" text="Titolo" cssClass="asset-detail-title"/>
+                          <Label row="0" col="1" text="{{title}}" cssClass="asset-detail-content"/>
+
+                          <Label row="1" col="0" text="Autore" cssClass="asset-detail-title"/>
+                          <Label row="1" col="1" text="{{author}}" cssClass="asset-detail-content"/>
+
+                          <Label row="2" col="0" text="Commenti" cssClass="asset-detail-title"/>
+                          <Label row="2" col="1" text="{{comments}}" cssClass="asset-detail-content"/>
+                        </GridLayout>
+                      </Border>
+                    </StackLayout>
+                  </Repeater.itemTemplate>
+                </Repeater>
+               </ScrollView>
+            </GridLayout>
+
+        </TabViewItem.view>
+      </TabViewItem>
+    </TabView.items>
+  </TabView>
+</Page>

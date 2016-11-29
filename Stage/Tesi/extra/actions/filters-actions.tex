@@ -1,0 +1,58 @@
+%\subsubsection{FiltersActions}
+
+Questo modulo contiene i metodi che creano le azioni riguardanti il sistema di gestione dei filtri.
+
+L'oggetto esposto dal modulo contiene i seguenti metodi:
+\begin{itemize}
+\item \texttt{loadFilterItems(filter, appliedFilters)}
+
+Il metodo recupera la lista dei possibili valori dell'oggetto \texttt{filter} ricevuto come parametro a partire dall'URL presente nel campo dati \texttt{filter.url}. 
+Alla richiesta dei dati viene aggiunta l'informazione riguardante i filtri che sono correntemente applicati, in quando la lista dei valori che può assumere un filtro dipende dai filtri che sono stati applicati.
+
+Una volta ottenuti i dati richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - load filter items]
+{
+  "actionType": string, //FiltersConstants.LOAD_FILTER_ITEMS
+  "filterItems": Array<FilterItem> //Array con i possibili valori
+}
+\end{lstlisting}
+
+Quando \texttt{FiltersStore} riceve questo oggetto, deve caricare al suo interno i dati contenuti nell'oggetto in modo che questi siano disponibili all'interno dell'applicazione. Nel caso \texttt{FiltersStore} contenga già i valori di un filtro, questi devono essere sovrascritti.
+
+\item \texttt{applyFilter(filterData)}
+
+Il metodo richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - apply filter]
+{
+  "actionType": string, //FiltersConstants.APPLY_FILTER
+  "filterData": {"filter": Filter, "filterItem": FilterItem} //coincide con l'oggetto ricevuto come parametro
+}
+\end{lstlisting}
+
+Quando \texttt{FiltersStore} riceve questo oggetto, deve applicare il filtro contenuto nel campo dati \texttt{filterData}.
+
+\item \texttt{removeFilter(filter)}
+
+Il metodo richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - remove filter]
+{
+  "actionType": string, //FiltersConstants.REMOVE_FILTER
+  "filter": Filter //Filtro da rimovure, coincide con l'oggetto ricevuto come parametro
+}
+\end{lstlisting}
+
+Quando \texttt{FiltersStore} riceve questo oggetto, deve rimuovere dai filtri applicati il filtro contenuto nel campo dati \texttt{filter}.
+
+
+\item \texttt{resetAppliedFilters()}
+
+Il metodo richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - clear assets]
+{
+  "actionType": string //FiltersConstants.RESET_APPLIED_FILTERS
+}
+\end{lstlisting}
+
+Quando \texttt{FiltersStore} riceve questo oggetto, deve cancellare tutte le informazioni relative ai filtri che sono stati applicati.
+
+\end{itemize}

@@ -1,0 +1,54 @@
+.custom-navbar {
+  background-color: #263238;
+  color:#fafafa;
+  height: 44;
+  vertical-align: "center";
+}
+
+.tabbar {
+  background-color: #263238;
+  color:#fafafa;
+}
+
+.filters-list {
+  background-color: #e3e3e3;
+}
+
+.filter {
+  background-color: #e3e3e3;
+  color: #263238;
+}
+
+.filter-title {
+  margin: 15;
+}
+
+.assets-container {
+  background-color: #e3e3e3;
+}
+
+.asset {
+  margin: 10;
+  width: 210;
+  background-color: #fafafa;
+}
+
+.asset-image {
+  height: 150;
+  width: 200;
+  margin: 5;
+}
+
+.asset-detail {
+  width: 200;
+  margin: 5;
+  margin-top: 0;
+}
+
+.asset-detail-title {
+  width: 100;
+}
+
+.asset-detail-content {
+  width: 100;
+}

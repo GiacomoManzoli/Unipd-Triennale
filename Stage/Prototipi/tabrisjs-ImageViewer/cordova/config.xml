@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="image.viewer" version="1.0.0">
+  <name>ImageViewer</name>
+  <description>
+    Visualizzatore d'immagini ottenute mediante API REST
+  </description>
+  <author email="giacomo.manzoli@gmail.com" href="https://github.com/GiacomoManzoli/">
+    Giacomo Manzoli
+  </author>
+</widget>

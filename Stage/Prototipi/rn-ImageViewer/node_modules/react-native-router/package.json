@@ -1,0 +1,60 @@
+{
+  "name": "react-native-router",
+  "version": "0.2.1",
+  "description": "Awesome navigation for your native app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t4t5/react-native-router.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "react-native",
+    "ios",
+    "navigation",
+    "navigation-bar",
+    "navbar",
+    "router"
+  ],
+  "author": {
+    "name": "Tristan Edwards",
+    "email": "tristan.edwards@me.com",
+    "url": "http://tristanedwards.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t4t5/react-native-router/issues"
+  },
+  "homepage": "https://github.com/t4t5/react-native-router",
+  "dependencies": {
+    "react-native": "^0.4.x",
+    "react-tween-state": "0.0.5"
+  },
+  "gitHead": "53f74e48bfb06272148d48454ea913d8f62008ff",
+  "_id": "react-native-router@0.2.1",
+  "_shasum": "bf8c3ee4eef87737bc59fb97f654bc9d13b4d23a",
+  "_from": "react-native-router@*",
+  "_npmVersion": "2.7.1",
+  "_nodeVersion": "0.12.2",
+  "_npmUser": {
+    "name": "t4t5",
+    "email": "tristan.edwards@me.com"
+  },
+  "maintainers": [
+    {
+      "name": "t4t5",
+      "email": "tristan.edwards@me.com"
+    }
+  ],
+  "dist": {
+    "shasum": "bf8c3ee4eef87737bc59fb97f654bc9d13b4d23a",
+    "tarball": "http://registry.npmjs.org/react-native-router/-/react-native-router-0.2.1.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/react-native-router/-/react-native-router-0.2.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

@@ -1,0 +1,232 @@
+
+%**************************************************************
+% Acronimi
+%**************************************************************
+\renewcommand{\acronymname}{Acronimi e abbreviazioni}
+
+\newacronym[description={\glslink{apig}{Application Program Interface}}]
+    {api}{API}{Application Program Interface}
+    
+\newacronym[description={\glslink{html}{HyperText Markup Language}}]
+    {html}{HTML}{HyperText Markup Language}
+
+\newacronym[description={\glslink{rest}{Representational State Transfer}}]
+    {rest}{REST}{Representational State Transfer}   
+
+\newacronym[description={\glslink{virtualmachine}{Virtual Machine}}]
+    {vm}{VM}{Virtual Machine}   
+
+
+%**************************************************************
+% Glossario
+%**************************************************************
+\renewcommand{\glossaryname}{Glossario}
+
+\newglossaryentry{Cordova}
+{
+    name=\glslink{Cordova}{Cordova},
+    text=Cordova,
+    sort=Cordova,
+    description={Apache Cordova è un framework open source per la realizzazione di applicazioni ibride che offre delle API che permettono di accedere via JavaScript ad alcune funzionalità native del dispositivo, come l'accelerometro o la fotocamera}
+}
+
+\newglossaryentry{PhoneGap}
+{
+    name=\glslink{PhoneGap}{PhoneGap},
+    text=PhoneGap,
+    sort=PhoneGap,
+    description={Framework che permette la realizzazione di applicazioni mobile ibride e multi piattaforma utilizzando HTML, CSS e JavaScript. Questo framework è stato pubblicato da Adobe e utilizza Apache Cordova per   interagire con le funzionalità native offerte dai vari sistemi operativi}
+}
+
+
+\newglossaryentry{virtual machine}
+{
+    name=\glslink{virtual machine}{Virtual machine},
+    text=virtual machine,
+    sort=virtual machine,
+    description={Software che simula delle risorse hardware e che utilizza queste risorse per eseguire determinate applicazione, in modo che queste possano utilizzare le risorse simulate. Le virtual machine hanno vari utilizzi, in questo caso vengono utilizzate per interpretare il codice JavaScript}
+}
+
+\newglossaryentry{DOM}
+{
+    name=\glslink{DOM}{DOM},
+    text=DOM,
+    sort=DOM,
+    description={Il DOM o \textit{Document Object Model} è lo standard del W3C per la rappresentazione ad oggetti di documenti strutturati, come le pagine HTML}
+}
+
+\newglossaryentry{WebView}
+{
+    name=\glslink{WebView}{WebView},
+    text=WebView,
+    sort=WebView,
+    description={Componente grafico offerto dalle API native, sia di iOS, sia di Android, che permette la visualizzazione di pagine HTML}
+}
+
+\newglossaryentry{rendering}
+{
+    name=\glslink{rendering}{Rendering},
+    text=rendering,
+    sort=rendering,
+    description={Termine inglese che indica l'insieme di attività da svolgere per la rappresentazione grafica di un elemento, nel caso specifico dell'interfaccia grafica di un'applicazione}
+}
+
+\newglossaryentry{npm}
+{
+    name=\glslink{npm}{npm},
+    text=npm,
+    sort=npm,
+    description={Acronimo di Node Package Manager, è un sistema di gestione delle dipendenze per le applicazioni JavaScript che permette di installare librerie di terze parti mediante un'interfaccia a riga di comando}
+}
+
+\newglossaryentry{riflessione}
+{
+    name=\glslink{riflessione}{Riflessione},
+    text=riflessione,
+    sort=riflessione,
+    description={In informatica, è la capacità di un programma di analizzare, durante la sua esecuzione, le classi che lo compongono, ricavando così informazioni sulla struttura del proprio codice sorgente}
+}
+    
+\newglossaryentry{gesture}
+{
+    name=\glslink{gesture}{Gesture},
+    text=gesture,
+    sort=gesture,
+    description={Combinazione di movimenti dell'utente effettuati con le dita su un dispositivo touch-screen, che vengono riconosciuti da un'applicazione}
+}
+
+\newglossaryentry{tap}
+{
+    name=\glslink{tap}{Tap},
+    text=tap,
+    sort=tap,
+    description={Gesture che consiste in un singolo tocco dello schermo da parte dell'utente, è l'equivalente di un click del mouse}
+}
+
+\newglossaryentry{pan}
+{
+    name=\glslink{pan}{Pan},
+    text=pan,
+    sort=pan,
+    description={Gesture che consiste in un tocco prolungato dello schermo da parte dell'utente. Durante l'esecuzione della gesture, l'utente può trascinare il punto di contatto in un modo simile al \textit{drag'n'drop} effettuato con il mouse}
+}
+
+\newglossaryentry{swipe}
+{
+    name=\glslink{swipe}{Swipe},
+    text=swipe,
+    sort=swipe,
+    description={\`E un particolare tipo di pan, effettuato in modo rapito e in una singola direzione, tipicamente da destra verso sinistra o viceversa}
+}
+
+\newglossaryentry{pinch-to-zoom}
+{
+    name=\glslink{pinch-to-zoom}{Pinch-to-zoom},
+    text=pinch-to-zoom,
+    sort=pinch-to-zoom,
+    description={\`E la gesture che viene utilizzata per eseguire lo zoom su un elemento dell'interfaccia grafica, tipicamente un'immagine o una pagina web. Questa gesture consiste nel toccare lo schermo con due dita e allontanarle o avvicinarle tra loro, senza mai staccarle dallo schermo. Nel caso le due dita vengano allontanate viene eseguito uno zoom del contenuto mentre nel caso contrario viene rimpicciolito}
+}
+
+\newglossaryentry{singleton}
+{
+    name=\glslink{singleton}{Singleton},
+    text=singleton,
+    sort=singleton,
+    description={Il singleton è un design pattern individuato dalla \textit{Gang of Four} che ha lo scopo di garantire che venga creata una sola istanza di una determinata classe, e di fornire un punto di accesso globale a tale istanza.
+     Nel progetto questo pattern viene implementato sfruttando i moduli CommonJS, creando l'istanza di un oggetto, per poi esportarla come modulo. In questo modo l'oggetto viene creato solo una volta e risulta accessibile a tutta l'applicazione in quanto è un normale modulo CommonJS}
+}
+
+\newglossaryentry{proxy}
+{
+    name=\glslink{proxy}{Proxy},
+    text=proxy,
+    sort=proxy,
+    description={Il proxy è un design pattern individuato dalla \textit{Gang of Four} che prevede l'utilizzo di un classe o oggetto come interfaccia per qualche altro oggetto. Un esempio di utilizzo di questo pattern è dato da Java RMI, che mediante l'utilizzo di oggetti remoti, nasconde la complessità legata al fatto che l'oggetto vero e proprio sul quale viene invocato il metodo si trova su un computer diverso. Nel caso di NativeScript, viene utilizzato un oggetto JavaScript come interfaccia di un oggetto nativo (che può essere sia un oggetto Obj-C, sia Java) in modo che l'oggetto nativo possa essere utilizzato via JavaScript}
+}
+
+
+\newglossaryentry{popover}
+{
+    name=\glslink{popover}{Popover},
+    text=popover,
+    sort=popover,
+    description={Un popover è un componente delle interfacce grafiche simile ad un pop-up, che compare quanto l'utente seleziona un elemento. A differenza di un pop-up che compare al centro dello schermo, un popover compare vicino al pulsante che l'ha reso visibile ed è collegato ad esse mediante una freccia}
+}
+
+\newglossaryentry{API}
+{
+    name=\glslink{API}{API},
+    text=API,
+    sort=API,
+    description={Indica un'insieme di procedure rese disponibili al programmatore allo scopo di ottenere un'astrazione della complessità della piattaforma sottostante, che può essere sia hardware che software}
+}
+
+\newglossaryentry{V8}
+{
+    name=\glslink{V8}{V8},
+    text=V8,
+    sort=V8,
+    description={V8 è un motore JavaScript open source sviluppato da Google, attualmente incluso in Google Chrome}
+}
+
+\newglossaryentry{JavaScriptCore}
+{
+    name=\glslink{JavaScriptCore}{JavaScriptCore},
+    text=JavaScriptCore,
+    sort=JavaScriptCore,
+    description={JavaScriptCore è un motore JavaScript open source sviluppato da Apple, attualmente incluso in Safari e Safari Mobile}
+}
+
+\newglossaryentry{REST}
+{
+    name=\glslink{REST}{REST},
+    text=REST,
+    sort=REST,
+    description={Riferisce ad un insieme di principi di architetture di rete, i quali delineano come le risorse sono definite e indirizzate. Il termine è spesso usato nel senso di descrivere ogni semplice interfaccia che trasmette dati su HTTP}
+}
+
+\newglossaryentry{SDK}
+{
+name=\glslink{SDK}{SDK},
+text=SDK,
+sort=SDK,
+description={Acronimo di \textit{Software Development Kit}, insieme di strumenti per lo sviluppo e la documentazione di software}
+}
+
+\newglossaryentry{Obj-C}
+{
+    name=\glslink{Obj-C}{Obj-C},
+    text=Obj-C,
+    sort=Obj-C,
+    description={Abbreviazione di Objective-C, un linguaggio di programmazione orientato agli oggetti derivato dal C. Questo linguaggio è stato scelto da Apple come strumento di sviluppo per le applicazione iOS e Mac OS X}
+}
+
+\newglossaryentry{MVC}
+{
+    name=\glslink{MVC}{MVC},
+    text=MVC,
+    sort=MVC,
+    description={Pattern architetturale che prevede la separazione tra la logica di gestione dei dati e come questi dati vengono presentati. Il pattern prevede la divisione dell'architettura in tre parti: \textbf{Model}: si occupa della gestione dei dati; \textbf{View}: si occupa di visualizzare i dati presenti nel model; \textbf{Controller}: si occupa di aggiornare il model in base alle operazioni che l'utente compie sulla view}
+}
+
+\newglossaryentry{FPS}
+{
+name=\glslink{FPS}{FPS},
+text=FPS,
+sort=FPS,
+description={\textit{fotogrammi per secondo}, è un unità di misura utilizzata per indicare la frequenza con la quale vengono generati dei fotogrammi}
+}
+
+\newglossaryentry{mock}
+{
+name=\glslink{mock}{Mock},
+text=mock,
+sort=mock,
+description={Nella programmazione ad oggetti un mock è un particolare tipo di oggetto che simula il comportamento di un oggetto più complesso. Viene utilizzato nei test d'unità per isolare un componente dalle sue dipendenze in modo da poter verificare il corretto funzionamento del componente, senza che questo venga influenzato da eventuali errori presenti nei componenti da cui dipende}
+}
+
+
+
+
+
+

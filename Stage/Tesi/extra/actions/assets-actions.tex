@@ -1,0 +1,62 @@
+%\subsubsection{AssetsActions}
+
+Questo modulo contiene i metodi che creano le azioni riguardanti la gestione degli assets, in particolare è possibile caricare degli assets, aggiungere ulteriori assets, eliminare tutti gli assets caricati oppure caricare i dettagli di un determinato asset.
+
+L'oggetto esposto dal modulo contiene i seguenti metodi:
+\begin{itemize}
+\item \texttt{loadAssets(contentUrl,filters)}
+
+Il metodo recupera gli assets dall'URL \texttt{contentUrl}, applicando i filtri presenti nell'array \texttt{filters}, che deve essere strutturato secondo quanto indicato nel codice \ref{lst:filters}.
+
+Una volta ottenuti i dati richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - load assets]
+{
+  "actionType": string, //AssetsConstants.LOAD_ASSETS
+  "assets": Array<Asset>, //Array contenente gli assets da caricare
+  "totalCount": int //Numero di assets presenti nel nodo che li contiene
+}
+\end{lstlisting}
+
+Quando \texttt{AssetsStore} riceve questo oggetto deve caricare al suo interno i dati contenuti nell'oggetto in modo che questi siano disponibili all'interno dell'applicazione. Nel caso siano già presenti dei dati, questi devono essere sovrascritti.
+
+\item \texttt{loadMoreAssets(contentUrl, start, filters)}
+
+Il metodo recupera gli assets dall'URL \texttt{contentUrl} a partire dall'asset di indice \texttt{start}, applicando i filtri presenti nell'array \texttt{filters}.
+
+Una volta ottenuti i dati richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - load more assets]
+{
+  "actionType": string, //AssetsConstants.LOAD_MORE_ASSETS
+  "assets": Array<Asset>, //Array contenente gli assets da aggiungere in coda agli assets attuali
+}
+\end{lstlisting}
+
+Quando \texttt{AssetsStore} riceve questo oggetto deve caricare al suo interno i dati contenuti nell'oggetto in modo che questi siano disponibili all'interno dell'applicazione.
+I dati devono essere inseriti in coda a quelli già presenti, senza sovrascrivere nulla.
+
+\item \texttt{clearAssets()}
+
+Il metodo richiede il \textit{dispatch} dell'oggetto:
+\begin{lstlisting}[language=JSON, caption=Action - clear assets]
+{
+  "actionType": string //AssetsConstants.CLEAR_ASSETS
+}
+\end{lstlisting}
+
+Quando \texttt{AssetsStore} riceve questo oggetto deve cancellare tutti i dati che contiene.
+
+\item \texttt{loadAssetDetail(asset)}
+
+Il metodo recupera i dettagli dell'asset ricevuto come parametro, utilizzando l'URL prensente nel campo dati \texttt{asset.details.products}.
+Una volta ottenuti i dati richiede il \textit{dispatch} dell'oggetto:
+
+\begin{lstlisting}[language=JSON, caption=Action - load asset details]
+{
+  "actionType": string, //AssetsConstants.LOAD_ASSET_DETAILS
+  "assetDetails": Array<AssetDetail> //Array contenente i dettagli dell'asset
+}
+\end{lstlisting}
+
+Quando \texttt{AssetsStore} riceve questo oggetto deve caricare al suo interno i dati contenuti nell'oggetto in modo che questi siano disponibili all'interno dell'applicazione. Nel caso siano già presenti dei dati, questi devono essere sovrascritti.
+
+\end{itemize}

@@ -1,0 +1,75 @@
+\clearpage
+\subsection{Requisiti Funzionali}
+\normalsize
+\begin{longtable}{|c|m{10cm}|}
+\hline
+\textbf{Id Requisito} & \textbf{Descrizione}\\
+\hline
+\endhead
+RFO1 & L'utente deve poter visualizzare una gallery dell'applicazione WARDA a partire dal nodo radice della gallery \\ \hline
+RFO1.1 & L'utente deve poter visualizzare la lista dei nodi contenuti nel nodo correntemente visualizzato \\ \hline
+RFD1.1.1 & Durante il caricamento della lista dei nodi, deve essere presente un indicatore di attività per evidenziare l'attività in corso \\ \hline
+RFD1.2 & L'utente deve poter rendere visibile la lista dei nodi contenuti nel nodo corrente \\ \hline
+RFF1.2.1 & La comparsa della lista dei nodi deve avvenire in modo animato \\ \hline
+RFD1.3 & L'utente deve poter nascondere la lista dei nodi dei nodi contenuti nel nodo corrente \\ \hline
+RFF1.3.1 & La scomparsa della lista dei nodi deve avvenire in modo animato \\ \hline
+RFO1.4 & L'utente deve poter spostarsi tra i nodi presenti in una gallery \\ \hline
+RFO1.4.1 & L'utente deve poter selezionare un nodo contenuto nel nodo corrente per visualizzarne i contenuti \\ \hline
+RFO1.4.2 & L'utente deve poter ritornare al nodo precedente visualizzato \\ \hline
+RFF1.4.3 & Il cambiamento degli elementi presente nella lista dei nodi deve essere animato \\ \hline
+RFO1.4.4 & Lo spostamento da un nodo all'altro deve comportare l'aggiornamento della lista dei nodi figli e della lista degli assets \\ \hline
+RFO1.5 & L'utente deve poter visualizzare la lista degli assets contenuti nel nodo correntemente visualizzato \\ \hline
+RFD1.5.1 & Durante il caricamento degli elementi della lista, deve essere presente un indicatore di attività per evidenziare l'attività in corso \\ \hline
+RFO1.5.2 & La lista contenente gli assets deve avere un layout a griglia \\ \hline
+RFO1.5.3 & La lista deve visualizzare un numero limitato di assets ed essere dotata di un sistema di scroll infinito \\ \hline
+RFO1.5.3.1 & Una volta che l'utente visualizza tutti gli assets contenuti della griglia, se presenti, devono essere caricati ulteriori assets \\ \hline
+RFO1.5.3.2 & Durante il caricamento degli ulteriori assets deve essere presente un indicatore di attività \\ \hline
+RFO1.5.4. & Gli elementi della lista degli assets devono essere composti da un'immagine di anteprima dell'asset e da un pulsante ``Info'' \\ \hline
+RFO1.5.4.1 & Quando l'utente esegue un tap sull'immagine di anteprima di un asset, deve essere visualizzata la pagina di dettaglio dell'asset \\ \hline
+RFO1.5.4.2 & Quando l'utente esegue un tap sul pulsante Info di un asset, deve essere visualizzato un popover contenente le informazioni di dettaglio dell'asset \\ \hline
+RFO1.6 & L'utente deve poter visualizzare la lista dei filtri disponibili per il nodo correntemente visualizzato \\ \hline
+RFO1.6.1 & Per ogni filtro disponibile, l'utente deve poter visualizzare tutti i valori che può assumere il filtro \\ \hline
+RFD1.6.1.1 & L'utente deve poter cercare un determinato valore all'interno della lista dei valori che può assumere il filtro \\ \hline
+RFO1.6.1.2 & L'utente deve poter selezionare un valore per il filtro da applicare \\ \hline
+RFO1.6.2 & L'utente deve poter applicare più filtri contemporaneamente \\ \hline
+RFO1.6.3 & L'utente deve poter rimuovre un filtro \\ \hline
+RFO1.6.4 & L'utente deve poter rimuovere tutti i filtri applicati \\ \hline
+RFD1.6.5 & L'utente deve poter visualizzare il numero di filtri applicati \\ \hline
+RFO1.6.6 & I filitri devono rimanere attivi anche se l'utente si sposta su un altro nodo \\ \hline
+RFD1.6.7 & La lista dei filtri deve essere visualizzata come un pop-up \\ \hline
+RFO2 & L'utente deve poter visualizzare una pagina contenente i dettagli di un asset \\ \hline
+RFO2.1 & L'utente deve poter tornare alla pagina contenente la gallery \\ \hline
+RFO2.2 & L'utente deve poter visualizzare un'immagine ingrandita dell'asset \\ \hline
+RFD2.2.1 & Durante il caricamento dell'immagine, deve essere presente un indicatore di attività che visualizzi la percentuale di caricamento \\ \hline
+RFF2.2.2 & L'utente deve poter effettuare il pinch-to-zoom sull'immagine \\ \hline
+RFO2.2.3 & L'utente deve poter effettuare uno swipe da destra verso sinistra sull'immagine, per visualizzare in dettaglio l'asset successivo secondo l'ordine del contenuto della gallery \\ \hline
+RFF2.2.3.1 & Allo swipe deve essere associata un'animazione che sposti l'immagine da destra verso sinistra seguendo il movimento effettuato dall'utente \\ \hline
+RFF2.2.3.2 & Nel caso non sia presente un'asset successivo da visualizzare, l'animazione dello swipe deve essere interrotta \\ \hline
+RFO2.2.4 & L'utente deve poter effettuare uno swipe da sinistra verso destra sull'immagine, per visualizzare in dettaglio l'asset precedente secondo l'ordine del contenuto della gallery \\ \hline
+RFF2.2.4.1 & Allo swipe deve essere associata un'animazione che sposti l'immagine da sinistra verso destro seguendo il movimento effettuato dall'utente \\ \hline
+RFF2.2.4.2 & Nel caso non sia presente un'asset precedente da visualizzare, l'animazione dello swipe deve essere interrotta \\ \hline
+RDO2.3 & L'utente deve poter visualizzare una lista contenente i dettagli dell'asset visualizzato \\ \hline
+RFD2.4 & L'utente deve poter rendere visibile la lista contenente i dettagli dell'asset visualizzato \\ \hline
+RFF2.4.1 & La comparsa della lista contenente i dettagli deve avvenire in modo animato \\ \hline
+RFD2.5 & L'utente deve poter nascondere la lista contenente i dettagli dell'asset visualizzato \\ \hline
+RFF2.4.1 & La scomparsa della lista contenente i dettagli deve avvenire in modo animato \\ \hline
+RFF3 & L'utente deve visualizzare un messaggio d'errore nel caso l'applicazione non riesca a connettersi con il server \\ \hline
+\caption[Requisiti Funzionali]{Requisiti Funzionali}
+\label{tabella:req0}
+\end{longtable}
+\clearpage
+\subsection{Requisiti di Vincolo}
+\normalsize
+\begin{longtable}{|c|m{10cm}|}
+\hline
+\textbf{Id Requisito} & \textbf{Descrizione} \\
+\hline
+\endhead
+RVD1 & L'applicazione deve essere dotata di un file di configurazione che permette di impostare: l'indirizzo del server a cui connettersi, l'id della gallery da visualizzare, l'username e password con i dati da utilizzare per effettuare l'accesso e il numero di assets da visualizzare in una singola pagina \\ \hline
+RVO2 & L'applicazione deve essere realizzata con React Native \\ \hline
+RVO3 & L'applicazione deve essere compatibile con iPad di seconda generazione \\ \hline
+RVD4 & L'interfaccia grafica dell'applicazione deve essere fluida e non bloccarsi \\ \hline
+\caption[Requisiti di Vincolo]{Requisiti di Vincolo}
+\label{tabella:req1}
+\end{longtable}
+

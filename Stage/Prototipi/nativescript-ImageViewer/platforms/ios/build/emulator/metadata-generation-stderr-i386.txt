@@ -1,0 +1,44 @@
+clang version 3.6.0 (tags/RELEASE_360/final)
+Target: i386-apple-darwin
+Thread model: posix
+clang Invocation:
+ "clang-tool" "-cc1" "-triple" "i386-apple-ios7.0.0" "-fsyntax-only" "-disable-free" "-main-file-name" "umbrella.h" "-mrelocation-model" "pic" "-pic-level" "2" "-mthread-model" "posix" "-mdisable-fp-elim" "-masm-verbose" "-target-cpu" "yonah" "-target-linker-version" "241.9" "-v" "-dwarf-column-info" "-resource-dir" "../lib/clang/3.6.0" "-isysroot" "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk" "-I" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator/include" "-I" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "-I" "/Applications/Xcode6.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "-I" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/NativeScript/include" "-F/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator" "-F/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios" "-std=gnu99" "-fdebug-compilation-dir" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/metadataGenerator/bin" "-ferror-limit" "19" "-fmessage-length" "0" "-stack-protector" "1" "-mstackrealign" "-fblocks" "-fmodule-maps" "-fobjc-runtime=ios-7.0.0" "-fencode-extended-block-signature" "-fobjc-exceptions" "-fexceptions" "-fmax-type-align=16" "-fdiagnostics-show-option" "-x" "objective-c" "umbrella.h"
+
+ignoring nonexistent directory "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator/include"
+ignoring nonexistent directory "/Applications/Xcode6.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/NativeScript/include
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator (framework directory)
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios (framework directory)
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/usr/local/include
+ ../lib/clang/3.6.0/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/usr/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/System/Library/Frameworks (framework directory)
+End of search list.
+clang version 3.6.0 (tags/RELEASE_360/final)
+Target: i386-apple-darwin
+Thread model: posix
+clang Invocation:
+ "clang-tool" "-cc1" "-triple" "i386-apple-ios7.0.0" "-fsyntax-only" "-disable-free" "-main-file-name" "umbrella.h" "-mrelocation-model" "pic" "-pic-level" "2" "-mthread-model" "posix" "-mdisable-fp-elim" "-masm-verbose" "-target-cpu" "yonah" "-target-linker-version" "241.9" "-v" "-dwarf-column-info" "-resource-dir" "../lib/clang/3.6.0" "-isysroot" "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk" "-I" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator/include" "-I" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "-I" "/Applications/Xcode6.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "-I" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/NativeScript/include" "-F/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator" "-F/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios" "-std=gnu99" "-fdebug-compilation-dir" "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/metadataGenerator/bin" "-ferror-limit" "19" "-fmessage-length" "0" "-stack-protector" "1" "-mstackrealign" "-fblocks" "-fmodule-maps" "-fobjc-runtime=ios-7.0.0" "-fencode-extended-block-signature" "-fobjc-exceptions" "-fexceptions" "-fmax-type-align=16" "-fdiagnostics-show-option" "-x" "objective-c" "umbrella.h"
+
+ignoring nonexistent directory "/Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator/include"
+ignoring nonexistent directory "/Applications/Xcode6.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/NativeScript/include
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios/build/emulator (framework directory)
+ /Users/gmanzoli/nativeJavaScript/nativeScript/ImageViewer/platforms/ios (framework directory)
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/usr/local/include
+ ../lib/clang/3.6.0/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/usr/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/System/Library/Frameworks (framework directory)
+End of search list.
+In file included from umbrella.h:776:
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.3.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.h:8:2: error: Metal Simulator is currently unsupported
+#error Metal Simulator is currently unsupported
+ ^

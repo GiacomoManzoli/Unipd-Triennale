@@ -1,0 +1,209 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../tesi.tex
+% !TEX spellcheck = it-IT
+
+%**************************************************************
+\chapter{Analisi dei Requisiti}
+\label{cap:analisi-dei-requisiti}
+%**************************************************************
+
+Questo capitolo contiene i requisiti dell'applicazione che sono stati individuati sia discutendo con il tutor aziendale, sia analizzando l'attuale client per iPad di WARDA.
+
+Dal momento che lo scopo dello stage è quello di riprodurre l'applicazione attuale non è stato necessario effettuare un'analisi dei requisiti a partire dai casi d'uso, in quanto i requisiti possono essere estrapolati direttamente dall'applicazione attuale.
+
+Il capitolo inizia quindi con la descrizione delle caratteristiche d'interesse dell'applicazione attuale per poi elencare i requisiti individuati.
+
+%Il contenuto di questo capitolo è il risultato dei vari sprint effettuati, in quanto l'intero processo di sviluppo del prodotto è stato svolto in modo simile a quanto previsto dalla metodologia agile Scrum.
+
+%Dopo un'analisi iniziale dell'applicazione attuale, effettuata in modo da identificare il dominio applicativo, tutte le attività sono state svolte secondo degli \textit{sprint}, ognuno dei quali mirato ad implementare una determinata caratteristica dell'applicazione.
+
+%Ogni \textit{sprint} è stato caratterizzato da un breve riunione con il tutor aziendale, seguita da un'analisi dei nuovi requisiti emersi, per poi passare alla progettazione e all'implementazione delle nuove funzionalità.
+
+
+\section{Applicazione attuale}
+
+L'applicazione attuale per iPad di WARDA permette di visualizzare il contenuto di una gallery che si trovata sul server principale dell'applicazione.
+
+Oltre alla visualizzazione della gallery è possibile anche creare nuovi asset, recuperando un'immagine dalla libreria interna del dispositivo o dalla fotocamera e accedere alla funzionalità collaborative offerte dalla piattaforma WARDA.
+
+Per il progetto dello stage, l'azienda è interessata solamente alla componente gallery dell'applicazione, in quanto si tratta della parte della applicazione che richiede la maggior quantità di risorse e che attualmente soffre di alcuni problemi prestazionali.
+
+La struttura dati alla base di una gallery realizzata con WARDA è un albero, composto da vari nodi, ognuno dei quali contiene un'insieme di assets e dei possibili filtri.
+
+Per WARDA un'asset è un'immagine a cui vengono associati dei metadati che la descrivono, questi metadati possono poi essere utilizzati per filtrare gli assets presenti in un nodo, in modo da permettere all'utente di visualizzare solamente gli assets con determinate caratteristiche.
+
+\subsection{Pagina di visualizzazione della gallery}
+
+La pagina dell'applicazione che visualizza la gallery è composta da tre parti principali:
+\begin{itemize}
+\item una lista che visualizza i nodi figli del nodo corrente;
+\item una griglia che visualizza gli asset presenti nel nodo corrente;
+\item una lista di filtri che visualizza i filtri che possono essere applicati sugli assets contenuti nel nodo corrente.
+\end{itemize}
+Ognuno di questi componenti sarà descritto nelle seguenti sotto sezioni.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../immagini/warda-gallery}
+\caption{Screenshot della gallery dell'applicazione attuale}  
+\end{figure}
+
+\subsubsection{Lista dei nodi}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.3]{../immagini/warda-gallery-lista-nodi}
+\caption{Screenshot della lista dei nodi dell'applicazione attuale}  
+\end{figure}
+
+La lista dei figli del nodo corrente visualizza il titolo di ogni nodo e, quando l'utente seleziona un nodo dalla lista, questa viene aggiornata in modo che visualizzi i nodi figli del nodo selezionato. 
+La selezione di un nodo dalla lista comporta anche l'aggiornamento della griglia degli assets, la quale andrà a visualizzare gli assets contenuti nel nodo selezionato.
+
+Durante il caricamento dei dati della lista viene visualizzato un indicatore di attività per fornire all'utente un feedback riguardo l'operazione di caricamento dei dati in corso.
+
+Sopra la lista dei nodi è presente un pulsante che permette di tornare al nodo padre del nodo correntemente visualizzato.
+
+Questo pulsante è caratterizzato da una freccia verso sinistra e dal titolo del nodo correntemente visualizzato, nel caso il nodo corrente sia il nodo radice della gallery, il pulsante non deve essere visibile.
+
+\FloatBarrier
+\subsubsection{Griglia degli assets}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../immagini/warda-gallery-griglia}
+\caption{Dettaglio della griglia degli assets dell'applicazione attuale}  
+\end{figure}
+
+La griglia degli assets rappresenta il componente principale dell'applicazione, questa griglia permette di visualizzare, per ogni asset contenuto nel nodo corrente, un'immagine di anteprima e un pulsante che permette all'utente di visualizzare i dettagli dell'asset mediante un \gls{popover}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.25]{../immagini/warda-gallery-dettaglio}
+\caption{Popover che mostra i dettagli di un asset}  
+\end{figure}
+
+Se l'utente esegue un \gls{tap} sull'immagine di un asset, viene visualizzata una pagina dell'applicazione contenente i dettagli dell'asset e un'immagine ingrandita, maggiori informazioni riguardo questa pagina sono disponibili nella sezione §\ref{sec:pag-dettaglio-asset}.
+
+Per motivi prestazionali, la griglia non carica subito tutti gli assets contenuti nel nodo corrente ma si limita a visualizzare solo i primi 25 assets, i successivi assets contenuti nel nodo vengono caricati man mano che l'utente prosegue nella visualizzazione della griglia, secondo il sistema dello scroll infinito.
+
+\FloatBarrier
+\subsubsection{Lista dei filtri}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.20]{../immagini/warda-filtri}
+\caption{Screenshot della lista dei filtri dell'applicazione attuale}  
+\end{figure}
+
+La lista dei filtri compare come popover quando l'utente esegue un tap sul pulsante ``Filters'' presente nella barra di navigazione.
+
+Per ogni filtro presente nel nodo corrente, viene visualizzata una lista dei possibili valori che possono essere assegnati al filtro ed una casella di testo che permette all'utente di filtrare i valori presenti nella lista.
+
+\FloatBarrier
+\subsection{Pagina di dettaglio di un asset}\label{sec:pag-dettaglio-asset}
+
+Questa pagina contiene l'immagine ingrandita di un asset e una lista con tutti i dettagli dell'asset.
+
+Mediante un apposito pulsante l'utente può nascondere o rendere visibile la lista dei dettagli, in modo da lasciare più spazio all'immagine.
+
+Sull'immagine l'utente può eseguire alcune gesture:
+\begin{itemize}
+\item \gls{swipe} verso sinistra, per visualizzare l'asset successivo contenuto nel nodo visualizzato dalla gallery;
+\item swipe verso destra, per visualizzare l'asset precedente contenuto nel nodo visualizzato dalla gallery;
+\item pinch-to-zoom, per ingrandire ulteriormente l'immagine.
+\end{itemize}
+
+Infine, nella barra di navigazione della pagina è presente un pulsante che permette all'utente di tornare alla pagina con la visualizzazione a griglia.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.25]{../immagini/warda-asset-no-dettaglio}
+\caption{Pagina di dettaglio di un asset}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.25]{../immagini/warda-asset-dettaglio}
+\caption{Pagina di dettaglio di un asset con i dettagli visibili}
+\end{figure}
+\FloatBarrier
+%
+%\subsection{Utente tipo}
+%L'utente tipo dell'applicazione è una persona che lavora nel mercato della moda e del lusso ed è a conoscenza del funzionamento dei processi di business legati a tale mercato.
+%
+%Tipicamente l'utente utilizza già il client per desktop di WARDA e vuole utilizzare l'applicazione mobile per consultare velocemente il catalogo degli assets ed eventualmente crearne di nuovi.
+%
+%Influenzato dall'esperienza con altre applicazioni e dal mondo in cui lavora, l'utente si aspetta che l'applicazione per iPad sia performante e che sia dotata di un interfaccia grafica accattivante e personalizzabile.
+
+\section{Requisiti individuati}
+
+I requisiti individuati dall'analisi dell'applicazione attuale e dalle discussioni con il tutor aziendale sono stati catalogati secondo il codice:
+\begin{center}
+\textit{R[T][I][C]}
+\end{center}
+dove:
+\begin{itemize}
+\item \textbf{T}ipo: specifica la tipologia del requisito e può assumere i seguenti valori:
+	\begin{itemize}
+	\item \textbf{F} - \textit{funzionale}, cioè che determina una funzionalità dell'applicazione;
+	\item \textbf{V} - \textit{vincolo}, che riguarda un vincolo che il prodotto deve rispettare.
+	\end{itemize}
+\item \textbf{I}mportanza: specifica l'importanza del requisito e può assumere i seguenti valori:
+	\begin{itemize}
+	\item \textbf{O} - \textit{obbligatorio}, il requisito corrisponde ad un obbiettivo minimo del piano di stage e deve essere soddisfatto per garantire il funzionamento minimo dell'applicazione;
+	\item \textbf{D} - \textit{desiderabile}, il requisito corrisponde ad un obbiettivo massimo del piano di stage e deve essere soddisfatto per garantire il funzionamento dell'applicazione;
+	\item \textbf{F} - \textit{facoltativo}, indica che il requisito fornisce del valore aggiunto all'applicazione e non era stato previsto nel piano di stage.
+	\end{itemize}
+\item \textbf{C}odice: rappresenta un codice che identifica il requisito all'interno di una gerarchia. Questo codice è definito in modo che il requisito \textit{RTIx.y} sia un requisito che va a definire con un grado maggiore di dettaglio alcuni degli aspetti del requisito \textit{RTIx}.
+\end{itemize}
+
+%subsection
+\input{./extra/requisiti.tex}
+
+\section{Riepilogo requisiti}
+
+In totale sono stati individuati 52 requisiti, ripartiti tra le varie tipologie secondo quanto riportato nelle seguenti tabelle.
+\\ \\ \\
+\begin{minipage}{\textwidth}
+  \begin{minipage}[b]{0.49\textwidth}
+    \centering
+      \begin{tabular}{|l|c|} \hline
+      \textbf{Importanza} & \textbf{\#} \\ \hline
+  Obbligatori & 29 \\ \hline
+  Desiderabili & 12 \\ \hline
+  Facoltativi & 11 \\ \hline
+  Totale & 52 \\ \hline
+\end{tabular}
+      \captionof{table}{Numero di requisiti per importanza}
+	\end{minipage}
+	  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \centering
+         \begin{tabular}{|l|c|} \hline
+      \textbf{Tipologia} & \textbf{\#} \\ \hline
+  Funzionali & 48 \\ \hline
+  Vincolo & 4 \\ \hline
+    Totale & 52 \\ \hline
+\end{tabular}
+    \captionof{table}{Numero di requisiti per tipologia}
+  \end{minipage}
+\end{minipage}
+ \\ \\ \\
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[b]{0.49\textwidth}
+    \centering
+    \includegraphics[scale=0.7]{../immagini/requisiti-totale-importanza}
+      \captionof{figure}{Requisiti per importanza}
+	\end{minipage}
+	  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \centering
+  \includegraphics[scale=0.7]{../immagini/requisiti-totale-tipologia}
+      \captionof{figure}{Requisiti per tipologia}
+  \end{minipage}
+\end{minipage}
+
+
+

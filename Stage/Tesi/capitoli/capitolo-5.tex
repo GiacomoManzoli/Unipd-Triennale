@@ -1,0 +1,449 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../tesi.tex
+% !TEX spellcheck = it-IT
+
+%**************************************************************
+\chapter{Progettazione}
+\label{cap:progettazione}
+%**************************************************************
+
+
+Questo capitolo inizia con una descrizione delle API REST messe a disposizione dalla piattaforma WARDA, per poi andare a descrivere i vari componenti dell'applicazione realizzata.
+
+%Nella progettazione dell'applicazione si è cercato di produrre una soluzione che sia facilmente estendibile con nuove funzionalità in quanto, per come è stato impostato il processo di sviluppo, un'architettura difficile da estendere avrebbe richiesto troppo tempo per essere completata.
+%\todo{Migliorare questa frase, probabilmente eliminare}
+
+\section{API REST di WARDA}
+
+Le API REST di WARDA rendono disponibili tutte le funzionalità dell'applicazione, tuttavia per la realizzazione dell'applicazione saranno utilizzate solamente quelle relative all'autenticazione e alla navigazione della gallery.
+
+\subsection{Autenticazione}
+
+Le API di WARDA offrono due risorse diverse per effettuare il login, \texttt{/authenticate} per le applicazioni e \texttt{/login} per le pagine HTML.
+Nel caso dell'applicazione sviluppata deve essere utilizzata la prima risorsa che deve essere richiesta come POST e con un corpo contenente i campi dati \textit{username} e \textit{password}, codificati come form-data.
+
+Nel caso che l'autenticazione sia andata a buon fine, il server risponde con un header HTTP 200, mentre se l'autenticazione fallisce risponde con un header 401.
+
+\subsection{Gallery}
+
+Le API di WARDA offrono varie risorse che permettono di navigare la gallery, di applicare dei filtri, di caricare nuovi assets o di eliminarne uno già presente.
+Gli URL delle risorse richiedono sempre due parametri, \texttt{galleryCode} e \texttt{args}, il primo specifica l'id della gallery alla quale si vuole accedere e il secondo specifica il percorso a partire dal nodo radice della gallery.
+Ad esempio l'URL \texttt{/g/opt/nodi/20151/} corrisponde ai nodi figli del nodo \texttt{20151} che è il figlio del nodo radice della gallery \texttt{opt}.
+
+Quando viene richiesta una di queste risorse, il server può rispondere con un header HTTP \texttt{404 Not found} per segnalare al client che non è stata trovata la risorsa richiesta, oppure con un header \texttt{200 Ok} per segnalare che la richiesta è andata a buon fine.
+In questo caso, i dati richiesti si trovano nel corpo della risposta e sono codificati in formato JSON in base al tipo di risorsa richiesta.
+
+Nel realizzare l'applicazione verranno utilizzate solamente alcune delle risorse disponibili, le quali saranno descritte nelle seguenti sotto sezioni. 
+
+\subsubsection{GET /g/\{galleryCode\}/nodi/\{args\}}\label{sec:nodes}
+
+Questa risorsa permette di ottenere l'elenco dei nodi figli del nodo specificato dal parametro opzionale \texttt{args}.
+Nel caso non venga fornito questo parametro, il server fornisce come risposta la lista dei nodi figli del nodo radice della gallery.
+%
+%Ad una richiesta di questo tipo il server può rispondere con un header 200, nel caso la risorsa sia presente o con un 404, nel caso in un cui non sia stato trovato alcun nodo corrispondente.
+%
+%Una caratteristica di questa risorsa è che può essere richiesta senza fornire il parametro \texttt{args}, in questo caso il server fornisce come risposta la lista dei nodi figli del nodo radice della gallery.
+
+Quando la richiesta va a buon fine, il corpo della risposta è definito secondo il seguente schema:
+\begin{lstlisting}[language=JSON, caption=JSON Schema di GET /g/\{galleryCode\}/nodi/\{args\}]
+[
+  {
+    "text": string,
+    "urlContentDataStore": string,
+    "urlChildrenStore": string,
+    "disabled": boolean,
+    "leaf": boolean,
+    "expanded": boolean,
+    "filters": [
+      {
+        "name": string,
+        "label": string,
+        "url": string,
+        "position": int,
+        "type": string
+      }
+    ],
+    "permissions": [
+      {
+        "name": string,
+        "code": string
+      }
+    ],
+    "objectId": int,
+    "galleryCode": string,
+    "allowDrag": boolean,
+    "allowDrop": boolean
+  }
+]
+\end{lstlisting}
+\FloatBarrier
+
+L'applicazione per iPad necessita solo di alcuni dei campi dati ricevuti in risposta:
+\begin{itemize}
+\item \texttt{text}: titolo del nodo;
+\item \texttt{urlContentDataStore}: URL della risorsa REST che permette di scaricare la lista degli assets contenuti nel nodo;
+\item \texttt{urlChildrenStore}: URL della risorsa REST che permette di scaricare la lista dei nodi figlio del nodo;
+\item \texttt{filters}: array dei filtri applicabili al nodo. Di ogni oggetto filtro vengono utilizzati i campi:
+	\begin{itemize}
+	\item \texttt{name}: nome che identifica il filtro;
+	\item \texttt{label}: etichetta del filtro da visualizzare;
+	\item \texttt{url}: URL della risorsa REST che permette di scaricare la lista dei possibili valori che il filtro può assumere.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{GET /g/\{galleryCode\}/contents/\{args\}}
+
+Questa risorsa fornisce gli assets contenuti all'interno del nodo \texttt{args} della gallery \texttt{galleryCode}.
+%
+%Ad una richiesta di questo tipo il server può rispondere con un header 200, nel caso la risorsa sia presente o con un 404, nel caso in un cui non sia stato trovato alcun nodo corrispondente.
+
+Nel caso la richiesta vada a buon fine, il server risponde con del JSON conforme al seguente schema:
+\begin{lstlisting}[language=JSON, caption=JSON Schema di GET /g/{galleryCode}/contents/{args}]
+{
+  "success":boolean,
+  "totalCount":int,
+  "size":int,
+  "items": [
+    {
+      "id": int,
+      "description": string,
+      "galleryRadix": string,
+      "name": string,
+      "mimeType": string,
+      "size": int,
+      "created": int,
+      "cmisDocId": int,
+      "url": string,
+      "thumbnailUrl": string,
+      "viewerUrl": string,
+      "details": {
+        "foto": string,
+        "digital": string,
+        "products": string
+      },
+      "linkedAssets": {
+        "careLabel": string,
+        "swatch": string,
+        "seeothers": string
+      },
+      "renditions": {
+        "s": string,
+        "xl": string,
+        "xs": string,
+        "l": string,
+        "m": string
+      },
+      "allowDrop": boolean
+    }
+  ]
+}
+\end{lstlisting}
+\FloatBarrier
+
+Dei dati ricevuti vengono usati:
+\begin{itemize}
+\item \texttt{totalCount}: numero di assets contenuti nel nodo;
+\item \texttt{size}: numero di assets presenti nel campo \texttt{items};
+\item \texttt{items}: array con gli assets contenuti nel nodo \texttt{args}. Di ogni asset vengono usati solamente alcuni campi dati:
+	\begin{itemize}
+	\item \texttt{details.products}: URL della risorsa contenente i dettagli dell'asset;
+	\item \texttt{renditions}: oggetto contenente gli URL per scaricare l'immagine dell'asset in varie risoluzioni.
+	\end{itemize}
+\end{itemize}
+
+A questa risorsa possono essere forniti ulteriori parametri che permettono di effettuare una paginazione dei risultati e di applicare dei filtri.
+
+I parametri che possono essere forniti sono:
+\begin{itemize}
+\item \texttt{start}: indice del record dal quale deve iniziare la pagina;
+\item \texttt{limit}: numero che specifica la dimensione massima di una pagina;
+\item \texttt{filter}: array di oggetti contenenti il nome del filtro da applicare e il valore da utilizzare. Non essendo possibile inserire oggetti JavaScript all'interno di un URL è necessario convertire l'array in stringa e poi effettuare un'opportuna codifica della stringa, in modo che possa essere inserita all'interno di un URL.
+\end{itemize}
+
+Ad esempio, per recuperare 25 assets contenuti nel nodo \texttt{20141} della gallery \texttt{opt} a partire dal 75esimo asset e applicando i filtri sotto riportati è necessario effettuare una richiesta GET all'URL:
+
+\begin{center}
+\texttt{/g/opt/contents/20141/?start=75\&limit=25\&filter= \%5B\%7B\%22property\%22:\%22color\%22,\%22value\%22:\%22003\%22\%7D, \%7B\%22property\%22:\%22shotType\%22,\%22value\%22:\%223\%22\%7D\%5D}
+\end{center}
+
+\begin{lstlisting}[language=JSON, caption=Esempio dell'array da utilizzare per applicare dei filtri alla risorsa /g/{galleryCode}/contents/{args}, label=lst:filters]
+[
+	{
+	  "property": "color",
+	  "value": "003",
+	},
+	{
+	  "property": "shotType",
+	  "value": "3",
+	}
+]
+\end{lstlisting}
+\FloatBarrier
+
+\subsubsection{GET /g/\{galleryCode\}/filtro/\{filtro\}/\{args\}}
+
+Questa risorsa fornisce i possibile valori che può assumere il filtro \texttt{filtro} quando viene applicato ai contenuti del nodo \texttt{args} della gallery \texttt{galleryCode}.
+%
+%Ad una richiesta di questo tipo il server può rispondere con un header 200, nel caso la risorsa sia presente o con un 404, nel caso in un cui non sia stato trovato alcun nodo corrispondente.
+
+Nel caso la richiesta vada a buon fine, il server risponde con del JSON conforme al seguente schema:
+
+\begin{lstlisting}[language=JSON, caption=JSON Schema di GET /g/{galleryCode}/filtro/{filtro}/{args}]
+[
+	{
+	  "id": string,
+	  "description": string,
+	}
+]
+\end{lstlisting}
+
+L'array ricevuto in risposta contiene tutti i valori che può assumere il filtro, sotto forma di oggetti con i due campi dati:
+\begin{itemize}
+\item \texttt{id}: identificativo del valore;
+\item \texttt{description}: descrizione del valore che deve essere mostrata all'utente. 
+\end{itemize}
+
+All'URL delle risorsa può essere passato lo stesso parametro \texttt{filter} dell'URL \texttt{/g/\{galleryCode\}/contents/\{args\}}, in questo modo i risultati ottenuti in risposta dal server vengono limitati tenendo conto dei filtri che sono già stati applicati.
+
+\subsubsection{GET /g/\{galleryCode\}/details/\{assetId\}/products}
+
+Questa risorsa fornisce i dettagli relativi prodotto identificato da \texttt{assetId}.
+%
+%Ad una richiesta di questo tipo il server può rispondere con un header 200, nel caso la risorsa sia presente o con un 404, nel caso in un cui non sia stato trovato alcun nodo corrispondente.
+
+I dettagli ricevuti in risposta dal server sono conformi al seguente schema:
+\begin{lstlisting}[language=JSON, caption=JSON Schema di GET /g/{galleryCode}/filtro/{filtro}/{args}]
+[
+	{
+	  "name": string,
+	  "value": string,
+	  "label": string,
+	  "groupField": string,
+	  "selected": boolean,
+	  "entityId": int
+	}
+]
+\end{lstlisting}
+
+L'array ricevuto in risposta contiene tutte le informazioni relative al prodotto, organizzate in oggetti, ognuno dei quali rappresenta un particolare dato. 
+I campi dati degli oggetti ricevuti, utilizzati dall'applicazione, sono:
+\begin{itemize}
+\item \texttt{label}: etichetta del campo dati;
+\item \texttt{value}: valore del campo dati.
+\end{itemize}
+
+\section{Architettura generale dell'applicazione}
+
+La progettazione dell'architettura dell'applicazione è stata effettuata con un approccio \textit{top-down}, individuando prima le componenti di alto livello, per poi definire le componenti più specifiche, tenendo sempre come punto di riferimento l'applicazione per iPad attuale.
+
+In particolare, la progettazione è partita dall'interfaccia grafica, individuando prima le pagine che l'utente visualizza, per poi passare ai componenti delle pagine ed infine al come organizzare la logia applicativa.
+
+Nel progettare l'architettura sono stati seguiti i due pattern tipici di un'applicazione realizzata con React, in particolare il flusso delle informazioni segue il pattern Flux, mentre le varie componenti sono state divise secondo il pattern \textit{Smart \& Dumb}.
+
+Considerando che l'applicazione verrà poi sviluppata in JavaScript ES6, l'architettura è stata scomposta in moduli, in modo che questi possano essere compatibili con lo standard CommonJS.
+In particolare un modulo può essere:
+\begin{itemize}
+\item \textit{un componente dell'interfaccia grafica}, in questo caso si tratta di una classe, che deriva dalla classe \texttt{Component} di React Native;
+\item \textit{un componente del pattern Flux}, in questo caso si tratta di un singolo oggetto che viene esportato direttamente come modulo CommonJS.
+\item \textit{un componente che fornisce funzioni d'utilità},anche in questo caso si tratta sempre di un oggetto che viene esportato direttamente come modulo CommonJS.
+\end{itemize}
+
+Questi moduli verranno presentati nelle successive sezioni, organizzati per funzionalità.
+Tra questi moduli non è presente il \textit{dispatcher} del pattern Flux, dal momento che come è possibile utilizzare come \textit{dispatcher} quello fornito da \texttt{flux} (§\ref{sec:flux-npm}).
+
+\subsection{Model}
+
+Come \textit{model} dell'applicazione vengono usati gli oggetti ricevuti in risposta dalle chiamate alle API.
+
+I tipi di oggetti che possono essere ricevuti in risposta sono:
+\begin{itemize}
+\item \texttt{Node}: oggetti contenuti nell'array ricevuto in risposta da \begin{center}
+\texttt{/g/\{galleryCode\}/nodi/\{args\}};
+\end{center} 
+\item \texttt{Filter}: oggetti contenuti nell'array \texttt{filters} di un oggetto \texttt{Node};
+\item \texttt{FilterItem}: oggetti contenuti nell'array ricevuto in risposta da 
+\begin{center}
+\texttt{/g/\{galleryCode\}/filtro/\{filtro\}/\{args\}};
+\end{center}
+\item \texttt{Asset}: oggetti contenuti nell'array \texttt{items} della risposta ricevuta da 
+\begin{center}
+\texttt{/g/\{galleryCode\}/contents/\{args\}};
+\end{center}
+\item \texttt{AssetDetail}: oggetti contenuti nell'array ricevuto in risposta da
+\begin{center}
+\texttt{/g/\{galleryCode\}/filtro/\{filtro\}/\{args\}}.
+\end{center}
+\end{itemize}
+
+Dal momento che l'applicazione verrà realizzata in JavaScript, non è necessario definire delle classi specifiche per ogni tipo di oggetti, in quanto è possibile utilizzare direttamente il tipo \texttt{object}.
+%\todo{se si decide di utilizzare Flow conviene implementare le varie classi}
+
+\subsection{Utils}
+
+Questa categoria di moduli fornisce delle funzioni di utilità globali.
+
+L'unico modulo appartenente a questa categoria è \texttt{WardaFetcher} che espone dei metodi che permettono di effettuare le chiamate alle API REST.
+Inoltre, \texttt{WardaFetcher} si occupa anche di gestire la sessione, effettuando in modo automatico il login e mantenendone lo stato.
+
+I metodi di questo oggetto che lavorano in modo asincrono utilizzano gli oggetti \texttt{Promise} presenti nello standard ES6 di JavaScript, questo perché l'utilizzo delle promesse permette di ottenere del codice più leggibile.
+
+\subsection{Stores}
+
+Gli \textit{stores} sono i componenti del pattern Flux che si occupano di gestire i dati con i quali lavora l'applicazione. 
+
+Sono stati definiti 4 \textit{stores}, ognuno con lo scopo di gestire varie tipologie di dati:
+\begin{itemize}
+\item \texttt{NodesStore}: si occupa di tenere in memoria la lista dei nodi figli del nodo corrente e di tenere traccia del percorso effettuato dall'utente all'interno della gerarchia nella gallery. Questo avviene mediante un'array contenete oggetti \texttt{Node} nel quale vengono memorizzati i nodi che ha visitato l'utente. In questo modo è sempre disponibile l'informazione riguardo al nodo corrente, che è l'ultimo elemento inserito nell'array, ed è possibile tornare al nodo padre, che è il penultimo elemento dell'array.
+\item \texttt{AssetsStore}: si occupa di tenere in memoria l'array degli assets contenuti nel nodo correntemente visualizzato e, se l'utente ha selezionato un asset, contiene anche l'array con le informazioni riguardanti l'asset selezionato.
+\item \texttt{FiltersStore}: si occupa di tenere in memoria l'array con i filtri disponibili per il nodo corrente, l'array con i possibili valori del filtro selezionato dall'utente e l'array contenente i filtri che sono stati applicati. Questo \textit{store} deve essere aggiornato dopo \texttt{NodesStore}, in quanto, per come sono definite le API REST di WARDA, le informazioni riguardanti i filtri disponibili sono inserite all'interno di un nodo e, di conseguenza, per caricare i filtri disponibili è necessario che sia disponibile il nodo corrente.
+\item \texttt{ErrorsStore}: si occupa di memorizzare le informazioni relative agli errori che si sono verificati durante l'applicazione. Al momento l'unico errore che si può verificare è l'impossibilità di comunicare con il server.
+\end{itemize}
+
+\subsection{Actions}
+
+Nel pattern Flux, le \textit{actions} sono degli oggetti che il \textit{dispatcher} invia agli \textit{stores} per modificare i dati in essi contenuti, questi oggetti hanno un campo dati \texttt{actionType} di tipo stringa, che rappresenta il nome dell'azione e altri campi dati contenenti i dati che gli \textit{stores} devono utilizzare per aggiornarsi.
+
+Per ognuno degli \textit{stores} precedentemente riportati è stato quindi definito un modulo contenente tutte le \textit{actions} che il corrispettivo \textit{store} può eseguire.
+
+Ognuno di questi moduli contiene un oggetto che espone dei metodi che creano una determinata \textit{action} e ne richiedono il \textit{dispatch} al \textit{dispatcher}.
+
+Per identificare le \textit{actions} sono stati definiti dei moduli che contengono delle costanti di tipo stringa che identificano le \textit{actions} riguardanti un determinato \textit{store}. Ad esempio, le \textit{actions} contenute in \texttt{NodesActions} sono relative ai dati di \texttt{NodesStore} e vengo identificate dalle costanti presenti in \texttt{NodesConstants}
+
+Nonostante ad uno \textit{store} corrisponda un modulo contenente le possibili \textit{actions}, il pattern Flux prevede che tutti gli \textit{stores} vengano notificati di tutte le \textit{actions} e quindi l'esecuzione di una di esse può comportare la modifica di più di uno \textit{store}.
+
+Le seguenti sezioni descrivono i moduli che contengo le possibili \textit{actions}, elencando per ogni modulo i metodi che vengono esposti e il relativo oggetto JavaScript che rappresenta l'\textit{action} creata.
+
+
+\subsubsection{NodesActions}
+\input{./extra/actions/nodes-actions.tex}
+
+\subsubsection{AssetsActions}
+\input{./extra/actions/assets-actions.tex}
+
+\subsubsection{FiltersActions}
+\input{./extra/actions/filters-actions.tex}
+
+\subsubsection{ErrorsActions}
+\input{./extra/actions/errors-actions.tex}
+
+
+\subsection{Pages}
+
+Questi moduli appartengono alla categoria dei componenti \textit{smart} dell'applicazione, in quanto si occupano di recuperare i dati dagli \textit{stores}, per poi passarli agli altri componenti in modo che vengano visualizzati dall'utente.
+
+Ognuno di questi moduli rappresenta una singola schermata dell'applicazione e si occupa di definire dei gestori degli eventi per le azioni che può compiere l'utente. Questi gestori vengono poi passati ai componenti che compongono la pagina e tipicamente richiedono l'esecuzione di un \textit{action}.
+
+\subsubsection{GalleryPage}
+
+Questa pagina è il componente principale dell'applicazione in quanto si occupa di recuperare la maggior parte dei dati dagli \textit{stores} e visualizzarli mediante i componenti che la compongono. Inoltre, è la prima pagina che visualizza l'utente quando accede all'applicazione.
+
+Le responsabilità di questa pagina riguardano principalmente la gestione degli eventi legati alla navigazione della gallery, alla visualizzazione dei dettagli della gallery e alla gestione dei filtri.
+
+La pagina è composta da vari componenti ai quali fornisce i dati da visualizzare e le funzioni da invocare per gestire gli eventi causati dall'utente.
+Questi componenti sono:
+\begin{itemize}
+\item \texttt{GalleryToolbar}: per visualizzare la toolbar nella parte superiore dello schermo;
+\item \texttt{AssetsGrid}: per visualizzare gli assets contenuti nel nodo corrente;
+\item \texttt{NodesList}: per visualizzare i figli del nodo corrente;
+\item \texttt{FiltersList}: per visualizzare la lista dei disponibili e applicati;
+\item \texttt{AssetsDetail}: per visualizzare i dettagli di un asset selezionato dalla griglia.
+\end{itemize}
+
+\subsubsection{AssetDetailPage}
+
+Questa pagina viene utilizzata per permettere all'utente di visualizzare i dettagli di un asset, mostrando un'immagine più grande e una barra laterale con i dettagli.
+Viene inoltre fornita la possibilità all'utente di spostarsi all'asset precedente o successivo mediante uno swipe.
+
+La pagina è composta dai seguenti componenti:
+\begin{itemize}
+\item \texttt{AssetDetailToolbar}: per visualizzare la toolbar nella parte superiore dello schermo;
+\item \texttt{NetworkImage}: per visualizzare l'immagine ingrandita e un indicatore di caricamento durante il caricamento dell'immagine;
+\item \texttt{AssetsDetail}: per visualizzare i dettagli dell'asset corrente.
+\end{itemize}
+
+\subsection{Components}
+
+I moduli che appartengono a questa categoria rappresentano alcune componenti grafiche dell'applicazione e rientrano nella categoria \textit{dumb}, in quanto definiscono sono come vengono visualizzati i dati e sono privi di logica applicativa.
+
+\subsubsection{Asset}
+
+Questo componente rappresenta un elemento della griglia degli asset ed è composto da un'immagine e un pulsante per la visualizzazione delle informazioni di dettaglio dell'asset.
+
+Il componente deve essere in grado di rilevare quando l'utente esegue il tap sull'immagine o sul pulsante ed invocare l'apposito gestore dell'evento ricevuto dal componente padre.
+
+\subsubsection{AssetsGrid}
+
+Questo componente rappresenta la griglia degli assets presente nella pagina principale dell'applicazione.
+
+Vengono visualizzati gli assets ricevuti dal componente padre e la rappresentazione di ogni asset avviene utilizzando vari componenti \texttt{Asset}.
+\texttt{AssetsGird} si occupa anche di implementare la funzionalità dello scroll infinito, controllando quando l'utente effettua uno scroll, se è necessario caricare ulteriori dati e, nel caso sia necessario, richiede il caricamento invocando l'apposita funzione ricevuta dal componente padre.
+
+\subsubsection{AssetDetail}
+
+Questo componente permette di visualizzare un'array di oggetti \texttt{AssetDetail} sotto forma di lista.
+Per ogni valore presente nell'array viene visualizzato il valore dei campi dati \texttt{label} e \texttt{value}.
+
+Essendo un componente generico che viene utilizzato in contesti differenti, lo stile di \texttt{AssetDetail} deve poter essere impostato dal componente padre utilizzando l'oggetto \texttt{props}, in modo da poter adattare il componente al contesto nel quale viene utilizzato.
+
+%Trattandosi di un componente generico, questo viene usato sia da \texttt{GalleryPage}, sia da \texttt{AssetDetailPage}, utilizzando però uno stile grafico diverso.
+
+\subsubsection{NodesList}
+
+Questo componente permette di visualizzare un'array di oggetti \texttt{Node} e di rilevare quando l'utente seleziona una voce della lista.
+Alla selezione di un elemento viene invocata l'apposita funzione ricevuta dal componente padre.
+
+Viene utilizzato da \texttt{GalleryPage} per visualizzare i nodi figli del nodo visualizzato, in modo da permettere all'utente di navigare la gerarchia dei nodi presenti nella gallery.
+ 
+\subsubsection{FiltersList}
+
+Questo componente rappresenta la lista dei filtri disponibili per il nodo visualizzato.
+
+Nel caso l'utente selezioni un filtro dalla lista, la riga selezionata viene espansa in modo che sia visibile una casella di testo e la lista dei possibili valori che il filtro può assumere.
+La casella di testo permette all'utente di filtrare i valori presenti nella lista e la selezione di uno dei valori comporta l'applicazione del filtro mediante l'invocazione di un'apposita funzione ricevuta dal componente padre.
+
+Nel caso ci siano uno o più filtri applicati, le righe della lista corrispondenti a tali filtri contengono anche il valore selezionato per quel determinato filtro e un pulsante per rimuoverlo.
+
+\subsubsection{NetworkImage}
+
+Questo componente permette di visualizzare un'immagine a partire da un URL.
+
+Essendo necessario scaricare i dati dell'immagine da internet, questo componente durante il download visualizza un indicatore di attività e la percentuale di caricamento.
+
+\subsubsection{GalleryToolbar}
+
+Questo componente rappresenta la toolbar per la pagina che visualizza la gallery, ed è composto da tre pulsanti:
+\begin{itemize}
+\item un pulsante indietro, che visualizza il titolo del nodo corrente e che permette all'utente di tornare la nodo padre del nodo visualizzato;
+\item un pulsante che permette all'utente di visualizzare o nascondere la lista dei nodi figli del nodo corrente;
+\item un pulsante che permette all'utente di visualizzare la lista dei filtri disponibili. Se sono stati applicati dei filtri, il testo del pulsante deve riportare anche il numero di filtri applicati.
+\end{itemize}
+
+Dal momento che si è definita la toolbar come un componente \textit{dumb}, è necessario che tutte le informazioni vengano fornite dal componente che contiene la toolbar, che nello specifico è \texttt{GalleryPage}.
+
+\subsubsection{AssetDetailToolbar}
+
+Questo componente rappresenta la toolbar per la pagina di che visualizza i dettagli di un asset.
+
+\`E composta composta da un pulsante indietro che permette all'utente di tornare alla gallery e da un pulsante che permette di visualizzare o nascondere la lista contenente i dettagli dell'asset visualizzato.
+
+\subsection{Navigazione}
+
+La navigazione tra le pagine dell'applicazione avviene mediante due componenti.
+Il primo è una \textit{TabBar}, una barra posta nella parte bassa dello schermo che visualizza un numero limitato di pulsanti, ognuno dei quali prende il nome di \textit{tab} ed è associato ad una specifica pagina dell'applicazione, che viene visualizzata quando l'utente seleziona il \textit{tab} corrispondente.
+
+La \textit{TabBar} dell'applicazione contiene una sola \textit{tab} per la gallery ed è stata inserita solamente per replicare l'aspetto grafico dell'applicazione già esistente.
+
+All'interno della \textit{tab} della gallery è presente un \textit{router}, un componente che si occupa di gestire la navigazione tra più pagine dell'applicazione. 
+
+React Native offre due componenti che possono essere utilizzati come \textit{router} ed entrambi funzionano come uno stack al quale possono essere aggiunte o tolte pagine e solamente la pagina che si trova in cima viene mostrata all'utente.
+
+Il primo componente è \texttt{NavigatorIOS}, il quale utilizza lo stesso sistema di navigazione offerto dalla piattaforma nativa, rendendo disponibili sia la barra di navigazione tipica delle applicazioni native, sia le gesture associate alla navigazione, come lo swipe per tornare alla pagina precedente.
+Oltre a queste funzionalità vengono anche offerti due metodi per modificare lo effettuando il \textit{push} e \textit{pop} delle pagine.
+
+Però la personalizzazione dell'aspetto grafico di questo componente è limitata ed è per questo che React Native offre anche il componente \texttt{Navigator}, il quale è realizzato interamente in JavaScript e implementa solamente la gestione dello stack delle pagine, lasciando allo sviluppatore l'implementazione della barra di navigazione e la gestione delle gesture.
+
+A seguito dell'esperienza maturata durante lo sviluppo del prototipo con React Native si è scelto di utilizzare il componente \texttt{Navigator} piuttosto che il componente \texttt{NavigatorIOS}.
+
+Questo perché la barra di navigazione offerta da \texttt{NavigatorIOS} si è rilevata molto limitata in termini di personalizzazione, mentre il componente \texttt{Navigator} lascia maggiore libertà riguardo l'implementazione della barra di navigazione, rendendo così possibile utilizzare le due toolbar precedentemente descritte come barra di navigazione.
+%con il componente \texttt{Navigator} è possibile evitare di implementare una barra di navigazione comune a tutte le pagine dell'applicazione, rendendo così possibile utilizzare le due toolbar precedentemente descritte.

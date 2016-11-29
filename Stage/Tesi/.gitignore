@@ -1,0 +1,26 @@
+# Perché i node_modules sono ovunque
+
+node_moduels/
+
+# File di LaTeX
+
+*.pdf
+*.sc 
+*.acn 
+*.acr 
+*.alg 
+*.aux 
+*.bbl 
+*.bcf 
+*.blg 
+*.glg 
+*.glo 
+*.gls
+*.ist 
+*.lof 
+*.log 
+*.lot 
+*.pdf 
+*.run.xml 
+*.synctex 
+*.toc

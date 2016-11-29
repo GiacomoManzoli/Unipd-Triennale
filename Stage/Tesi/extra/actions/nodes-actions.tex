@@ -1,0 +1,15 @@
+%\subsubsection{NodesActions}
+Questo modulo contiene le \textit{actions} che riguardano la gestione dei nodi e l'unica \textit{action} disponibile è quella associata al metodo \texttt{loadNodes(url)} che, dato l'URL di un nodo, permette di richiedere il caricamento dei nodi figli.
+
+Questo metodo utilizza \texttt{WardaFetcher} per scaricare i nodi figli e, nel caso il download vada a buon fine, invia al \textit{dispacther} un \textit{action} contenente le seguenti informazioni:
+\begin{lstlisting}[language=JSON, caption=Action - load nodes]
+{
+  "actionType": string, //NodesConstants.LOAD_NODES
+  "parentUrl": string, //Url ricevuto come parametro dell'azione
+  "nodes": Array<Nodes> //Array ricevuto in risposta dal server
+}
+\end{lstlisting}
+
+Quando \texttt{NodesStore} riceve questo oggetto deve caricare al suo interno i dati contenuti nell'oggetto in modo che questi siano disponibili all'interno dell'applicazione. Nel caso \texttt{NodesStore} contenga già dei nodi, questi devono essere sovrascritti utilizzano i nodi contenuti nell'\textit{action}.
+
+Inoltre, quando \texttt{FiltersStore} riceve questo oggetto, deve richiedere a \texttt{NodesStore} le informazioni relative al nodo corrente in modo da aggiornare la lista dei filtri disponibili.
