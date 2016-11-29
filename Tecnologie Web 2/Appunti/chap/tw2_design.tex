@@ -1,0 +1,70 @@
+\section{Design}
+Ad alto livello l'utente si aspetta che un sito web sia ricco di contenuti interessanti.
+Il problema è che perché questi contenuti siano accessibili alla maggior parte degli utenti bisogna avere molti accorgimenti perché, per esempio, leggere un testo sul web è fino a 4 volte più impegnativo.
+
+\subsection{Splash e Log In Page}
+\textit{problemi non persistenti, quelli del capitolo precendete erano persistenti.}
+La splash page è la pagina iniziale del sito di benvenuto ed è meno utile dello Splash di un Magikarp, infatti oltre a non piacere agli utenti (80\%) crea una perdita di tempo perché è priva di contenuto e i timer degli utenti continuano a scorrere.\\
+Una versione evoluta della Splash Page è la log in page iniziale, ed è ancora peggio.
+Per poter visualizzare il contenuto del sito l'utente deve registrarsi e memorizzare il proprio username e password, creando uno sforzo computazionale elevato. \textit{18, 18, 18, 18...}
+Ci sono però alcuni casi dove la pagina di registrazione iniziale ha senso, vedi Facebook, però in altri siti come quello delle poste americane non ha senso.\\
+NB: questo ragionamento non comprende le pagine di registrazione per zone specifiche del sito.
+
+\subsection{Scrolling e Layout fisso}
+Agli utenti non piace scrollare. Solo il 25\% scrolla nella homepage mentre il 40\% scrolla nelle pagina interne e, in ogni caso, scrollano per circa la dimensione di una pagina, questo perché lo scroll richiede sforzo computazionale.
+Perciò quando si progetta una pagina web bisogna tenerne conto e cercare di mettere le informazioni principali nella parte che sicuramente viene vista dall'utente.\\
+Per fare ciò si usava un layout fisso, facile da implementare ma non tiene conto del fatto che gli utenti possono avere schermi di risoluzione diversa e che quindi chi ha uno schermo grande non riesce a vedere le informazioni perché sono rappresentate troppo piccole, mentre chi ha uno schermo più piccolo per vedere che la pagina deve scrollare orizzontalmente.\\
+Lo scroll orizzontale non dovrebbe mai verificarsi dato che gli utenti non sono abbiutati a questo tipo di scroll e c'è il rischio che l'informazione nascosta non sia mai visualizzata.
+Se si sceglie di progettare un layout fisso la taglia di riferimento dovrebbe essere 1024x768
+
+\subsection{Bloated Design}
+Certi siti vengono creati con un design troppo spinto che magari piace a chi li progetta ma che crea grande confusione agli utenti del sito.
+Alcune caratteristiche tipiche del Bloated Design sono i link lampeggianti e il testo che scorre, ma il non plus ultra è l'audio che parte in automatico all'apertura della pagina e che non è disattivabile.\\
+Una possibile conseguenza di questo design sono delle \textbf{metafore visive errate}, vengono cioè rappresentati degli oggetti che sembrano avere una determinata funzinalità ma che in realtà, o non produco nessuna azione oppure producone un'azione che tradisce le aspettative dell'utente, ad esempio un bottone non cliccabile, del testo con lo stesso aspetto di un link o un menù fatto di sole immagini.
+
+\subsection{Plug In, Flash e Video}
+I plug in, per quanto utili possono essere, soffrono di due grandi problemi:
+\begin{itemize}
+\item \textbf{Non sono standard} perciò devono essere scaricati ed installati, l'utente deve quindi fare fatica e perdere tempo.
+\item \textbf{Trust Issue:} l'utente medio non sa bene cos'è un plug in e cosa fa, di conseguenza per installarlo deve conoscere bene il sito, altrimenti non si fida.
+\end{itemize}
+Per questi due motivi il 90\% degli utenti non installa plug in aggiuntivi e abbandona il sito.
+Un plug in particolare è \textbf{Flash}, data la sua diffusione è probabile che sia già installato nel computer però si porta dietro altri problemi dovuti ai tempi di caricamento e ad animazioni troppo spinte.
+I \textbf{video} invece funzionano decisamente meglio dato che guardare un video richiede poco sforzo da parte dell'utente, vanno però usati con moderazione perché richiedono molta banda per essere scaricati, la lunghezza ideale dovrebbe essere di 1 minuto dato che i timer dell'utente continuano comunque a scorrere.
+
+\subsection{Menù a tendina}
+Questa tipologia di menù ha il grande vantaggio che è già nota agli utenti però porta con se vari problemi, primo tra tutti è la chiusura insapettata. Infatti può capitare che l'utente, spostando il mouse da una voce all'altra, esca erronemanete dall'area del menù provocandone la chiusura (54\% delle chiusure sono involontarie), è necesario quindi inserire un timer che lasci aperto il menù per un po' di tempo anche se l'utente esce con il mouse per diminuire le chiusure errate.
+Questo timer non deve essere ne troppo corto, sarebbe inutile, ne troppo lungo perché può essere che l'utente voglia veramente uscire dal menù e che la tendina blocchi parte dell'informazione che l'utente voleva visualizzare.
+Perché sia efficace un menù non dovrebbe avere più di due sottolivelli, inoltre le voci dovrebbero essere sufficentemente grandi per essere facilmente cliccabili.
+
+\subsection{Testo}
+L'idea di base del testo sulle pagine web è che dovrebbe essere leggibile, per ottenere questo risultato sono necesari determinati accorgimenti:
+\begin{itemize}
+\item la grandezza minima dovrebbe essere di 10pt
+\item dovrebbero essere disponibili dei comandi per ridimensionare il testo
+\item il font dovrebbe essere unico per tutto il sito, al massimo due font distinti e sarebbero da preferire i font sans-serif come il Verdana
+\item il contrasto tra il testo e lo sfondo dovrebbe essere elevato
+\item non usare mai immagini al posto del testo
+\item evitare l'uppercase che richiede più tempo per essere letto
+\end{itemize}
+Tendenzialemnte quando si realizza un sito prima si pensa al design e poi al contenuto non considerando che l'utente prima di leggere una pagina web fa una scansione rapida della struttura della pagina.
+Questo scannig è molto importante e deve essere il più possibile facilitato, ad esempio un intero blocco di testo è lento da scannerizzare e c'è il rischio che venga saltato dall'utente.
+Per evitare ciò è importante suddividere il testo in più paragrafi, ognuno con un titolo descrittivo e inserire delle parole chiave evidenziate (massimo 6/7).
+Se sono presenti dei link questi dovrebbero avere un testo corto, descrittivo e identificativo ed essere facilmente identificabili, il classico \texttt{Clicca Qui!} è una pessima idea.\\
+Bisogna anche assicurarsi che non si verifichi l'\textbf{effetto ghigliottina} cioè che non il testo non venga troncato per motivi di spazio o che non si crei uno scroll interno del paragrafo.
+
+\subsubsection{Liste}
+Utilizzare delle liste aiuta notevolemente la scansione e fa percepire all'utente un senso di ordine (soddisfazione +47\%), è importante però che ci siano almeno 4 elementi e che non ce ne siano troppe.
+Le liste dovrebbero essere solamente verticali.
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[italian]{babel}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=HTML,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle=\footnotesize\ttfamily,
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2,
+  extendedchars=\true,
+  inputencoding=utf8
+}
+
+\begin{document}
+
+\title{Riassunto TecWeb2}
+\author{Giacomo Manzoli}
+\maketitle
+
+I titoli delle sezioni che iniziano con \textbf{\#} sono argomenti non presenti nel programma d'esame
+
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\include{chap/tw2_usabilita}
+\include{chap/tw2_design}
+\include{chap/tw2_ecommerce}
+\include{chap/tw2_comportamento}
+\include{chap/tw2_ranking}
+\include{chap/tw2_semantic}
+
+\end{document}
