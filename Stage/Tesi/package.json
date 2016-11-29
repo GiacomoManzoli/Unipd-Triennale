@@ -1,0 +1,25 @@
+{
+  "name": "Tesi",
+  "description": "Tesi di Giacomo Manzoli",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "scripts": {
+    "start": "grunt",
+    "test": "grunt test",
+    "postinstall": "bower install --config.interactive=false"
+  },
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-concurrent": "~1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-env": "~0.4.1",
+    "grunt-notify": "^0.4.1",
+    "grunt-shell": "^1.1.2",
+    "load-grunt-tasks": "~1.0.0"
+  }
+}
