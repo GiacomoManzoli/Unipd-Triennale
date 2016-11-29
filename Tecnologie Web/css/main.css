@@ -1,0 +1,484 @@
+/*@font-face {
+  font-family: Shangai;
+  src: url(../Font/shanghai.eot),
+       url(../Font/shanghai.ttf) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5
+} */
+/*
+@font-face {
+	font-family: "Shanghai";
+	src: url('/font/shanghai.eot');
+	src: local("Shanghai"),
+		 url('/font/shanghai.woff') format('woff'),
+		 url('/font/shanghai.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+*/
+
+@font-face {
+	font-family: 'Shanghai';
+	src: url('http://www.9armoniemonselice.it/fonts/shanghai.eot');
+	src: local('Shanghai'),
+		 url('http://www.9armoniemonselice.it/fonts/shanghai.woff') format('woff'),
+		 url('http://www.9armoniemonselice.it/fonts/shanghai.ttf') format('truetype'),
+		 url('http://www.9armoniemonselice.it/fonts/shanghai.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, Geneva, sans-serif;
+    background-size: 100% auto;
+    background: white url(../Immagini/sfondo2modified.jpg);
+
+}
+
+body {
+    padding: 0;
+    font-size: 0.9em;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1024px;
+	max-width: 1268px;
+    width: 80%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: black;
+    padding: 0.1em;
+    margin-top: 0.3em;
+    font-family: Shanghai, Arial, sans-serif;
+    font-size:3.5em;
+    font-weight: normal;
+}
+
+dt{
+	font-weight: bold;
+}
+
+
+a:link{
+	color: chocolate;
+}
+a:visited{
+    color: #6d4821;
+}
+
+h2{
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+form{
+    margin: auto;
+    width: 40%;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+#header {
+	overflow: auto;
+	background-color:rgba(245,245,245,0.8);
+
+	border-top-left-radius: 3em;
+	border-top-right-radius: 3em;
+	-webkit-border-top-left-radius: 3em;
+	-webkit-border-top-right-radius: 3em;
+	-moz-border-top-left-radius: 3em;
+	-moz-border-top-right-radius: 3em;
+
+	text-align: left;
+}
+img.logo{
+	margin: 1em 0 1em 1em;
+	display: inline-block;
+	float: left;
+
+}
+div.titleArea {
+	text-align: center;
+	display: inline-block;
+	padding: 4em 0 0 0;
+}
+
+.titleArea h1{
+	font-size: 3.9em;
+	margin: 0;
+	padding:0;
+}
+.titleArea h2{
+	font-family: Shanghai, Arial, sans-serif;
+	font-size: 2.5em;
+	font-weight: normal;
+	margin: 0;
+}
+
+
+
+
+/* Navbar ------------------------------------------------------------------ */
+
+#nav{
+	text-align: center;
+    background-color: chocolate;
+}
+
+#nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+#nav li{
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+#nav li a{
+	display: block;
+    padding: 0.4em 0.4em;
+	color: white;
+	text-decoration: none;
+}
+
+#nav li a:hover{    
+	background-color: white;
+	color: black;
+
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+}
+
+.currentLink{
+    padding: 0.4em 0.4em;
+	color: black;
+    background-color: white;
+
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+}
+
+/* Content ------------------------------------------------------------------ */
+
+#content{
+	overflow: auto;
+    background-color:rgba(245,245,245,0.8);
+    padding: 1em 3em;
+}
+
+#content h1{
+	text-align: center;
+}
+
+
+
+/* Breadcrumb ------------------------------------------------------------------ */
+
+#breadcrumbs {
+    font-size: 1em;
+    margin: 1em 0 2em 0;
+}
+
+.currentPage{
+    font-weight: bold;
+}
+
+/* News ------------------------------------------------------------------ */
+
+#news {
+	border: 2px solid chocolate;
+    float:right;
+    width:35%;
+	height: 25em;
+
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+}
+#news h1{
+    margin-top: 0;
+}
+
+#news dl{
+	padding-left: 1em;
+}
+
+#news dt{
+    font-weight: bold;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+#footer{
+    clear: both;
+    background-color: chocolate;
+    color: whitesmoke;
+    text-align: center;
+    padding: 1.1em 2em 1.1em 2em;
+    font-size: 0.9em;
+
+	border-bottom-left-radius: 3em;
+	border-bottom-right-radius: 3em;
+	-webkit-border-bottom-left-radius: 3em;
+	-webkit-border-bottom-right-radius: 3em;
+	-moz-border-bottom-left-radius: 3em;
+	-moz-border-bottom-right-radius: 3em;
+}
+
+
+#footer a { 
+	text-decoration: underline;
+	color:white;
+}
+
+
+p.address {
+    float: left;
+    text-align: left;
+    width: 60%;
+}
+
+
+
+.social{
+    float: right;
+}
+.seguici{
+	padding-bottom: 1.5em;
+	padding-right: 3em;
+}
+.social img{
+    margin-left: 1.5em;
+}
+
+p.footerLink{
+    padding-top: 1em;
+    clear: both;
+}
+
+/* General Purpose ------------------------------------------------------------------ */
+
+#quote{ /* Usato in: index.html*/
+
+    width: 60%;
+    margin: 1em 0 2em 0;
+    padding: 0.4em;
+}
+#quote.p{
+	font-style: italic;
+}
+
+.sedicorsi {
+	margin: 3em 0 1em 0;
+	clear: both;
+}
+
+.sedicorsi dl {
+	text-align: left;
+	width: 20%;
+}
+
+.sedicorsi p{
+	display: block;
+}
+.mappa {
+	width: 400px;
+	height: 400px;
+	margin: 0.5em;
+	float: right;
+	clear: right;
+	border: 2px solid chocolate;
+}
+
+/*Lista stili kung fu -------------------------------------------------------------------*/
+.listaStili li{
+	font-size: 1.5em;
+	list-style: none;
+    padding-bottom: 0.2em;
+	width: 13em;
+}
+
+.listaStili li:hover{
+    background-color: bisque;
+	border-radius: 1em;
+}
+.listaStili a{
+    display: table-row;
+}
+.listaStili img{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.listaStili span{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 0.3em;
+
+	text-decoration: underline;
+    padding: 0;
+}
+
+.listaStili {
+	padding: 0.5em;
+}
+
+.listaStili span.cha {
+	margin: 0 0 0 .01em;
+	text-decoration: none;
+    color: chocolate;
+	display: inline;
+}
+
+/*Testi ------------------------------------------------------------------------------------*/
+
+p.textBlock{
+	clear: both;
+	display: block;
+}
+
+
+/* Istruttori------------------------------------------------------------------------- */
+
+ul#istruttori{
+	list-style: none;
+    padding: 0;
+}
+
+ul#istruttori li{
+    display: inline-block;
+    margin: 1em;
+	padding-left: 4.5em;
+}
+
+ul#istruttori li a{
+	text-decoration: none;
+}
+
+span.istruttoreNome {
+	color:white;
+	display: block;
+	background-color: rgba(210,105,30, 1);
+    font-size: 1.3em;
+    text-align: center;
+	padding: 0.3em;
+}
+
+
+/* Nav bar pagina istruttori*/
+
+#currentIstruttore{
+	color: black;
+}
+
+#navIstruttori {
+	text-align: center;
+}
+
+#navIstruttori li{
+	padding: 0.3em 0.3em;
+	font-size: 1.5em;
+	display: inline-block;
+	margin: 1em;
+	background-color: rgba(210,105,30, 1);
+	color:white;
+	border-radius: 0.5em;
+}
+
+#navIstruttori li a{
+    padding: 0.3em 0.3em;
+	color: white;
+	text-decoration: none;
+}
+
+#navIstruttori li a:hover{    
+    color: black;
+}
+
+/* Immagini & Foto ------------------------------------------------------------------ */
+
+img.foto {
+	border: 2px solid chocolate;
+	margin: 1em;
+}
+
+.immagineDecorativa{
+    display: block;
+    margin: 1em auto;
+	padding-top: 0;
+}
+
+.immagineIstruttore{
+    display: block;
+    width: 210px;
+    height: 270px;
+}
+
+
+#imm1{ /* index.html*/
+    content: url(../Immagini/ponte.jpg);
+    width: 504px;
+    height: 288px;
+}
+
+#foto_chi_siamo1{ /* chisiamo.html*/
+	float: right;
+}
+
+
+
+#foto_chi_siamo2{ /* chisiamo.html*/
+	float: left;
+}
+
+
+
+#imm3{ /*Immagine T'ai C'hi Chuan*/
+    content: url(../Immagini/tai-chi-chuan.png);
+    width: 109px;
+    height: 55px;
+	padding-bottom: 1em;
+}
+
+#imm4{ /*Immagine Kung Fu*/
+    content: url(../Immagini/kung-fu.png);
+	padding-left: 1.5em;
+    width: 79px;
+    height: 45px;
+	padding-bottom: 1em;
+}
+
+#foto_maestro_1{
+	display: block;
+	float: right;
+
+}
+
+#foto_maestro_2{
+	display: block;
+	float: left;
+}
+
+#foto_maestro_3{
+	display: block;
+	float: right;
+
+}
+
+/*Lista foto*/
+ul.listaFoto{
+	padding: 0;
+	text-align: center;
+	list-style: none;
+}
+
+ul.listaFoto li{
+	display: inline-block;
+}

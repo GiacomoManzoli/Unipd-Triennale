@@ -1,0 +1,356 @@
+/*@font-face {
+  font-family: Shangai;
+  src: url(../Font/shanghai.eot),
+       url(../Font/shanghai.ttf) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5
+} */
+
+@font-face {
+	font-family: 'Shanghai';
+	src: url(font/shanghai.eot);
+	src: local('Shanghai'),
+		 url(font/shanghai.woff) format('woff'),
+		 url(font/shanghai.ttf) format('truetype'),
+		 url(font/shanghai.svg) format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, Geneva, sans-serif;
+    background-size: 100% auto;
+	background-color: white;
+
+}
+
+body {
+    padding: 0;
+    font-size: 0.9em;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1024px;
+    width: 80%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: black;
+    padding: 0.1em;
+    margin-top: 0.3em;
+    font-family: Shanghai, Arial, sans-serif;
+    font-size:3.5em;
+    font-weight: normal;
+}
+
+dt {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+a:link{
+	text-decoration: none;
+	color: black;
+}
+a:visited{
+    color: black;
+}
+
+h2{
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+form{
+    margin: auto;
+    width: 40%;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+
+#header {
+	overflow: auto;
+	background-color:white;
+
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-top-left-radius: 0;
+	-moz-border-top-right-radius: 0;
+
+	text-align: center;
+}
+img.logo{
+	margin: 1em 0 1em 1em;
+	display: inline-block;
+	float: left;
+
+}
+div.titleArea {
+	text-align: center;
+	display: inline-block;
+	padding-top: 50px;
+	padding-right: 150px;
+}
+
+.titleArea h1{
+	font-size: 3.9em;
+	margin: 0;
+	padding:0;
+}
+.titleArea h2{
+	font-family: Shanghai, Arial, sans-serif;
+	font-size: 3.9em;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Navbar ------------------------------------------------------------------ */
+
+#nav{
+	display: none;
+}
+/* Content ------------------------------------------------------------------ */
+
+#content{
+	overflow: auto;
+    background-color:white;
+    padding: 5em 3em 1em 3em;
+}
+
+#content h1{
+	text-align: center;
+}
+
+
+
+/* Breadcrumb ------------------------------------------------------------------ */
+
+#breadcrumbs {
+	display: none;
+}
+
+/* News ------------------------------------------------------------------ */
+
+#news {
+	border: 0;
+
+	float:none;
+	height: auto;
+	margin: 1em 0;
+
+	width:100%;
+
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+#news h1{
+    margin-top: 0;
+}
+
+#news dl{
+	padding-left: 1em;
+}
+
+#news dt{
+    font-weight: bold;
+}
+
+/* Footer ------------------------------------------------------------------ */
+#footer{
+
+
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-bottom-left-radius: 0;
+	-moz-border-bottom-right-radius: 0;
+}
+
+p.address {
+	margin-top: 2em;
+	width: auto;
+	float:none;
+}
+
+.social{
+	display: none;
+}
+
+p.footerLink{
+	display: none;
+}
+
+
+/* General Purpose ------------------------------------------------------------------ */
+
+#quote{ /* Usato in: index.html*/
+	width: 99%;
+}
+
+
+.mappa {
+	float:none;
+	width: auto;
+	height: 200px;
+	margin: auto;
+}
+
+/*Lista stili kung fu -------------------------------------------------------------------*/
+.listaStili li{
+	font-size: 1.5em;
+	list-style: none;
+    padding-bottom: 0.2em;
+    width: 13em;
+}
+
+.listaStili li:hover{
+    background-color: bisque;
+	border-radius: 1em;
+}
+.listaStili a{
+    display: table-row;
+    width: 100%;
+}
+
+.listaStili img{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.listaStili span{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 0.3em;
+    padding: 0;
+}
+
+.listaStili {
+	padding: 0.5em;
+}
+
+.listaStili span.cha {
+    color: black;
+	display: inline;
+}
+
+/*Testi ------------------------------------------------------------------------------------*/
+
+p.textBlock{
+	clear: both;
+	display: block;
+	margin: 2em;
+}
+
+
+/* Istruttori------------------------------------------------------------------------- */
+
+ul#istruttori{
+	list-style: none;
+	padding: 0;
+}
+
+ul#istruttori li{
+	display: inline-block;
+	margin: 1em;
+	padding-left: 4.5em;
+}
+
+ul#istruttori li a{
+	text-decoration: none;
+}
+
+span.istruttoreNome {
+	color:black;
+	display:block;
+	font-size: 1.3em;
+	text-align: center;
+	padding: 0.3em;
+}
+
+/* Nav bar pagina istruttori*/
+
+#navIstruttori {
+	display: none;
+}
+
+
+/* Immagini & Foto ------------------------------------------------------------------ */
+
+
+
+img.foto {
+	border: 2px solid chocolate;
+	margin: 3em;
+}
+
+.immagineDecorativa{
+	display: block;
+	margin: 1em auto;
+	padding-top: 0;
+}
+
+.immagineIstruttore{
+	display: block;
+	width: 210px;
+	height: 270px;
+}
+
+#imm1{ /* index.html*/
+	display: none;
+	content: url(../Immagini/ponte.jpg);
+}
+
+
+#foto_chi_siamo1{ /* chisiamo.html*/
+	float: none;
+	display: block;
+	margin:auto;
+}
+#foto_chi_siamo2{ /* chisiamo.html*/
+	float: none;
+	display: block;
+	margin:auto;
+}
+
+#foto_maestro_1{
+	display: block;
+	float: none;
+	margin:auto;
+
+}
+
+#foto_maestro_2{
+	display: block;
+	float: none;
+	margin:auto;
+}
+
+#foto_maestro_3{
+	display: block;
+	float: none;
+	margin:auto;
+
+}
+
+#imm3{ /*Immagine T'ai C'hi Chuan*/
+	content: url(../Immagini/tai-chi-chuan.png);
+	width: 109px;
+	height: 55px;
+	padding-bottom: 1em;
+}
+
+#imm4{ /*Immagine Kung Fu*/
+	content: url(../Immagini/kung-fu.png);
+	padding-left: 1.5em;
+	width: 79px;
+	height: 45px;
+	padding-bottom: 1em;
+}

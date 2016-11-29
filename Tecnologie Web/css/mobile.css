@@ -1,0 +1,296 @@
+/*@font-face {
+  font-family: Shangai;
+  src: url(../Font/shanghai.eot),
+       url(../Font/shanghai.ttf) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5
+} */
+
+@font-face {
+	font-family: 'Shanghai';
+	src: url(font/shanghai.eot);
+	src: local('Shanghai'),
+		 url(font/shanghai.woff) format('woff'),
+		 url(font/shanghai.ttf) format('truetype'),
+		 url(font/shanghai.svg) format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, Geneva, sans-serif;
+    background-size: 100% auto;
+    background: white url(../Immagini/sfondo2modified.jpg);
+
+}
+
+body {
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+	width: auto;
+}
+
+h1 {
+    color: black;
+	padding: 0;
+    font-family: Shanghai, Arial, sans-serif;
+    font-size:2em;
+    font-weight: normal;
+	margin:.3em 0;
+}
+
+a:link{
+	color: chocolate;
+}
+a:visited{
+    color: #6d4821;
+}
+
+h2{
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+ol{
+	padding-left: 4em;
+}
+
+
+/* Header ------------------------------------------------------------------ */
+
+#header {
+	background-color: rgba(245,245,245,0.8);
+
+
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-top-left-radius: 0;
+	-moz-border-top-right-radius: 0;
+	text-align: center;
+}
+
+
+img.logo{
+	padding:0;
+	float:none;
+	display: inline-block;
+}
+div.titleArea {
+	text-align: center;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+
+}
+
+.titleArea h1{
+	font-size: 3em;
+	margin: 0;
+}
+.titleArea h2{
+	font-family: Shanghai, Arial, sans-serif;
+	font-size: 3em;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Navbar ------------------------------------------------------------------ */
+
+#nav{
+	text-align: left;
+	background-color: rgba(245,245,245,0.8);
+}
+
+#nav ul {
+	margin: 0 .5em;
+}
+
+#nav li a{
+	display: block;
+	margin: .2em 0;
+	background-color: chocolate;
+	border: 1px solid black;
+}
+
+#nav li a:hover{
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+.currentLink{
+	margin: .2em 0;
+	border: 1px solid black;
+
+
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+
+/* Content ------------------------------------------------------------------ */
+
+#content{
+	padding: 0 .6em 3em .6em;
+	margin: 0;
+}
+
+
+/* Breadcrumb ------------------------------------------------------------------ */
+
+#breadcrumbs {
+	padding-top: .5em;
+	font-size: .7em;
+}
+
+
+
+/* News ------------------------------------------------------------------ */
+
+#news {
+	border: 0;
+	float:none;
+	width:100%;
+	height: auto;
+
+	margin: 1em 0;
+
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+#news dl{
+	padding: 0;
+}
+
+#news dd {
+	font-size: 0.8em;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+#footer{
+	font-size: .8em;
+	padding: .7em;
+
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-bottom-left-radius: 0;
+	-moz-border-bottom-right-radius: 0;
+}
+
+p.address {
+	margin-top: .5em;
+	width: auto;
+	float:none;
+}
+
+.social{
+	margin-top: 3em;
+	text-align: left;
+	float: none;
+}
+
+.seguici{
+	font-weight: bold;
+}
+
+.social img{
+	margin: auto 1em;
+	width: 60px;
+	height: 60px;
+}
+
+p.footerLink{
+	margin-top: 3em;
+	padding-bottom: .5em;
+	text-align: center;
+}
+
+/* General Purpose ------------------------------------------------------------------ */
+
+#quote{ /* Usato in: index.html*/
+	width: 99%;
+}
+
+.mappa {
+	float:none;
+	width: 95%;
+	height: 200px;
+	margin: auto;
+}
+
+/*Lista stili kung fu -------------------------------------------------------------------*/
+
+
+
+/*Testi ------------------------------------------------------------------------------------*/
+p.textBlock{
+	/*Per evitare che la scroll-bar copra il testo*/
+	width: 97%;
+}
+
+
+/* Immagini & Foto ------------------------------------------------------------------ */
+
+
+#imm1{ /* index.html*/
+	display: none;
+    content: url(../Immagini/ponte.jpg);
+}
+
+
+#foto_chi_siamo1{ /* chisiamo.html*/
+	float: none;
+	display: block;
+	margin:1em auto;
+}
+#foto_chi_siamo2{ /* chisiamo.html*/
+	float: none;
+	display: block;
+	margin:1em auto;
+}
+
+#foto_maestro_1{
+	display: block;
+	float: none;
+	margin:1em auto;
+}
+
+#foto_maestro_2{
+	display: block;
+	float: none;
+	margin:1em auto;
+}
+
+#foto_maestro_3{
+	display: block;
+	float: none;
+	margin:1em auto;
+
+}
+
+#imm3{ /*Immagine T'ai C'hi Chuan*/
+    content: url(../Immagini/tai-chi-chuan.png);
+    width: 109px;
+    height: 55px;
+	padding-bottom: 1em;
+}
+
+#imm4{ /*Immagine Kung Fu*/
+    content: url(../Immagini/kung-fu.png);
+	padding-left: 1.5em;
+    width: 79px;
+    height: 45px;
+	padding-bottom: 1em;
+}
+
+
+
