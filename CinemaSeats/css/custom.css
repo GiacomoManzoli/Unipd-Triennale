@@ -1,0 +1,97 @@
+img{
+	margin-top:20px;
+}
+img.locandina{
+	width: 146px;
+	height: 215px;
+}
+
+
+div.film-desc{
+	height: 100px;
+	overflow: auto;
+	padding-right: 2px;
+	margin-left: 20px;
+}u
+
+div.posto-outer{
+	height: 50px;
+	width: 38px;
+	margin: 0px;
+}
+
+div.sfondo-sedia{
+	position: relative;
+	top:14px;
+	left: 4px;
+	height: 30px;
+	width: 30px;
+}
+
+div.sedia{
+	position: relative;
+	top:-30px;
+	left: 0px;
+	height: 50px;
+	width: 38px;
+}
+
+div.libera{
+	background: url("http://progettobasi2014.altervista.org/poltrona.png");	
+}
+
+div.occupata{
+	background: url("http://progettobasi2014.altervista.org/poltrona_occ.png");
+}
+
+div.posto-libero{
+	background-color: #47a447;
+}
+div.posto-occupato{
+	background-color: red;
+}
+div.posto-scelto{
+	background-color: yellow;
+}
+
+table.tabella-posti{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+table.tabella-posti td{
+	height: 50px;
+	width: 40px;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+div.container-sala{
+	background-color: #DDDDDD;
+	padding-top: 10px;
+	padding-bottom: 50px;
+
+	margin-bottom: 100px;
+
+	width: 780;
+}
+
+div.schermo{
+	width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	margin-bottom: 90px;
+}
+div.schermo h4{
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+form.form-posti{
+	padding: 0px;
+	display: inline;
+}
+
+
