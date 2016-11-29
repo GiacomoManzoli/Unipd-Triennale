@@ -1,0 +1,179 @@
+\section{Verifica e validazione}
+Sono attività necessarie per accertare che il processo non abbia introdotto difetti nel prodotto e accertare che il prodotto realizzato sia quello atteso.
+\begin{itemize}
+\textbf{Guasto Fault}: atto od omissione, possibile causa (anche umana) di comportamento fuori norma programmatore distratto. Può non avere effetto.
+\textbf{Errore o Difetto}: \textit{Erro} stato erroneo di sistema introdotto da un guasto, dato erroneo in una procedura. Può restare latente, va eliminato.
+\textbf{Malfunzionamento Failure}: effetto di un errore, risulta in deviazione da specifica emissione di un valore sbagliato. Può causare danni rilevanti.
+\end{itemize}
+
+\textbf{Verifiche statiche}: non comportano l'esecuzione del codice, usate prevalentemente per attività di verifica, effettuate sulle componenti (non sul sistema)
+
+\textbf{Verifiche dinamiche (prove - test)}: comportano esecuzione del codice, usate per attività di verifica e/o di validazione, effettuate sulle componenti e/o sul sistema. La prova deve essere ripetibile.
+Strumenti
+\begin{itemize}
+\item Driver : componente attiva fittizia per pilotare un modulo
+\item Stub : componente passiva fittizia per simulare un modulo
+\end{itemize}
+
+\subsection{Integrazione}
+Costruzione e verifica del sistema: componenti realizzate in parallelo, componenti realizzate e verificate indipendentemente, in condizioni ottime, l'integrazione è priva di problemi.\\
+Problemi: errori nella realizzazione delle componenti, modifica delle interfacce o cambiamenti nei requisiti, riuso di componenti dal comportamento oscuro o inadatto, integrazione con altre applicazioni non ben conosciute
+\subsection{Collaudo}
+Validazione del sistema:
+\begin{itemize}
+\item attività svolta dal fornitore a test o pre-collaudo
+\item attività svolta dal committente a test o collaudo (su casi di prova definiti nel contratto)
+\end{itemize}
+
+Valore contrattuale: il collaudo è un'attività formale, segue il rilascio del sistema, conclusione della commessa (a meno di servizi e garanzie)
+
+\subsection{Verifica statica}
+Metodi di lettura del codice
+
+\subsubsection{Inspection}
+\begin{itemize}
+\item Obiettivi: rivelare la presenza di difetti, eseguire una lettura mirata del codice
+\item Agenti: verificatori distinti e separati dai programmatori
+\item Strategia: focalizzare la ricerca su presupposti
+\end{itemize}
+Attività
+\begin{itemize}
+\item Fase 1: pianificazione
+\item Fase 2: definizione della lista di controllo
+\item Fase 3: lettura del codice
+\item Fase 4: correzione dei difetti
+\item Documentazione (rapporto delle attività)
+\end{itemize}
+
+\subsubsection{Walkthrough}
+\begin{itemize}
+\item Obiettivo: rivelare la presenza di difetti, eseguire una lettura critica del codice, a largo spettro
+\item Agenti: gruppi misti ispettori/sviluppatori, ma con ruoli ben distinti
+\item Strategia: percorrere il codice simulandone possibili esecuzioni
+di inspection
+\end{itemize}
+
+Attività
+\begin{itemize}
+\item Fase 1: pianificazione
+\item Fase 2: lettura del codice
+\item Fase 3: discussione
+\item Fase 4: correzione dei difetti
+\item Documentazione (rapporto delle attività)
+\end{itemize}
+
+\subsubsection{Inspection contro walkthrough}
+\textbf{Affinità}: controlli statici basati su desk check, programmatori e verificatori su fronti contrapposti,
+documentazione formale.\\
+\textbf{Differenze}: Inspection basato su (errori) presupposti, Walkthrough basato sull'esperienza, Walkthrough più collaborativi, Inspection più rapido di walkthrough.
+
+\subsection{Tracciamento}
+Verifica atta a dimostrare completezza ed economicità dell'implementazione identificando eventuali requisiti aggiuntivi (derivati) ed investigando il loro soddisfacimento. Ha luogo nel trattamento dei requisiti, tra requisiti elaborati (decomposti) ed originali (di livello utente), tra procedure di verifica e requisiti, disegno, codice, tra codice sorgente e codice oggetto. Certi stili di codifica (ancor più se facilitati dal linguaggio di programmazione) facilitano la verifica mediante tracciamento.
+
+\subsection{Revisioni}
+Strumento essenziale del processo di verifica. Possono essere condotte su requisiti, disegno, codice, procedure di verifica, risultati di verifica. Non sono automatizzabili, richiedono la mediazione e l'interazione di individui e possono essere formali od informali. Richiedono comunque indipendenza tra verificato e verificatore.
+
+\subsection{Analisi}
+\begin{itemize}
+\item Statica : applica a requisiti, progetto e codice
+\item Dinamica (prova, test): applica a componenti del sistema o al sistema nella sua interezza
+\end{itemize}
+
+\subsubsection{Analisi statica}
+Gli standard di certificazione richiedono l'uso, in varie combinazioni, di 10 metodi di analisi statica.
+\begin{enumerate}
+\item \textbf{Analisi di flusso di controllo}: ha l'obiettivo di accertare che il codice esegua nella sequenza attesa, accertare che il codice sia ben strutturato, localizzare codice non raggiungibile sintatticamente, identificare parti del codice che possano porre problemi di terminazione (i.e.: chiamate ricorsive, iterazioni);
+\item \textbf{Analisi di flusso dei dati}: accerta che nessun cammino d'esecuzione del programma acceda a variabili prive di valore, usa i risultati dell'analisi di flusso di controllo insieme alle informazioni sulle modalità di accesso alle variabili (lettura, scrittura). Rileva possibili anomalie, p.es. più scritture successive senza letture intermedie. è complicata dalla presenza e dall'uso di dati globali accedibili da ogni parte del programma;
+\item \textbf{Analisi di flusso d'informazione}: determina come l'esecuzione di una unità di codice crei dipendenze (e quali) tra i suoi ingressi e le uscite. Le sole dipendenze consentite sono quelle previste dalla specifica, Consente l'identificazione di effetti laterali inattesi od indesiderati, può limitarsi ad un singolo modulo, a più moduli collegati, all'intero sistema
+\item \textbf{Esecuzione simbolica}: verifica proprietà del programma mediante manipolazione algebrica del codice sorgente senza bisogno di specifica formale. Usa tecniche di analisi di flusso di controllo, di flusso di dati e di flusso di informazione. Si esegue effettuando ``sostituzioni inverse''. Trasforma il flusso sequenziale del programma in un insieme di assegnamenti paralleli nei quali i valori di uscita sono espressi come funzione diretta dei valori di ingresso.
+\item \textbf{Verifica formale del codice}: Prova la correttezza del codice sorgente rispetto alla specifica formale dei suoi requisiti. Esplora tutte le esecuzioni possibili, ciò che non è fattibile mediante prove dinamiche. Correttezza parziale: elaborazione e prova di teoremi (condizioni di verifica) la cui verità implica che il verificarsi di certe pre-condizioni assicura il verificarsi di determinate post-condizioni, sotto l'ipotesi di terminazione del programma.
+\item \textbf{Analisi di limite}: verifica che i dati del programma restino entro i limiti del loro tipo e della precisione desiderata.
+\item \textbf{Analisi d'uso di stack}: determina la massima domanda di stack richiesta da un'esecuzione e la relaziona con la dimensione dell'area fisica disponibile.
+\item \textbf{Analisi temporale}: concerne le proprietà temporali richieste ed esibite dalle dipendenze delle uscite dagli ingressi del programma
+\item \textbf{Analisi d'interferenza}: mostra l'assenza di effetti di interferenza tra parti separate (``partizioni'') del sistema.
+\item \textbf{Analisi di codice oggetto}: assicura che il codice oggetto da eseguire sia una traduzione corretta del codice sorgente corrispondente e che nessun errore (od omissione) sia stato/a introdotto dal compilatore.
+\end{enumerate}
+
+\subsubsection{Analisi dinamica}
+La prova software consiste nella verifica dinamica del comportamento di un programma.
+Produce una misura della qualità del sistema, il suo inizio non deve essere differito al termine della fase di codifica. 
+La definizione della strategia di prova richiede bilanciamento tra: la quantità minima di casi di prova sufficienti a fornire certezza adeguate sulla qualità del prodotto e la quantità massima di sforzo, tempo e risorse disponibile per il completamento della verifica.\\
+\textbf{Criteri guida}
+\begin{itemize}
+\item Oggetto della prova: il sistema nel suo complesso, parti di esso, in relazione funzionale, d'uso, di comportamento, di struttura, singole unità.
+\item Obiettivo della prova: specificato per ogni caso di prova, in termini il più possibile precisi e quantitativi, varia al variare dell'oggetto della prova, risponde alle domande: quante e quali prove. Una prova non è sempre definitiva, deve essere ripetibile (dunque ben specificata)
+\end{itemize}
+Elementi di una prova
+\begin{itemize}
+\item Caso di prova ( test case): Tripla <ingresso, uscita, ambiente> Batteria di prove ( test suite): insieme (sequenza) di casi di prova
+\item Procedura di prova: il procedimento (automatico e non) per eseguire, registrare, analizzare e valutare i risultati di una batteria di prove.
+\item L'oracolo: un metodo per generare a priori i risultati attesi
+\end{itemize}
+
+\subsubsubsection{Test di unità}
+Una unità software è composta da uno o più moduli. \textit{Modulo} = componente elementare di progetto di dettaglio
+\subsubsubsection{Test funzionale (black-box)}
+Complementa il test strutturale. è incapace di accertare correttezza e completezza della logica interna dell'unità. Fa riferimento alla specifica dell'unità ed utilizza dati di ingresso capaci di provocare l'esito atteso. Ciascun insieme di dati di ingresso che producono un dato comportamento funzionale costituisce un caso di prova. Si usano classi di equivalenza invece che infiniti valori di ingresso.
+\subsubsubsection{Test strutturale (white-box)} 
+Verifica la logica interna del codice dell'unità. Ciascuna prova deve essere progettato per attivare ogni cammino di esecuzione all'interno del modulo. Ciascun insieme di dati di ingresso che attivano un
+percorso costituiscono un caso di prova. L'uso di debugger ne agevola l'esecuzione ma non esonera dalla progettazione dei casi di prova.
+\subsubsubsection{Test di integrazione} 
+Si applica alle componenti del progetto architetturale. L'integrazione di tali componenti costituisce il sistema nella sua interezza. Tanti test quanto serve per: accertare che tutti i dati scambiati attraverso ciascun interfaccia aderiscano alla loro specifica,accertare che tutti i flussi di controllo previsti in specifica siano stati effettivamente realizzati.
+\subsubsubsection{Test di sistema}
+Verifica il comportamento dinamico del sistema completo rispetto ai requisiti software. Ha inizio con il completamento del test di integrazione. è inerentemente funzionale ( black-box).
+\subsubsubsection{Test di accettazione (collaudo)}
+Accerta il soddisfacimento dei requisiti utente.
+
+La quantità minima di test necessari è sufficiente ad eseguire almeno una volta tutte le linee di comando di ciascun modulo dell'unita (Statement coverage).
+Può essere necessario verificare anche ciascun ramo della logica del flusso di controllo (Branch coverage)
+
+\subsubsection{Regole di integrazione}
+\begin{itemize}
+\item Assemblare moduli in modo incrementale: i difetti rilevati in un test sono più probabilmente da attribuirsi al modulo ultimo aggiunto
+\item Assemblare moduli produttori prima dei moduli consumatori: la. verifica dei primi fornisce ai secondi flusso di controllo e flusso dei dati corretti
+\item Assemblare in modo che ogni passo di integrazione sia reversibile: consente di retrocedere verso uno stato noto e sicuro
+\end{itemize}
+
+\subsection{Verifica e validazione di qualità}
+\begin{itemize}
+\item Funzionalità: Dimostrabile tramite prove, verifica statica come attività preliminare, liste di controllo
+rispetto ai requisiti, Prove per accuratezza.
+\item Affidabilità: Dimostrabile tramite analisi e prove, verifica statica come attività preliminare, liste di controllo rispetto ai requisiti, prove per maturità
+\item Usabilità: Le prove sono imprescindibili, verifica statica come attività complementare, liste di controllo rispetto ai manuali d'uso, questionari all'utenza (a seguito di prove)
+\item Efficienza: Prove necessarie con la tecnologia attuale, verifica statica come attività preliminare, liste di controllo rispetto ai criteri realizzativi richiesti, miglioramento e confidenza.
+\item Manutenibilità: Verifica statica come strumento ideale, liste di controllo rispetto alle norme di codifica, liste di controllo rispetto all'insieme delle prove, prove per la stabilità
+\item Portabilità: Verifica statica come strumento ideale, liste di controllo rispetto alle norme di codifica, prove come strumento complementare.
+\end{itemize}
+\subsection{Versionamento e configurazione}
+\textbf{Versione}: Istanza di sistema funzionalmente distinta dalle altre istanze. Uno stato definito che un prodotto può assumere nel suo ciclo di vita.\\
+\textbf{Variante}: Istanza di sistema funzionalmente identica ad altre istanze ma distinta dal loro per caratteristiche non funzionali.\\
+\textbf{Rilascio (release)}: Istanza di sistema visibile ad altri che gli sviluppatori.\\
+\textbf{Configurazione}: Una delle forme che un prodotto può assumere in relazione a come è realizzato, aggregato, installato. Una configurazione di prodotto si compone di componenti e procedure, ciascuna identificata da una specifica versione.\\
+\textbf{Gestione di configurazione (CM)}: processo di supporto in ISO 12207, non riguarda solo il codice, comprende il controllo di versione.\\
+\textbf{Controllo di versione}: l'insieme di attività, tecniche e metodologie necessarie a gestire le versioni di un prodotto.
+\textbf{Ripristino}: poter tornare indietro con certezza ed in economia di risorse quando una modifica si rivelasse inadeguata per recuperare una versione da usare come termine di confronto a fronte di sviluppo sperimentale.
+
+\subsection{Misurazione del software}
+\textbf{Misura}: Risultato della misurazione, assegnazione empirica ed oggettiva di un valore (numerico o simbolo) ad un'entità, per caratterizzarne un attributo specifico.\\
+\textbf{Metrica}: un insieme di regole per stabilire le entità da misurare, per definire gli attributi rilevanti, per definire l'unità di misura, per definire una procedura per assegnare numeri e simboli.\\
+Linee di codice sorgente (SLOC): lametricapiùintuitivaepiùusata.Conteggiodeicostrutti semplificato e adattato alle funzionalità degli editor,usata per derivare informazioni di costo e produttività Limiti: dipendente da sintassi e potenza espressiva del linguaggio, dipendente dallo stile di codifica
+Software Science (MauriceH.Halstead.ElementsofSoftwareScience,Elsevier,Amsterdam,1977): Complessità del codice, misura a posteriori, controversa, basata sul numero e sul tipo dei costrutti, basata suelementidipsicologiacognitivaestatistica. Limiti:adattasoloaiprimilinguaggidiprogrammazione, inefficace
+Complessità ciclomatica: indipendente dal linguaggiodi programmazione, complessità del flusso di controllo in funzione dei possibili cammini indipendenti sul grafo di flusso. Fornisce una misurazione astratta del codice. Limiti: fallibilità dimostrata, costosa da applicare prima di progettare il codice in dettaglio
+Definizione algebrica: v(G) = e - n + p numero di percorsi lineari in G [e numero degli archi (flusso), n numero dei nodi (espressioni o comandi), p numero delle componenti connesse da ogni arco (=2)]
+FunctionPoint: nonmisurailsoftwaremalesueentitàlogico-funzionali,indipendentedallinguaggiodi programmazione, conteggio dei punti funzione. Limiti: misurazioni diverse possono dare risultati leggermente diversi, risultati ottimali per sistemi gestionali
+Standard per misure funzionali --> ISO/IEC 14143 – Functional size measurement: concetti definiti: accuratezza di una misura funzionale, accuratezza di una metrica funzionale, ripetibilità e riproducibilità di una metrica funzionale,
+soglia di sensibilità di una metrica funzionale, applicabilità ad un dominio funzionale
+Accertamento di qualità
+What is quality? Quality, simplistically, means that a product should meet its specification
+Scope of quality management: quality management is particularly important for large, complex systems. The quality
+documentation is a record of progress and supports continuity of development as the development team changes.
+Attività
+Quality assurance: establish organisational procedures and standards for quality.
+Quality planning: select applicable procedures and standards for a particular project and modify these as required.
+Quality control: ensure that procedures and standards are followed by the software development team.
+Quality management should be separate from project management to ensure independence.
+Pianificazione SQA: Definisce i processi, le attività e le procedure per assicurare il soddisfacimento dei requisiti al più alto livello di qualità entro i vincoli di progetto
+Pianificazione V&V : stabilisce come gestire i processi V&Ved il ruolo delle tecniche adottate per soddisfare i requisiti ad essi assegnati
+SQA rispetto a V&V
+Il processo SQA produce accertamento di qualità di prodotti assicurando che la pianificazione dei processi adottati sia conforme agli standard applicabili, le attività e le procedure impiegate siano eseguite secondo i piani, i prodotti siano realizzati in modo conforme agli standard applicabili
+Il processo V&V controlla l'adeguatezza delle uscite di un processo rispetto ai suoi ingressi

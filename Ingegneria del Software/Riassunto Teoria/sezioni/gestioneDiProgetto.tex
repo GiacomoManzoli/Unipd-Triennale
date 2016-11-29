@@ -1,0 +1,124 @@
+\section{La gestione di progetto}
+Si è visto che c'è un'esigenza di doppia istanziazione perché abbiamo un modello astratto (12207) e una volta fatta la prima istanziazione del modello di processo ve ne è una seconda che gestisce il singolo progetto. Per fare un'istanza corretta bisogna fare una corretta stima di risorse, di attività, di responsabilità. Lo standard 12207 dice che se esiste un'attività allora esiste un responsabile per quell'attività.
+\subsection{Funzioni e ruoli}
+\textbf{Funzione}: riguarda l'azienda
+\textbf{Ruolo}: risorse che assumono una certa responsabilità all'interno del progetto.
+Alle funzioni seguono i ruoli:
+\begin{itemize}
+\item Sviluppo --> aspetti tecnologici;
+\item Direzione --> responsabilità decisionali; 
+\item Amministrazione --> gestione dei processi;
+\item Controllo --> gestione del sistema qualità.
+\end{itemize}
+Funzione o ruolo? Funzione in aziende strutturate con progetti simili, ruolo in progetti diversificati.
+
+\subsection{Profilo professionale}
+Insieme di competenze (tecniche e tecnologiche) ed esperienze (temporali o quantitative) proprie di una persona che fanno da requisiti per l'assunzione di un ruolo in un progetto.\\
+Differenza tra tecnico e tecnologico:
+\begin{itemize}
+\item \textbf{Tecnico}: modo in cui si usa uno strumento (neutro rispetto la tecnologia);
+\item \textbf{Tecnologico}: strumento sul quale si opera (ad esempio un linguaggio di programmazione).
+\end{itemize}
+
+\subsubsection{Analista}
+Deve fare l'operazione di traduzione da bisogno del cliente a specifica utile per trovare una soluzione (da fornire al progettista). Deve essere in grado di capire il dominio nel quale lavora il cliente e molto dipende dalla buona riuscita del suo lavoro poiché ha un forte impatto sul successo dei progetti. Sono pochi e solitamente non seguono il progetto fino alla fine (passano al successivo). 
+
+\subsubsection{Progettista}
+Esperto professionale, tecnico e tecnologico Deve indicare la tecnologia più idonea per risolvere il problema indicato dall'analista. Deve dire, rispetto al dominio applicativo e alla tecnologia, come usare gli strumenti. Il progettista rimane legato al progetto, le sue scelte (soggettive) fanno dipendere il corso del progetto e spesso si assume la responsabilità di gestione del progetto.
+
+\subsubsection{Programmatore}
+A basso costo perché ce ne possono essere più di uno e ha competenze specifiche, visione e responsabilità circoscritte. Il suo lavoro si può parallelizzare alla verifica. Sta a lungo sul progetto perché può essere coinvolto nella manutenzione.
+
+\subsubsection{Verificatore}
+Attività noiosa ma fondamentale. Ruolo di breve durata ma che più stanzia sul progetto. Attribuibile a più persone contemporaneamente. Esso deve capire le norme sulle quali viene fatta la verifica (tecniche di verifica).
+
+\subsubsection{Responsabile di progetto}
+Dovrà allocare le persone giuste ai posti giusti e incitare coordinamento e controllo qualitativo. Esso deve inoltre avere conoscenze e capacità tecniche. Si accentra responsabilità di scelta ed approvazione. La responsabilità dovrà avere continuità storica.
+
+\subsubsection{Amministratore di progetto}
+Deve assicurarsi che ad ogni istante della vita del progetto le risorse intese come umane, materiali, economiche, strutturali, siano presenti e operanti senza necessariamente essere un tecnico. 
+Esso deve inoltre garantire un'infrastruttura funzionale. Il suo ruolo è più ``orizzontale'' rispetto agli altri che si occupano di specifici settori.
+
+\subsubsection{Controllo della qualità}
+Funzione di recente introduzione che accerta la qualità dei prodotti. Questa attività serve all'azienda stessa (per essere sicura di ciò che produce) e al cliente (garanzie sul prodotto e sull'azienda).
+
+\subsection{Attività di pianificazione del progetto}
+Tecnica che consente di pianificare lo svolgimento del progetto e controllarne l'attuazione, serve per avere una base su cui gestire l'allocazione delle risorse e per stimare e controllare scadenze e costi. Essa produrrà un piano di progetto che dovrà essere vivo per tutto il corso del progetto. In esso di decide ``chi fa cosa'', quando e per quanto tempo rispetto agli obblighi e alle scadenze. \\
+La pianificazione comporta anche un controllo che si stia effettivamente procedendo secondo i piani, correggendo eventuali errori in corso d'opera. Non ha senso fare un'unica pianificazione di progetto, ma sarà utile strutturarla in moduli per poter gestire meglio le attività ed arginare gli errori. Va detto che le attività non possono deviare dalla pianifica. 
+
+\subsection{Strumenti per la pianificazione}
+\begin{itemize}
+\item \textbf{Work breakdown structure} (strutturazione interna del lavoro): consente di separare il lavoro in moduli strutturati. \`{E} una struttura statica che divide le attività in sotto attività fortemente coese e accoppiate in modo lasco (dipendenze controllabili con altre attività). Esse sono unicamente identificate secondo un ordine numerico: si va in profondità fino a quanto serve in modo che quando individuo una sotto attività posso risalire alla struttura interna (gerarchia).
+\item \textbf{Diagrammi di Gantt}: (ideologia capitalista) dislocazione temporale delle attività per rappresentarne la
+durata, la sequenzialità e il parallelismo. Il collocamento delle attività è arbitrario, l'importante è il collocamento preciso nell'asse del tempo per avere chiare inizio e fine (piano preventivo). Può succedere che l'attività abbia uno sviluppo diverso dalla pianificazione e con i diagrammi si può notare questo fatto anche visivamente. Essi infatti possono fungere da strumento visivo per lo studio di attività (parallelismo, ordine, ritardi, dipendenze, slittamenti).
+\item \textbf{Diagrammi di Pert}: unificazione delle 2 tecniche precedenti dove viene fornito in modo numerico (non
+visivo come in Gantt) la collocazione delle attività (attraverso identificatore) e lo spazio temporale (attraverso le date) in cui si colloca. I diagrammi riportano inoltre la dipendenza ``da" e ``verso'', e il margine (slack) che le attività hanno tra di loro.
+\end{itemize}
+
+\subsection{Allocazione delle risorse}
+Fatta la pianificazione per astratto delle attività bisogna allocare le risorse, cioè assegnare attività a ruoli e ruoli a persone. Ci sono 2 tendenze nel fare queste operazioni:
+\begin{itemize}
+\item Sovrastimare --> molto margine di cautela (spreco tempo)
+\item Sottostimare --> inganno, causa pianificazione senza margini, a rischio di slittamento a cascata.
+\end{itemize}
+Per mitigare i rischi, un'azienda assegna le persone a più progetti ma diventa molto costoso il cambio di contesto dei progetti.
+
+\subsection{Stima dei costi di progetto}
+Tecnica analitica per pianificare quante persone mi servono in un progetto, per organizzare le attività ed
+evidenziare le criticità. L'unità di misura è il tempo/persona che rappresenta il tempo nel quale una persona è impegnata in un progetto. Tale stima può essere o meno influenzata da diversi fattori:
+\begin{itemize}
+\item Dimensione del progetto (maggiore dimensione, più tempo/persona richiesto);
+\item Esperienza nel dominio;
+\item Tecnologie adottate e ambiente di sviluppo;
+\item Qualità richiesta ai processi;
+\item Fattore umano.
+\end{itemize}
+
+\textbf{Legge di Parkinson}: ``\emph{datemi del tempo per svolgere un lavoro e ho garanzie che il lavoro riempie quel tempo.}''
+Osservazione di realtà fino ad oggi vera. Le attività che si svolgono aumentano con l'aumentare dell'aspettativa su quel prodotto.\\
+
+\subsubsection{CoCoMo - Constrictive Cost Model}
+Tecnica per la stima del tempo necessario per la realizzazione di un progetto, \textit{Constructive}: costruttivo perché si basa sull'esperienza e calibra il modello sulla base di essa, \textit{Cost Model} spiegazione della metrica.
+Funzione matematica che produce in uscita un valore in tempo/persona.
+\begin{center}
+Lavoro (in mesi/persona): $ \frac{M}{P} = C x PM^S x M $
+\end{center}
+I fattori statici che compaiono identificano:
+\begin{itemize}
+\item \textbf{C}: complessità del progetto. Valore soggettivo che decresce con l'esperienza (valore basso, modesta complessità; valore alto, alta complessità);
+\item \textbf{PM}: dimensione stimata del prodotto (diversa dalla complessità) anch'essa dipendente dall'esperienza;
+\item \textbf{KDSI}: Kilo Delivered Source Instruction, unità di misura in cui si esprime la dimensione del prodotto che rappresenta il peso del codice sorgente consegnato richiesto per il progetto;
+\item \textbf{M}: dice che altri elementi del progetto (anche esterni) incidono nella dimensione del progetto (ad esempio una collaborazione remota tra gli sviluppatori..).
+\end{itemize}
+
+Criteri per definire la complessità di progetto:
+\begin{itemize}
+\item \textbf{Bassa complessità}: tutti gli sviluppatori coinvolti sul progetto hanno una buona visione dei contenuti del progetto, associata a valori consigliati dei parametri C=2,4; S=1,05; M=1;
+\item \textbf{Media complessità}: per capire tutto bisogna tornare al ``divide et impera'', capendo le parti singole ma nel complesso un po' meno. Valori consigliati C=3; S=1,12; M=1;
+\item \textbf{Elevata complessità} (embedded): il prodotto interagisce con componenti esterne che non sono parte del progetto sulle quali noi abbiamo zero influenza. Valori consigliati C=3,6; S=1,2; M=1. 
+\end{itemize}
+CoCoMo va applicato su una base di esperienza alle spalle e di solito viene usato per fare delle stime a posteriori (per dedurre la complessità di progetto una volta che esso è terminato)
+
+Una strategia per ridurre il tempo necessario allo sviluppo di un progetto è quella di aggiungere risorse, ma questa tecnica non funziona sempre in quanto alcune attività non sono parallelizzabili oppure non si ha a disposizione del buget ulteriore, dato che l'aumento di risorse provoca anche un aumento dei costi di progetto. 
+
+\subsection{Rischi di progetto}
+\textit{Chaos}: rapporto stilato dallo Studio Standish Group che si interroga sui progetti falliti degli anni precedenti, fornendo una serie di indicatori che servono a far aumentare l'esperienza.
+In base ai rischi, i progetti si possono dividere in categorie:
+\begin{itemize}
+\item \textbf{Progetti di successo}: consegnati in tempo, senza costi aggiuntivi, con soddisfazione del cliente (16,2\%)
+\item \textbf{Progetti a rischio}: fallimenti sui criteri fondamentali (fuori tempo, o con costi aggiuntivi, o con prodotto difettoso – 52,7\% con media sovra-costi del 189\% rispetto le stime iniziali);
+\item \textbf{Fallimenti}: progetti cancellati prima della conclusione (31,1%).
+\end{itemize}
+Fattori incidenti sul successo dei progetti:
+\begin{itemize}
+\item \textit{Coinvolgimento del cliente}: 15,9\% sistematico, ragionevole, poiché molto spesso non è chiaro ciò che vuole; 
+\item \textit{Supporto della direzione esecutiva}: 13,9\% l'azienda supporta il progetto disponendo strutture e risorse; 
+\item \textit{Definizione chiara dei requisiti}: 13\% responsabilità del fornitore; 
+\item \textit{Pianificazione corretta}: 9,6\%.
+\end{itemize}
+Fattori incidenti sul fallimento dei progetti:
+\begin{itemize}
+\item Requisiti incompleti: 13.1\%;
+\item Mancato coinvolgimento del cliente: 12.4\%; 
+\item Mancanza di risorse: 10.6%.
+\end{itemize}

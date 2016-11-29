@@ -1,0 +1,69 @@
+\section{Amministrazione di progetto}
+Lo scopo dell'amministrare un progetto è quello di evitare conflitti che si manifestano quando ci sono sovrapposizioni di ruoli e responsabilità. 
+L'amministratore non dirige, ma ha il compito di fare in modo che l'infrastruttura di lavoro sia operante. 
+Si assicura che una volta fatte le scelte esse vengano seguite dagli altri.
+Egli fa in modo che le regole ci siano (su incarico ed approvazione del responsabile) e fa in modo che vengano rispettate mantenendole in base alla realtà. 
+Non ha responsabilità sulle risorse personali ma su tutte le altre (ambiente, infrastrutture, strumenti, prodotti, documenti) delle quali se ne deve occupare sapendo che l'obbiettivo è ottenere la massima produttività con il minor sforzo.
+
+\subsection{Documentazione di progetto}
+\`E la chiave per rendere il progetto gestibile, controllabile e ripetibile, essa raccoglie tutto ciò che documenta le attività, cioè tutto ciò che descrive le attività coinvolte nel progetto. \\
+La documentazione può essere:
+\begin{itemize}
+\item \texttt{Documentazione di sviluppo}: quella fornita dal cliente, diagrammi di progettazione, codice, piani di qualifica e risultati delle prove, documentazione di accompagnamento del prodotto;
+\item \textbf{Documentazione di gestione di progetto}: documenti contrattuali, piani e consuntivi delle attività, piani di qualità. 
+\end{itemize}
+La disponibilità e la diffusione dei documenti deve essere regolata secondo diverse visibilità (interni, esterni..) fissate da norme.
+Ogni documento ha una propria lista di distribuzione, nel caso questa mancasse, allora il documento è pubblico. 
+Inoltre tutti i documenti devono essere chiaramente identificati, corretti nei contenuti, aggiornati, verificati ed approvati. 
+Per ogni documento c'è un ciclo sistematico di verifica ed approvazione. 
+La versione \textit{i-esima} del documento, è la versione \textit{(i-1)esima} con alcune modifiche annotate nel ``diario delle modifiche'' contenuto nel documento.
+
+\subsection{Ambiente di lavoro}
+\`E necessario al processo di produzione, la sua qualità influisce sulla qualità del processo e del prodotto. 
+Le caratteristiche di qualità di ambiente possono essere:
+\begin{itemize}
+\item \textbf{Completo}: deve offrire tutto il necessario;
+\item \textbf{Ordinato}: deve essere facile trovarvi ciò che si cerca;
+\item \textbf{Aggiornato}: il materiale obsoleto non deve intralciare.
+\end{itemize}
+
+\subsection{Infrastruttura}
+\`E costituita da tutte le risorse hardware (server, mainframe, rete locale, connettività, stazioni di lavoro e da tutte le risorse software (ambienti di sviluppo, di prova e di lavoro, server, rete intranet..).
+
+\subsection{Strumenti di sviluppo}
+Per lo sviluppo di un progetto non servono solamente compilatori, ma servono strumenti come editori di testo, verificatori, debugger, strumenti per il versionamento, per la configurazione e anche ambienti di supporto come:
+\begin{itemize}
+\item \textbf{CASE - Computer Aided Software Engineering}: insieme di strumenti che consente di agevolare le attività di un ingegnere del software con l'aiuto del computer (insieme di editor, compilatori, debugger..). Enfasi sul ciclo programmazione-verifica (non analisi);
+\item \textbf{Ambienti Wizard}: formati di librerie per un ciclo rapido delle operazioni (più legati alla piattaforma) --> \textit{RAD – Rapid Application Development};
+\item \textbf{CAST – Computer Aided Software Test}: enfasi orientata per agevolare le prove;
+\item \textbf{IDE – Integrated Development Environment}: evoluzione dell'ambiente CASE, enfasi sull'integrazione di strumenti per fare sviluppo. Fortemente integrati alla specifica piattaforma.
+\end{itemize}
+
+\subsection{Strumenti di processo}
+Serve qualcosa per fare pianificazione, strumenti professionali per la gestione del progetto. 
+L'analisi e la progettazione racchiudono in se stesse le attività più delicate sul progetto, quindi serve un linguaggio che aiuta ad esprimere in modo non ambiguo un'analisi, per fare un corretto tracciamento dei requisiti perché sarà utile in seguito riportare ogni volta e in che modo viene soddisfatto un requisito fatto in analisi secondo evidenza documentale.
+Anche sulla codifica-programmazione si applicano regole rigide poiché il codice dovrà essere il più portabile possibile e quindi dovrà essere capibile da altri, esterni al progetto. 
+Serve quindi un qualcosa che fornisca una ``misura'' del codice.
+
+\subsection{Norme di processo}
+Si necessita di linee guida per le attività di sviluppo che al loro interno contengono norme di codifica, organizzazione ed uso delle risorse di sviluppo, convenzioni sull'uso degli strumenti di sviluppo, organizzazione della comunicazione e della cooperazione.\\
+\textbf{Come nasce una norma?} Di solito in un gruppo di persone, ci si da delle convenzioni utili, secondo studi, esperienze, che devono essere rispettate.
+Le norme, se sottoposte ad un controllo della loro applicazione diventano regole alle quali si riconosce necessità e convenienza e per questo ne è richiesto ed accertato il rispetto.\\
+Norme:
+\begin{itemize}
+\item controllo --> regole
+\item senza controllo --> raccomandazioni, consigli
+\end{itemize}
+Anche il contesto e le esigenze definiscono la portata della norma. Tutte le norme dovranno essere accertate dall'amministratore.\\
+\textbf{Norme di codifica}: hanno come obbiettivo quello di fare in modo che il codice sorgente sia leggibile nel tempo. Da esse possono essere tratti degli standard di codifica che consentono al codice sorgente di comunicare perché ha in se cose chiare, indipendentemente dal tipo di linguaggio utilizzato.\\
+Convenzioni su:
+\begin{itemize}
+\item \textbf{Nomi}: non solo nel codice ma si possono trovare anche all'interno di un progetti. Scelte comuni su tipi, variabili, costanti, funzioni, nomi dei file.. per aiutarci a capire che un certo nome si riferisce a una cosa specifica. Non è un'attività banale e trascurabile;
+\item \textbf{Indentazione}: per evidenziare visivamente la struttura del programma, pensata per rendere il flusso del programma visivamente comprensibile;
+\item \textbf{Intestazione}: ogni file conterrà un'intestazione obbligatoria, un preambolo a struttura fissa che contiene le caratteristiche del file, la responsabilità delle modifiche e la sua storia.
+\end{itemize}
+
+\subsection{Uso del linguaggio}
+Serve che qualcuno fissi quali parti del linguaggio possono essere usate e quali evitate. \`E una strategia per costringere i programmatori a lavorare come si conviene (compilazione senza errori, uso chiaro dei costrutti del linguaggio..)
+\subsection{Leggibilità del codice}
+Leggere il codice dovrebbe essere un'attività formativa ma spesso non è così. L'ispezione del codice è un'attività con la quale si fa sostegno all'amministratore. La sintassi di un linguaggio e il compilatore sono strumenti neutri rispetto la chiarezza.

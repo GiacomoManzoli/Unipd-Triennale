@@ -1,0 +1,110 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc} % permette l'inserimento di caratteri accentati da tastiera nel documento sorgente.
+\usepackage[T1]{fontenc} % specifica la codifica dei font da usare nel documento stampato.
+\usepackage{lscape}
+\usepackage{times} % per caricare un font scalabile
+\usepackage{indentfirst} % rientra il primo capoverso di ogni unità di sezionamento.
+\usepackage{titlesec}
+\usepackage{makecell}
+\usepackage{xspace}
+\usepackage{xstring}
+\usepackage{rotating, graphicx} % permette l'inserimento di immagini
+\usepackage{multirow}
+\usepackage{microtype} % migliora il riempimento delle righe
+\usepackage{hyperref} % per gestione url
+\hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+}
+\usepackage{url} % per le url in monospace
+\usepackage{eurosym} % simbolo euro
+\usepackage{lastpage} % permette di sapere l'ultima pagina
+\usepackage{fancyhdr} % gestione personalizzata header e footer
+\usepackage[a4paper,portrait,top=3.5cm,bottom=3.5cm,left=3cm,right=3cm,bindingoffset=5mm]{geometry} % imposta i margini di pagina nelle classi standard.
+\usepackage{hyperref} % abilita i riferimenti ipertestuali.
+\usepackage{caption} %per le immagini
+\usepackage{subcaption} %per le immagini
+\usepackage{placeins} %per i floatbarrier
+\usepackage{float} %per il posizionamento delle figure
+\usepackage{verbatim} %per i commenti multiriga
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{longtable} % per le tabelle multipagina
+\usepackage{diagbox}
+\usepackage{hhline}
+\usepackage{array} % per il testo nelle tabelle
+\usepackage{multirow}
+\usepackage{dirtree}
+\usepackage{placeins} % \FloatBarrier per fare il flush delle immagini
+\usepackage{tabularx} 
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage[normalem]{ulem}%testo sottolineato
+
+\usepackage[titletoc,title]{appendix}
+
+\titleclass{\subsubsubsection}{straight}[\subsubsection]
+\titleclass{\subsubsubsubsection}{straight}[\subsubsubsection]
+\titleclass{\subsubsubsubsubsection}{straight}[\subsubsubsubsection]
+
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\newcounter{subsubsubsubsection}[subsubsubsection]
+\renewcommand\thesubsubsubsubsection{\thesubsubsubsection.\arabic{subsubsubsubsection}}
+\newcounter{subsubsubsubsubsection}[subsubsubsubsection]
+\renewcommand\thesubsubsubsubsubsection{\thesubsubsubsubsection.\arabic{subsubsubsubsubsection}}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubsubsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\def\toclevel@subsubsection{3}
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@subsubsubsubsection{\@dottedtocline{5}{11em}{4em}}
+\def\l@subsubsubsubsubsection{\@dottedtocline{6}{15em}{4em}}
+\def\l@paragraph{\@dottedtocline{7}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{8}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{5}
+
+
+\begin{document}
+
+
+
+\textbf{SWE Theory}
+
+\tableofcontents %indice
+\listoffigures
+\pagebreak
+
+\input{sezioni/introduzione.tex}
+\input{sezioni/processoSoftware.tex}
+\input{sezioni/gestioneDiProgetto.tex}
+\input{sezioni/amministrazioneDiProgetto.tex}
+\input{sezioni/requisiti.tex}
+\input{sezioni/qualita.tex}
+\input{sezioni/progettazioneSoftware.tex}
+\input{sezioni/verificaValidazione.tex}
+
+\end{document}

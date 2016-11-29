@@ -1,0 +1,101 @@
+\BOOKMARK [1][-]{section.1}{L'ingegneria del software}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Definizioni di ingegneria del Software}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Software Engineer}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Tipologie del software}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Manutenzione}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Il processo software}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Processi del ciclo di vita del software \(12207\)}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Il modello di ciclo di vita del software}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Prototipazione e riuso}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Relazione tra processi e modelli}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Fattori determinanti del ciclo di vita}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.6}{L'organizzazione di processo}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.7}{IEEE/EIA 12207 \205 Processi del ciclo di vita del software}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Natura dello standard 12207}{subsection.2.7}% 14
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Software Engineering \(definizione IEEE\)}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Standard dell'ingegneria del software}{subsection.2.7}% 16
+\BOOKMARK [3][-]{subsubsection.2.7.4}{Gerarchia}{subsection.2.7}% 17
+\BOOKMARK [3][-]{subsubsection.2.7.5}{Considerazioni}{subsection.2.7}% 18
+\BOOKMARK [2][-]{subsection.2.8}{Il ciclo di vita del software}{section.2}% 19
+\BOOKMARK [3][-]{subsubsection.2.8.1}{Evoluzione dei modelli di ciclo di vita}{subsection.2.8}% 20
+\BOOKMARK [4][-]{subsubsubsection.2.8.1.1}{A cascata:}{subsubsection.2.8.1}% 21
+\BOOKMARK [4][-]{subsubsubsection.2.8.1.2}{Modello INCREMENTALE}{subsubsection.2.8.1}% 22
+\BOOKMARK [4][-]{subsubsubsection.2.8.1.3}{Modello EVOLUTIVO}{subsubsection.2.8.1}% 23
+\BOOKMARK [4][-]{subsubsubsection.2.8.1.4}{Modello A SPIRALE}{subsubsection.2.8.1}% 24
+\BOOKMARK [1][-]{section.3}{La gestione di progetto}{}% 25
+\BOOKMARK [2][-]{subsection.3.1}{Funzioni e ruoli}{section.3}% 26
+\BOOKMARK [2][-]{subsection.3.2}{Profilo professionale}{section.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Analista}{subsection.3.2}% 28
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Progettista}{subsection.3.2}% 29
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Programmatore}{subsection.3.2}% 30
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Verificatore}{subsection.3.2}% 31
+\BOOKMARK [3][-]{subsubsection.3.2.5}{Responsabile di progetto}{subsection.3.2}% 32
+\BOOKMARK [3][-]{subsubsection.3.2.6}{Amministratore di progetto}{subsection.3.2}% 33
+\BOOKMARK [3][-]{subsubsection.3.2.7}{Controllo della qualit\340}{subsection.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.3}{Attivit\340 di pianificazione del progetto}{section.3}% 35
+\BOOKMARK [2][-]{subsection.3.4}{Strumenti per la pianificazione}{section.3}% 36
+\BOOKMARK [2][-]{subsection.3.5}{Allocazione delle risorse}{section.3}% 37
+\BOOKMARK [2][-]{subsection.3.6}{Stima dei costi di progetto}{section.3}% 38
+\BOOKMARK [3][-]{subsubsection.3.6.1}{CoCoMo - Constrictive Cost Model}{subsection.3.6}% 39
+\BOOKMARK [2][-]{subsection.3.7}{Rischi di progetto}{section.3}% 40
+\BOOKMARK [1][-]{section.4}{Amministrazione di progetto}{}% 41
+\BOOKMARK [2][-]{subsection.4.1}{Documentazione di progetto}{section.4}% 42
+\BOOKMARK [2][-]{subsection.4.2}{Ambiente di lavoro}{section.4}% 43
+\BOOKMARK [2][-]{subsection.4.3}{Infrastruttura}{section.4}% 44
+\BOOKMARK [2][-]{subsection.4.4}{Strumenti di sviluppo}{section.4}% 45
+\BOOKMARK [2][-]{subsection.4.5}{Strumenti di processo}{section.4}% 46
+\BOOKMARK [2][-]{subsection.4.6}{Norme di processo}{section.4}% 47
+\BOOKMARK [2][-]{subsection.4.7}{Uso del linguaggio}{section.4}% 48
+\BOOKMARK [2][-]{subsection.4.8}{Leggibilit\340 del codice}{section.4}% 49
+\BOOKMARK [1][-]{section.5}{Requisiti}{}% 50
+\BOOKMARK [2][-]{subsection.5.1}{Relazione cliente \205 fornitore}{section.5}% 51
+\BOOKMARK [3][-]{subsubsection.5.1.1}{L'utente}{subsection.5.1}% 52
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Manutenzione}{subsection.5.1}% 53
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Organizzazione di un sistema}{subsection.5.1}% 54
+\BOOKMARK [3][-]{subsubsection.5.1.4}{Ruoli e responsabilit\340}{subsection.5.1}% 55
+\BOOKMARK [3][-]{subsubsection.5.1.5}{Relazione tra processi}{subsection.5.1}% 56
+\BOOKMARK [2][-]{subsection.5.2}{Analisi dei requisiti}{section.5}% 57
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Analisi tradizionale e analisi moderna}{subsection.5.2}% 58
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Lo studio di fattibilit\340}{subsection.5.2}% 59
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Comprensione del dominio}{subsection.5.2}% 60
+\BOOKMARK [3][-]{subsubsection.5.2.4}{I requisiti}{subsection.5.2}% 61
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Il documento dei requisiti e la sua validazione}{subsection.5.2}% 62
+\BOOKMARK [2][-]{subsection.5.3}{Dai requisiti al progetto architetturale}{section.5}% 63
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Classificazione dei requisiti}{subsection.5.3}% 64
+\BOOKMARK [4][-]{subsubsubsection.5.3.1.1}{Progettazione architetturale}{subsubsection.5.3.1}% 65
+\BOOKMARK [3][-]{subsubsection.5.3.2}{L'ingegneria dei requisiti}{subsection.5.3}% 66
+\BOOKMARK [1][-]{section.6}{Qualit\340 del software}{}% 67
+\BOOKMARK [2][-]{subsection.6.1}{Per avere buona qualit\340}{section.6}% 68
+\BOOKMARK [2][-]{subsection.6.2}{Modelli della qualit\340 software}{section.6}% 69
+\BOOKMARK [2][-]{subsection.6.3}{Modelli della qualit\340}{section.6}% 70
+\BOOKMARK [1][-]{section.7}{Qualit\340 del processo software}{}% 71
+\BOOKMARK [2][-]{subsection.7.1}{Le norme ISO 9000}{section.7}% 72
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Documentazione del Sistema Gestione di Qualit\340 \(SGQ\)}{subsection.7.1}% 73
+\BOOKMARK [1][-]{section.8}{Progettazione software}{}% 74
+\BOOKMARK [2][-]{subsection.8.1}{Obiettivi della progettazione}{section.8}% 75
+\BOOKMARK [2][-]{subsection.8.2}{Problemi di progettazione}{section.8}% 76
+\BOOKMARK [2][-]{subsection.8.3}{Strumenti di progettazione}{section.8}% 77
+\BOOKMARK [2][-]{subsection.8.4}{Progettazione architetturale}{section.8}% 78
+\BOOKMARK [2][-]{subsection.8.5}{Progettazione di dettaglio:}{section.8}% 79
+\BOOKMARK [2][-]{subsection.8.6}{Riuso}{section.8}% 80
+\BOOKMARK [3][-]{subsubsection.8.6.1}{Qualit\340 della progettazione}{subsection.8.6}% 81
+\BOOKMARK [1][-]{section.9}{Documentazione}{}% 82
+\BOOKMARK [2][-]{subsection.9.1}{Metriche}{section.9}% 83
+\BOOKMARK [2][-]{subsection.9.2}{Cosa documentare}{section.9}% 84
+\BOOKMARK [2][-]{subsection.9.3}{Tracciamento dei requisiti}{section.9}% 85
+\BOOKMARK [3][-]{subsubsection.9.3.1}{Tracciamenti necessari}{subsection.9.3}% 86
+\BOOKMARK [3][-]{subsubsection.9.3.2}{Architettura della documentazione}{subsection.9.3}% 87
+\BOOKMARK [1][-]{section.10}{Metodiche standard di sviluppo industriale}{}% 88
+\BOOKMARK [2][-]{subsection.10.1}{Pianificazione}{section.10}% 89
+\BOOKMARK [2][-]{subsection.10.2}{Modello di ciclo di vita interno}{section.10}% 90
+\BOOKMARK [3][-]{subsubsection.10.2.1}{Sequenziale}{subsection.10.2}% 91
+\BOOKMARK [3][-]{subsubsection.10.2.2}{Incrementale}{subsection.10.2}% 92
+\BOOKMARK [3][-]{subsubsection.10.2.3}{Evolutivo}{subsection.10.2}% 93
+\BOOKMARK [3][-]{subsubsection.10.2.4}{A spirale}{subsection.10.2}% 94
+\BOOKMARK [2][-]{subsection.10.3}{Progettazione software}{section.10}% 95
+\BOOKMARK [2][-]{subsection.10.4}{Integrit\340 concettuale}{section.10}% 96
+\BOOKMARK [2][-]{subsection.10.5}{Sistemi reattivi - interattivi}{section.10}% 97
+\BOOKMARK [3][-]{subsubsection.10.5.1}{Sistemi reattivi}{subsection.10.5}% 98
+\BOOKMARK [3][-]{subsubsection.10.5.2}{Sistemi interattivi}{subsection.10.5}% 99
+\BOOKMARK [3][-]{subsubsection.10.5.3}{Sistemi a tempo reale}{subsection.10.5}% 100
+\BOOKMARK [2][-]{subsection.10.6}{Definizioni}{section.10}% 101

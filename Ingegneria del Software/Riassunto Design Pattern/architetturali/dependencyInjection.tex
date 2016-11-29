@@ -1,0 +1,19 @@
+\subsection{Dependency Injection}
+Viene utilizzato per separare dalla logica di funzionamento di un componente la risoluzione delle dipendenze con gli altri oggetti.
+In questo modo è possibile realizzare un \textit{inversion of control}, con un contenitore esterno che si occupa di gestire il ciclo di vita degli oggetti dell'applicazione.
+
+Le dipendenze con gli oggetti esterni vengono quindi \textit{iniettate} dal contenitore esterno, ottenendo così una riduzione delle dipendenze e rendendo più facili i test.
+
+La dependecy injection può essere fatta in due modi:
+\begin{itemize}
+\item \textbf{Constructor injection}: le dipendenze vengono iniettate passando gli oggetti come parametri del costruttore. In questo modo l'oggetto è subito utilizzabile appena viene costruito, c'è però il rischio di \textit{telescoping} sui parametri del costruttore.
+\item \textbf{Setter Injection}: le dipendenze vengono iniettate passando gli oggetti mediante l'utilizzo di metodi \textit{setter}. Così viene evitato il telescoping ma per un po' di tempo dopo la creazione, l'oggetto finale rimane in uno stato inconsistente.
+\end{itemize}
+
+\subsubsection{Utilizzo}
+Un sacco di framework moderni lo utilizzano:
+\begin{itemize}
+\item AngularJS;
+\item Spring;
+\item Google Guice.
+\end{itemize}

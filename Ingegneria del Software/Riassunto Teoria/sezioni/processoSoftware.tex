@@ -1,0 +1,161 @@
+\section{Il processo software}
+\textbf{Definizione ISO}: insieme di attività correlate che trasformano ingressi in uscite:
+{\center Requisiti, problemi --> processo --> soluzioni}
+Esempio: processo di codifica Analisi dei requisiti
+Norme di codifica --> Codifica --> Codice Strumenti, programmatore
+I processi software si dividono in 3 categorie principali:
+\begin{itemize}
+\item \textbf{Processi standard}: riferimenti di base (generici) usati come stile comune per lo svolgimento delle
+funzioni aziendali, pensati per una collettività di casi (modelli come un template);
+\item \textbf{Processi definiti}: specializzazione del processo standard necessaria per renderlo adatto ad esigenze specifiche di progetto (specializzazione del modello ad uno specifico problema);
+\item \textbf{Processi secondo standard aziendali}: istanza di un processo definito che utilizza risorse aziendali per raggiungere obbiettivi prefissati (il processo viene calato nella realtà aziendale).
+\end{itemize}
+
+Per la risoluzione di problemi diversi non è corretto partire continuamente con nuove istanze di processi standard, meglio piuttosto cercare un processo definito che risolva al meglio il problema, tali processi costituiscono un bagaglio di processi definiti che possono essere mappati su problemi.\\
+L'organizzazione aziendale si basa sul riconoscimento e il supporto dei suoi processi rendendo nota la sua struttura a partire dal conoscimento dei suoi processi (lavorativi, di sviluppo..). Ci saranno elementi ``verticali'' fortemente orientati alla specializzazione (settori) ed elementi orizzontali (processi) che ``abbracciano'' più settori specializzati. L'attività di un'entità produttiva (azienda, gruppo di progetto) è regolata dall'insieme dei suoi processi che determinano le sue prestazioni.
+
+\subsection{Processi del ciclo di vita del software (12207)}
+\textbf{Processi di ciclo di vita}: definizione di ciò che occorre fare al prodotto nelle sue varie fasi di vita.\\
+\textbf{Standard ISO/IEC 12207:1995}: è un modello ad alto livello che definisce i processi del ciclo di vita del software identificando i processi dello sviluppo, la struttura modulare, le entità responsabili. Esso richiede una definizione istanziata alla realtà che decide di adottarlo. Secondo questo standard i processi sono relazionati tra loro in modo chiaro e distinto (modularità) e i rispettivi compiti sono ben definiti e delineati (coesione).
+Esso distingue tra 3 categorie di processi:
+\begin{itemize}
+\item \textbf{Processi primari}: necessari fondamentali
+	\begin{itemize}
+	\item Acquisizione: origine, fatta da parte del committente (atto di acquisto);
+	\item Fornitura: controparte dell'acquisizione;
+	\item Sviluppo dei prodotti (anche appalto esterno);
+	\item Gestione operativa: utilizzo del prodotto consegnato secondo regole;
+	\item Manutenzione: correttiva, di adattamento, evolutiva.
+	\end{itemize}
+\item \textbf{Processi di supporto} ci si può o meno appoggiare, a seconda delle decisioni 
+	\begin{itemize}
+	\item Documentazione del prodotto;
+	\item Gestione delle versioni e delle configurazioni Accertamento della qualità;
+	\item Verifica;
+	\item Validazione.
+	\end{itemize}
+\item \textbf{Processi organizzativi}: definisce una struttura operativa a prescindere dal prodotto
+	\begin{itemize}
+	\item Gestione dei progetti;
+	\item Gestione delle infrastrutture (idoneità a fare quanto si propone) Miglioramento del processo;
+	\item Formazione del personale.
+	\end{itemize}
+\end{itemize}
+\subsection{Il modello di ciclo di vita del software}
+\textbf{Modello di ciclo di vita:} descrizione di come i vari processi si correlano nel tempo e del flusso informativo e di controllo tra essi. Descrive l'evoluzione di un prodotto software dalla sua origine al suo ritiro. \`E un'astrazione delle fasi che un prodotto software attraversa da quando nasce a quando sparisce. Fornisce la base concettuale sulla quale pianificare, organizzare, eseguire e controllare lo svolgimento delle attività necessarie.\\
+Il modello di ciclo di vita è uno strumento di pianificazione e gestione dei progetti. Non è un insieme di metodi e strumenti di sviluppo software. \`E una base concettuale, non esprime la tecnica specifica da utilizzare.\\
+Esistono molti modelli, i principali sono:
+\begin{itemize}
+\item \textbf{Modello SEQUENZIALE , A CASCATA:} il ciclo di vita del prodotto è diviso e procede attraverso
+una sequenza ordinata di fasi (segmento del ciclo di vita). Ogni fase è caratterizzata da pre-condizioni di ingresso e post-condizioni in uscita ed ognuna di queste fasi è distinta dalle altre, non sono ammesse sovrapposizioni tra fasi diverse. Tale modello risulta adatto allo sviluppo di progetti complessi e il suo costo totale è dato dalla somma dei costi delle singole fasi.
+\item \textbf{Modello INCREMENTALE:} consente che una stessa fase sia attraversata più di una volta in tempi diversi per consentire la realizzazione di approssimazioni del prodotto finale. Infatti esso procede per approssimazioni successive e a priori non si sa di quante approssimazioni si abbia bisogno prima di ottenere il giusto prodotto finale avendo un rischio di non convergenza con il prodotto finale.
+\item \textbf{Modello PER EVOLUZIONI SUCCESSIVE:} permette di soddisfare l'esigenza di dover rispondere a bisogni non preventivati né preventivabili. Sancisce inizialmente il numero di quante saranno le evoluzioni (versioni). Esso comporta il ri-attraversamento di fasi precedenti in tempi successivi. Ad ogni versione si attribuisce un insieme diverso di funzionalità.
+\item \textbf{Modello A SPIRALE:} ha come obbiettivo primario il controllo dei rischi di progetto. Esso prevede cicli interni ripetuti e rapidi dedicati a sviluppi prototipali. Per governare tutta la difficoltà iniziale servono molte iterazioni veloci di analisi.
+\end{itemize}
+
+\subsection{Prototipazione e riuso}
+In tutti i modelli è prevista o richiesta prototipazione che può essere sviluppata secondo obbiettivi diversi per la gestione e il rilascio del prototipo. Essa può essere una versione di tipo interna e ``usa e getta'', una versione interna formale (baseline) oppure una versione esterna con manutenzione. \\
+In qualsiasi modello è inerente una certa dose di riuso, che può essere occasionale (opportunistico) con poco impatto, oppure sistematico (per progetto, per prodotto) con maggiore impatto. Il riuso è fortemente agevolato dalla presenza o meno di controllo della configurazione.
+
+\subsection{Relazione tra processi e modelli}
+Una definizione di processi non implica necessariamente un modello di ciclo di vita. Il livello di coinvolgimento del cliente determina natura, funzione e sequenza dei processi di revisione necessari.
+
+\subsection{Fattori determinanti del ciclo di vita}
+Ecco alcuni fattori che influenzano la determinazione del ciclo di vita software:
+\begin{itemize}
+\item \textit{Politica di acquisizione e sviluppo adottata a livello sistema}: logica, modalità di acquisizione, versione unica / multipla, dipendenze richieste / attese da altre componenti;
+\item \textit{Natura, funzione e sequenza dei processi di revisione richiesti}: interne / esterne, bloccanti / non bloccanti, eventuali effetti sanzionatori;
+\item \textit{Necessità o meno di fornire evidenza di fattibilità}: sviluppi prototipali (usa e getta, da mantenere, da evolvere), studi ed analisi preliminari;
+\item L'evoluzione del sistema e dei suoi requisiti.
+\end{itemize}
+
+\subsection{L'organizzazione di processo}
+L'organizzazione interna di ogni processo si basa sul principio del PDCA\footnote{Parlare anche del ciclo di demming?}
+\begin{itemize}
+\item \textbf{Pianifica} (plain): definire attività, scadenze, responsabilità. Un processo esiste solo se è stato definito un piano;
+\item \textbf{Esegui} (do): esecuzione delle attività secondo il piano;
+\item \textbf{Valuta} (check): verificare internamente l'esito del processo e delle sue attività (attraverso processi di revisione);
+\item \textbf{Agisci} (act) correzione dei problemi identificati (feedback).
+\end{itemize}
+
+\subsection{IEEE/EIA 12207 – Processi del ciclo di vita del software} 
+(seminario J.W.Moore – 1998)
+\subsubsection{Natura dello standard 12207}
+Catalogazione in un quadro di riferimento (framework) di termini e loro significati. Si parla di processi, non di procedure e di processi del ciclo di vita, non di modelli di ciclo di vita. \\
+Fornisce gli elementi astratti per i quali una singola parte degli aderenti al progetto aderisce alle attese (2 parti coinvolte in un progetto) e può avere legami con altri standard utili a raggiungere gli obbiettivi. \\
+Lo standard è pensato per essere adottato da realtà aziendali, non per progetto singolo, ed è stato pensato affinché ci sia un'attuazione volontaria di esso.
+
+\subsubsection{Software Engineering (definizione IEEE)}
+L'applicazione di un approccio sistematico, disciplinato e quantificabile allo sviluppo, operatività e manutenzione del software che è l'applicazione dell'ingegneria al software.
+\begin{itemize}
+\item \textbf{Sistematico:} con struttura ripetitiva;
+\item \textbf{Disciplinato:} regolato da norme non soggettive che consentono relazioni interpersonali;
+\item \textbf{Quantificabile:} capacità di sapere a priori il consumo speso per ottenere l'uscita secondo misure e pianificazione in base alle misure.
+\end{itemize}
+
+\subsubsection{Standard dell'ingegneria del software}
+\textbf{Importanza}: consolida la tecnologia esistente in una ferma base per l'introduzione di nuove tecnologie, protegge gli affari, gli acquirenti e migliora i prodotti;
+\textbf{Obbiettivi organizzativi}: miglioramento e valutazione delle competenze software, struttura per accordare le due parti interessate, valutazione dei prodotti software, garanzia di alto livello di integrità del prodotto software.
+
+\subsubsection{Gerarchia}
+All'interno del 12207, i processi sono divisi in attività coese che a loro volta sono suddivise in task (compiti).
+Attività coese: contenenti solo ciò che è rilevante ai fini dell'attività e scarta tutto ciò che non è inerente.
+I task si possono si possono vedere come la specificazione per l'esecuzione di un'attività\footnote{Inserire la definizione di task}.\\
+L'identificazione dei processi è basata su 2 principi:
+\begin{itemize}
+\item \textbf{Modularità}: i processi dovrebbero essere coesi ma dovrebbero avere un accoppiamento debole l'un l'altro;
+\item \textbf{Responsabilità}: ogni processo dovrebbe essere eseguibile da una ``singola parte'' (responsabile).
+\end{itemize}
+Le attività e i task all'interno del 12207 prevedono una continuità di responsabilità per tutta la durata dei processi.
+
+\subsubsection{Considerazioni}
+Lo standard non specifica un modello di ciclo di vita (ad esempio a cascata, sequenziale, a spirale), e inoltre non mette le dipendenze (di ordine o di tempo) sui task perché questi varieranno a seconda della scelta del modello di ciclo di vita e dal piano di progetto.\\
+Lo standard distingue tra item (elemento) e configuration item. Una baseline costituisce una versione approvata di un configuration item\footnote{Inserire la definizione di Configuration item, milestone e baseline}.
+
+\subsection{Il ciclo di vita del software}
+\textbf{Ciclo di vita}: evoluzione di un prodotto dalla sua concezione al suo ritiro
+Concetto di ciclo di vita: concezione-->sviluppo-->utilizzo -->ritiro.\\
+Dato un ciclo di vita, chiunque se ne occupi deve identificare le attività coese che devono essere organizzate secondo un ordinamento e dei criteri oggettivi per verificare lo stato di avanzamento e completamento.\\
+Una volta definito il modello di ciclo di vita e di processo generico posso avere il processo definito.
+
+\subsubsection{Evoluzione dei modelli di ciclo di vita}
+\textbf{Code-n-Fix:} ``NON modello'': attività casuali non organizzate e può provocare progetti caotici non gestibili
+
+\subsubsubsection{A cascata:} nato agli inizi della disciplina quando c'erano progetti complicati, serviva qualcosa per gestirli. Individua fasi distinte e ordinate nelle quali si decompone il progetto, non consente ritorno a fasi precedenti ed eventi eccezionali fanno ripartire il progetto dall'inizio. Il passaggio da una fase alla successiva è basato sulla documentazione poiché ogni fase produce documenti che la concretizzano che devono essere approvati per il passaggio alla fase successiva.
+\begin{itemize}
+\item \textbf{Analisi:} fase in cui si analizzano le parti del problema senza presentare alcuna soluzione;
+\item \textbf{Progettazione:} emettere il progetto di realizzazione. Si possono distinguere progettazione architetturale: riguardo il sistema e progettazione di dettaglio: all'interno delle parti più piccole del sistema;
+\item \textbf{Realizzazione:} qui inizia il codice (codifica) a partire dai dettagli usciti dalla progettazione (moduli). Si applica in termini di codice ciò che la progettazione di dettaglio dice;
+\item \textbf{Manutenzione:} correttiva, adattativa, di miglioramento.
+\end{itemize}
+\textbf{Modello a cascata in ISO 12207}: ogni attività interna è indicata in attività che 12207 riconosce.12207 distingue 2 problematiche: il sistema, il software del sistema quindi le 2 cose devono essere accompagnate.
+Difetti principali del modello a cascata: troppa rigidità, possibile stallo nella fase di analisi, stretta sequenzialità tra fasi, non ammette modifiche dei requisiti in corso d'opera, richiede molta manutenzione, versione troppo burocratica.\\
+Varianti:
+\begin{itemize}
+\item \textbf{Modello a cascata con prototipazione:} alcuni ritorni dovuti alla prototipazione;
+\item \textbf{Modello a cascata con ritorni:} divisione ulteriore in fasi.
+\end{itemize}
+Da dei modelli rigidi si deve passare a dei modelli che consentono ritorni, detti modelli iterativi.
+
+\subsubsubsection{Modello INCREMENTALE} 
+Cerca di arrivare ad avere una soluzione per approssimazioni.
+C'è una separazione di metodo tra il modo in cui si fa analisi-progettazione e il modo in cui si fa realizzazione. I requisiti e il progetto sono fissati una sola volta. I passi della realizzazione incrementale sono pianificati a priori. Al risultato ci si arriva per incrementi successivi. Si avranno più versioni rilasciate (release ) che costituiscono una baseline pubblica.
+
+\subsubsubsection{Modello EVOLUTIVO} 
+In questo modello si sa che nel tempo ci sarà un percorso nel quale posso diluire le fasi per la risoluzione di esso. Strategia basata all'uso da parte di terze parti dei prodotti, quindi evoluzioni successive, partendo da un nucleo essenziale per poi evolverlo con aggiunte fino al prodotto finale (passi realizzativi --> evoluzioni). L'analisi preliminare non si evolve ma presenta il problema come una massima (non specifica).
+Questo modello equivale al sequenziale racchiuso su se stesso con in più la fase di istanziazione.
+
+\subsubsubsection{Modello A SPIRALE} 
+(Boehm 1988) Esso riconosce 4 attività principali:
+\begin{itemize}
+\item \textit{Definizione degli obbiettivi}: per rendere chiaro ciò che il cliente vuole;
+\item \textit{Analisi dei rischi}: sicurezza e valutazione del rischio di raggiungere o meno gli obbiettivi fissati (rischi tecnici, di tempo, di costo, di soddisfazione);
+\item \textit{Sviluppo e validazione}: realizzazione del prodotto;
+\item \textit{Pianificazione}: governo di tutte le fasi.
+\end{itemize}
+Questo modello va istanziato nello specifico. Modello orientato al contenimento dei rischi che pone grande attenzione ai problemi gestionali. Nelle fasi vicino al centro si avranno molte iterazioni di sessioni col cliente per capire gli scopi e sessioni col fornitore per capire i mezzi, poi altre sessioni sviluppo e una pianificazione del nuovo ciclo. Quanto più ci si allontana dal centro tanto più si diventa uguali ad un altro modello. Questo modello non fa altro che governare in maniera diversa le iterazioni degli altri modelli. Esso inoltre attribuisce ruoli fondamentali ai clienti e ai fornitori:
+\begin{itemize}
+\item obbiettivi e ripetizioni della sessione --> clienti corretto 
+\item sviluppo --> fornitori
+\item rischi --> clienti e fornitori (diversi ovviamente)
+\end{itemize}

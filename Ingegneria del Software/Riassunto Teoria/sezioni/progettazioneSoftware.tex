@@ -1,0 +1,184 @@
+\section{Progettazione software}
+Perché progettare: per far fronte alla complessità del prodotto, per organizzazione e ripartizione delle responsabilità, per l'economia di produzione, per il controllo di qualità.\\
+Progettare non è pianificare
+\begin{itemize}
+\item Analisi: qual è la cosa giusta da fare?
+\item Progetto: come farla giusta?
+\end{itemize}
+Attraverso una descrizione di una soluzione che soddisfi tutti i portatori di interesse.\\
+Il codice non esiste ancora $\rightarrow$ i prodotti di questa fase sono l'architettura, il modello logico, ... Si ha un approccio sintetico con valutazione delle possibili alternative
+\subsection{Obiettivi della progettazione}
+Soddisfare i requisiti di qualità fissati dal committente e dal fornitore.
+Definire l'architettura del prodotto impiegando componenti con specifica chiara e coesa, realizzabili con risorse date e costi fissati e con struttura che faciliti cambiamenti futuri dovuti a modifica od evoluzione dei requisiti.\\
+L'architettura non è il fine, ma lo strumento per il raggiungimento degli obiettivi di progetto.
+\textbf{Definizione di architettura}: la decomposizione del sistema software in componenti costitutive, l'organizzazione di tali componenti (ruoli, responsabilità ed interazioni), le interfacce necessarie all'interazione tra tali componenti, i modelli di composizione delle componenti.
+\subsection{Problemi di progettazione}
+\begin{itemize}
+\item Problemi strutturali: architettura interna (p.es.: sistema distribuito vs. sistema centralizzato);
+\item Problemi infrastrutturali: architettura esterna (p.es.: piattaforma di sistema operativo; supporto DBMS; sistema di comunicazione e trasporto dati; sistema di interfaccia utente);
+\item Problemi tecnologici (p.es.: linguaggi di programmazione e strumenti di sviluppo associati)
+\item Problemi realizzativi (p.es.: componenti acquistabili, riusabili o da sviluppare ex-novo)
+\item Problemi tecnici (p.es.: scelte algoritmiche)
+\item Problemi organizzativi : come la quantificazione del lavoro (p.es.: stimata mediante COCOMO), l'uso delle risorse e ripartizione dei compiti (p.es.: piano di progetto), l'allestimento dell'ambiente di lavoro (p.es.: sviluppo, test, versionamento, configurazione)
+\end{itemize}
+
+\subsection{Strumenti di progettazione}
+\begin{itemize}
+\item Strumenti concettuali : definizione del ``sistema software'' (visione concettuale (astratta), distinta dalla realizzazione concreta), delimitazione dei problemi e delle loro soluzioni, isolamento e decomposizione(+coesione,-accoppiamento), progettazione orientata agli oggetti.
+\item Strumenti metodologici : progettazione architetturale del sistema, progettazione di dettaglio delle sue parti (sottosistemi)
+\end{itemize}
+
+\subsection{Progettazione architetturale}
+Al fine di dominare la complessità del sistema, organizzando il sistema in componenti di bassa complessità secondo la logica del ``divide et impera'', per ridurre le difficoltà di comprensione e realizzazione, identificare schemi realizzativi e componenti riusabili.\\
+\`E importante anche riconoscere le componenti terminali che non necessitano di ulteriori trasformazioni e cercare un buon bilanciamento: più semplici le componenti più complessa la loro interazione.
+Strategie di decomposizione : top-down (decomposizione di problemi), bottom-up (composizione di soluzioni), sandwich (più frequente)
+Linguaggi di descrizione architetturale
+\begin{itemize}
+\item Descrizione degli elementi: componenti, porte e connettori (p.es. diagramma delle classi in UML)
+\item Descrizione dei protocolli di interazione: tra componenti, tramite connettori
+\item Supporto ad analisi: di consistenza (analisi statica ad alto livello), di conformità ad attributi di qualità, di comparazione tra soluzioni architetturali diverse
+\end{itemize}
+
+\subsection{Progettazione di dettaglio:}
+\textbf{Attività}: definizione delle unità realizzative (moduli) cioè un carico di lavoro realizzabile dal singolo programmatore, un ``sottosistema'' definito (una componente terminale od un aggregato di esse); un insieme di funzionalità affini (un modulo package); specifica delle unità; definizione delle caratteristiche significative dal nulla o tramite specializzazione di componenti esistenti.
+\textbf{Obbiettivi}: assegnare unità logiche a componenti fisiche anche per organizzare il lavoro di programmazione; produrre la documentazione necessaria perché la programmazione possa procedere senza bisogno di ulteriori informazioni, per attribuire i requisiti alle unità (tracciamento), per definire le configurazioni ammissibili del sistema; definire gli strumenti per le prove di unità: casi di prova e componenti ausiliarie per le prove e l'integrazione.
+\subsection{Riuso}
+Capitalizzare i sottosistemi già realizzati impiegandoli più volte per la realizzazione di altri prodotti ottenendo minor costo realizzativi e minor costo di verifica. Problemi: progettare diventa un problema aperto perché occorre anticipare bisogni futuri ed è raro riusare al 100\% e modificare è difficile e rischioso ma un investimento $\rightarrow$ risparmio a lungo termine.
+
+\subsubsection{Qualità della progettazione}
+\begin{itemize}
+\item Progettazione architetturale: astrazione <--> dettaglio, ricerca del ``miglior equilibrio''
+\item Progettazione di dettaglio: incapsulazione (Information hiding) <--> coesione <--> accoppiamento.
+\end{itemize}
+
+\textbf{Incapsulazione}: componenti ``blackbox'' :semplici fornitori e clienti di funzionalità (relazione d'uso), è nota solo la loro interfaccia (dichiarazione dei servizi). Sono mantenuti nascosti gli algoritmi usati e le strutture dati interne.\\
+Vantaggi di un alto grado di incapsulazione: nessuna assunzione sul funzionamento della componente, maggiore manutenibilità, maggiori opportunità di riuso.\\
+\textbf{Coesione}: proprietà endogena di componente, funzionalità ``vicine'' devono stare nello stesso componente, vicinanza per tipologia, algoritmi, dati in ingresso ed in uscita. Vantaggi di un elevato grado di coesione migliora la manutenibilità e facilita il riuso, riduce il grado di dipendenza fra componenti e facilita la comprensione dell'architettura del sistema.
+\textbf{Accoppiamento}: proprietà esogena di componenti: quanto le componenti si usano fra di loro $\rightarrow$ U = M x M massimo accoppiamento, U = 0 minimo accoppiamento. Metriche: \textit{Fan-in} e \texttt{fan-out} strutturale: SFIN è indice di riuso (utilità), SFOUT è indice di accoppiamento (dipendenza). Buona progettazione si ottiene con SFIN delle componenti SFOUT del sistema
+
+\section{Documentazione}
+Perché documentare: processo di supporto secondo ISO/IEC 12207.\\
+Cosa documentare: attività e prodotti da pianificare, eseguire, verificare, correggere.\\
+Come documentare: contenuti attesi ai fini di revisione, contenuti rilevanti ai fini di pianificazione ed esecuzione.\\
+Cosa misurare: non serve misurare tutto indistintamente, bisogna focalizzarsi su quanto che serva il processo organizzativo di miglioramento secondo obiettivi strutturali, secondo priorità assegnate dall'organizzazione (esulano dal prodotto). Si ha una misurazione per obiettivi (ad hoc): processi, prodotti e risorse posseggono attributi misurabili.
+
+\subsection{Metriche}
+\begin{itemize}
+\item Dimensione del prodotto: ISO/IEC 14143 Software engineering
+\item Struttura del prodotto: flusso di controllo, flusso dei dati, annidamento, modularità ed interazione
+\item Uso delle risorse: risorse tecniche (strumenti), risorse fisiche e logiche (spazio di memoria, tempo d'esecuzione), risorse umane (personale)
+\item Qualità del prodotto: ISO/IEC 9126 Software product quality(1999-2001)
+\end{itemize}
+
+\subsection{Cosa documentare}
+\textbf{Modello software}: descrizione semplificata del sistema realizzato mediante uso di simboli e notazioni organizzate secondo una convenzione fissata e coerente (UML) costruito mediante metodi e strumenti standard, standard aziendale, di fatto, internazionale (meglio). Usato per ragionare sul software da sviluppare e anche sull'esito dello sviluppo
+\textbf{Architettura logica} --> Specifica Tecnica: prodotta al termine della fase di ingegneria dei requisiti, fissa linee e strategie di realizzazione, avvia la fase realizzativa (ingegneria di progetto), non fissa gli aspetti realizzativi concreti, mostra ciò che il sistema deve fare. \`E organizzata gerarchicamente attraverso livelli di astrazione (o decomposizione) successivi e consente di stabilire relazioni tra cause ed effetti offrendo una visione d'insieme della soluzione proposta al problema complessivo.\\
+\textbf{Specifica Tecnica} --> progetto (design) architetturale: specifica per ogni componente del sistema la funzione svolta (strutture dati utilizzate, flussi di controllo impiegati), dati in ingresso (tipo), dati in uscita (tipo), risorse logiche e fisiche necessarie.\\
+\textbf{Architettura fisica} --> Definizione di prodotto: procede dall'architettura logica e consente sviluppo parallelo ed indipendente dei componenti terminali (di basso livello), consente di stimare lo sforzo (costo, tempi) di realizzazione. Ha qualità valutabile mediante precise metriche: coesione, accoppiamento, utilità ( fan-in), dipendenza ( fan- out), complessità.\\
+\textbf{Definizione di prodotto} --> progetto (design) di dettaglio: procede dal progetto architetturale, decompone le componenti architetturali in moduli a grana più fine finché ogni modulo ha dimensione, complessità, coesione ed accoppiamento adeguati.
+è influenzato da esigenze ed opportunità di riuso e la natura dei ``moduli'' è fissata dal supporto offerto dal linguaggio di programmazione selezionato per la codifica (modulo è diverso file).\\
+
+\subsection{Tracciamento dei requisiti}
+Fissa la relazione tra i prodotti del processo di sviluppo:
+\begin{itemize}
+\item in avanti (forward)-->completezza: ciascun ingresso ad una fase deve essere messo in relazione con una specifica uscita di quella fase mediante matrici di tracciabilità (una sorta di base dati) che evidenziano incompletezza e duplicazione
+\item all'indietro (backward)-->necessità: ciascuna uscita di una fase deve essere messa in relazione con uno specifico ingresso a quella fase mediante matrici di tracciabilità dove le componenti non tracciate o non tracciabili sono superflue e da eliminare (a meno di omissioni all'ingresso)
+\end{itemize}
+
+\subsubsection{Tracciamenti necessari}
+\begin{itemize}
+\item Requisiti utente (capitolato) $\leftrightarrow$ requisiti software (AR)
+\item Requisiti software (AR) $\leftrightarrow$ descrizione di componenti (ST) 
+\item Test di unità $\leftrightarrow$ moduli di disegno di dettaglio (DP) 
+\item Test di integrazione $\leftrightarrow$ componenti architetturali (ST) 
+\item Test di sistema $\leftrightarrow$ requisiti software (AR) 
+\item Test di accettazione $\leftrightarrow$ requisiti utente(capitolato)
+\end{itemize}
+
+\subsubsection{Architettura della documentazione}
+%immagine test
+
+\section{Metodiche standard di sviluppo industriale}
+\begin{itemize}
+\item Segmento di ciclo di vita coinvolto compreso nell'intervallo temporale tra la prima e l'ultima revisione esterna
+\item Modello di ciclo di vita interno : adottato dal fornitore entro tale segmento determinando il piano d'uso delle risorse disponibili
+\end{itemize}
+
+\subsection{Pianificazione}
+Relazione tra compiti, persone ed impegno necessario: analisi delle componenti di impegno non riducibili, aggiungere risorse ad un gruppo di progetto.
+Una buona pianificazione – insieme a buona analisi e buona progettazione architetturale costa sforzo a monte ma risparmia sforzo a valle.
+\subsection{Modello di ciclo di vita interno}
+Non tutti i modelli si adattano allo stesso modo agli adempimenti esterni richiesti dal progetto, la scelta interna è libera, ma comporta oneri variabili, la scelta è spesso per prodotto (per progetto) indipendentemente dall'organizzazione di appartenenza
+\subsubsection{Sequenziale}
+\begin{itemize}
+\item Vantaggi: impone disciplina al progetto, comporta verifiche rigorose sul completamento di ogni fase.
+\item Svantaggi: richiede un notevole sforzo di documentazione, allontana la percezione del prodotto (analisi e
+progetto) dalla sua realizzazione (codifica e qualifica).
+\item Si presta bene a: progetti a rischio contenuto, con poche dipendenze dall'esterno e limitati impatti
+sull'esterno
+\end{itemize}
+
+\subsubsection{Incrementale}
+\begin{itemize}
+\item Vantaggi: agevola il dialogo cliente-fornitore approssimando progressivamente il prodotto finale, tollera bene una limitata fluttuazione (e maturazione) di requisiti.
+\item Svantaggi: degenera facilmente nel circolo vizioso ``code ‘n fix'', è difficile decidere a priori quante versioni intermedie siano utili o necessarie.
+\item Si presta bene a: progetti nei quali l'integrazione del prodotto finale ha elementi di incertezza tecnica e finanziaria
+\end{itemize}
+
+\subsubsection{Evolutivo}
+\begin{itemize}
+\item Vantaggi: quelli del modello incrementale, ma all'interno di un contesto più formale
+\item Svantaggi: aggiornamento dei documenti di specifica e definizione (AR, ST, DP) per ogni versione successiva
+\item Si presta bene a: progetti nei quali la definizione dei bisogni è particolarmente laboriosa
+\end{itemize}
+
+\subsubsection{A spirale}
+\begin{itemize}
+\item Vantaggi: favorisce l'esplorazione di alternative e promuove pratiche di riuso
+\item Svantaggi: l'analisi delle alternative e dei rischi ed il contenimento dei costi di prototipazione richiedono esperienza
+\item Si presta bene a: progetti nei quali l'analisi dei rischi beneficia e coinvolge anche il cliente
+\end{itemize}
+
+\subsection{Progettazione software}
+Comprende specifica (ST) e definizione (DP) del prodotto.\\
+Definizione IEEE: Il processo di definizione dell'architettura, delle componenti, delle interfacce e delle altre caratteristiche di un sistema o di una sua componente.\\
+Processo interno al processo di sviluppo che procede dall'analisi dei requisiti producendo una descrizione della struttura interna e dell'organizzazione del sistema.\\
+\begin{itemize}
+\item \textbf{Attività 1}: Progetto (design) architetturale: definisce la struttura e l'organizzazione del sistema secondo una visione ad alto livello (identifica le componenti, entità funzionalmente coese e suscettibili di implementazione mediante ulteriore decomposizione)
+\item \textbf{Attività 2}: Progetto di dettaglio: ciascuna componente è descritta ad un livello sufficiente per determinarne la codifica
+\end{itemize}
+
+Tecniche:
+\begin{itemize}
+\item Astrazione: dimenticare informazione (attributi specifici) ad un certo livello per applicare operazioni uguali ad entità diverse (Ad ogni astrazione corrisponde una concretizzazione)
+\item Accoppiamento: misura dell'intensità della relazione tra moduli (inter) [se è forte -->scarsa modularità]
+\item Coesione: misura dell'intensità della relazione tra i costituenti di un modulo (intra) [se forte-->buona caratterizzazione]
+\item Decomposizione modulare: una buona decomposizione architetturale identifica componenti tra loro indipendenti
+\item Incapsulazione (information hiding): separare l'astrazione dal dettaglio realizzativo
+\item Sufficienza: la definizione dell'astrazione è sufficiente a caratterizzare l'entità desiderata
+\item Completezza: l'astrazione esibisce tutte le caratteristiche richieste
+\item Atomicità: la definizione dell'astrazione non può essere convenientemente decomposta in astrazioni più primitive
+\end{itemize}
+
+Problematiche della progettazione software
+\begin{itemize}
+\item Concorrenza : se e come decomporre il sistema in entità attive concorrenti (processo, task, thread) assicurando efficienza di esecuzione, atomicità di azione, consistenza ed integrità di dati condivisi, semantica precisa di comunicazione e sincronizzazione, predicibilità di ordinamento ( scheduling)
+\item Controllo e gestione degli eventi: evento relativo al flusso dei dati o relativo al flusso di controllo o relativo al trascorrere del tempo. La trattazione di tutti questi.
+\item Distribuzione : se e come componenti softwaresono disseminate su più nodi di elaborazione, come tali componenti comunicano fra loro
+\item Trattamento degli errori e delle eccezioni: come prevenire, gestire e tollerare eventi anomali (guasti, difetti interni, errori d'uso)
+\end{itemize}
+
+\subsection{Integrità concettuale}
+Desiderabile in ogni architettura di sistema, procede da una definizione unitaria (non unilaterale, perché passa al vaglio dei membri del progetto) richiede osservanza (ai costruttori) e vigilanza (all'architetto), nozione aristocratica piuttosto che democratica. è distinta dalla realizzazione concreta, consente più percorsi implementativi, permette parallelismo con l'implementazione
+
+\subsection{Sistemi reattivi - interattivi}
+\subsubsection{Sistemi reattivi} 
+Non possono essere adeguatamente descritti in termini puramente funzionali o relazionali. Agiscono permanentemente su (oppure interagiscono con) un ambiente circostante. Soggetto a vincoli di tempo reale. Il flusso di controllo all'interno del programma è regolato dall'arrivo di eventi che richiedono un trattamento (di controllo, di risposta) da completarsi entro un preciso limite temporale (deadline)
+\subsubsection{Sistemi interattivi}
+Il software interattivo è generalmente soggetto a vincoli temporali laschi od inesistenti. Limitate conseguenze da tempi di risposta variabili od anche del tutto impredicibili. Non gestisce la piattaforma hardware del sistema. Opera in stretto contatto con (in risposta ai comandi di un) operatore
+\subsubsection{Sistemi a tempo reale}
+Si definisce ``sistema a tempo reale'' qualunque sistema nel quale l'istante temporale nel quale i valori di uscita sono prodotti è significativo. Il tempo di reazione agli stimoli provenienti dall'ambiente (incluso il trascorrere del tempo) è determinato dalle caratteristiche ed i requisiti dell'ambiente. Interagiscono con il loro ambiente e lo tengono sotto controllo. Il tempo di rilevazione ed il tempo di modifica sono estremamente importanti. Devono avere correttezza funzionale e temporale da dimostrare mediante validazione.
+
+\subsection{Definizioni}
+\textbf{Sicurezza (safety)}: i requisiti di sicurezza tendono a rendere il sistema incapace di produrre danni catastrofici. Non è importante prevenire ogni guasto, ma assicurare che quelli che avvengano abbiano conseguenze tollerabili. Un linguaggio adatto per la realizzazione di sistemi con caratteristiche di sicurezza possiede almeno i seguenti attributi: è definito mediante uno standard internazionale (p.es. ISO), ciò consente di accertare l'adeguatezza (conformance) del compilatore; ha struttura modulare e supporta progettazione e codifica strutturate (facilita l'astrazione ed il riuso di componenti verificate ed affidabili); facilita la rilevazione di errori specialmente a livello di compilazione; consente accesso logico e strutturato agli elementi hardware del sistema; fornisce controllo rigoroso sulla visibilità di tipi, operazioni e dati ai moduli del programmi
+\texttt{Affidabilità (reliability)}: riguarda la prevenzione di ogni tipo di errore che possa condurre ad un guasto di sistema. Certificazione di sicurezza di applicazione: processi fortemente orientati alla produzione di documentazione di supporto perché la documentazione fornisce evidenza di certificazione.

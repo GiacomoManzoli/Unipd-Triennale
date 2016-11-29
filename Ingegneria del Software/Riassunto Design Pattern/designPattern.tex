@@ -1,0 +1,50 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc} % permette l'inserimento di caratteri accentati da tastiera nel documento sorgente.
+\usepackage[T1]{fontenc} % specifica la codifica dei font da usare nel documento stampato.
+\usepackage{times} % per caricare un font scalabile
+\usepackage{graphicx}
+\usepackage{placeins}
+
+
+\begin{document}
+
+\textbf{Design Pattern}
+
+\tableofcontents %indice
+\listoffigures
+\pagebreak
+
+\section{Strutturali}
+Affrontano i problemi che riguardano la composizione di classi e oggetti, consentendo il riutilizzo di oggetti esistenti, sfruttando l’ereditarietà e l’aggregazione.
+
+\input{strutturali/adapter.tex}
+\input{strutturali/decorator.tex}
+\input{strutturali/facade.tex}
+\input{strutturali/proxy.tex}
+%\input{strutturali/composite.tex} % Non affrontato
+
+\section{Creazionali}
+Lo scopo di questa serie di design pattern è quello di rendere un sistema indipendente dall'implementazione delle sue compoenti, nasconendo i tipi concreti mediante l'utilizzo di inferfacce e classi astratte.
+\input{creazionali/singleton.tex}
+\input{creazionali/builder.tex}
+\input{creazionali/abstractFactory.tex}
+%\input{creazionali/factoryMethod.tex} % Non affrontato
+
+
+\section{Comportamentali}
+Lo scopo di questa serie di design pattern è quello di poter definire dinamicamente come degli oggetti collaborano tra loro e come svolgono la loro funzione.
+
+\input{comportamentali/command.tex}
+\input{comportamentali/iterator.tex}
+\input{comportamentali/observer.tex}
+\input{comportamentali/strategy.tex}
+\input{comportamentali/templateMethod.tex}
+\input{comportamentali/chain.tex}
+
+\section{Architetturali}
+
+\input{architetturali/dependencyInjection.tex}
+\input{architetturali/mvc.tex}
+\end{document}
