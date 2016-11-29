@@ -1,0 +1,15 @@
+fr2c0	f	kr1c0	fr2c1	er3c0	VUOTO
+er3c0	e	fr2c0	nr3c1	VUOTO	VUOTO
+er2c2	e	dr1c2	rr2c3	tr3c2	fr2c1
+!r3c3	!	rr2c3	VUOTO	VUOTO	tr3c2
+nr0c3	n	VUOTO	VUOTO	ir1c3	ir0c2
+nr3c1	n	fr2c1	tr3c2	VUOTO	er3c0
+tr3c2	t	er2c2	!r3c3	VUOTO	nr3c1
+ r1c1	 	hr0c1	dr1c2	fr2c1	kr1c0
+ir0c2	i	VUOTO	nr0c3	dr1c2	hr0c1
+kr1c0	k	Tr0c0	 r1c1	fr2c0	VUOTO
+Tr0c0	T	VUOTO	hr0c1	kr1c0	VUOTO
+fr2c1	f	 r1c1	er2c2	nr3c1	fr2c0
+rr2c3	r	ir1c3	VUOTO	!r3c3	er2c2
+hr0c1	h	VUOTO	ir0c2	 r1c1	Tr0c0
+dr1c2	d	ir0c2	ir1c3	er2c2	 r1c1

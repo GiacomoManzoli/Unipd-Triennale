@@ -1,0 +1,16 @@
+\select@language {italian}
+\contentsline {section}{\numberline {1}Introduzione}{2}{section.1}
+\contentsline {section}{\numberline {2}Logica client-server}{2}{section.2}
+\contentsline {section}{\numberline {3}Robustezza della soluzione}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Il client tenta di connettersi ad un server spento/inesistente}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Il client tenta di recuperare un remote object che non \IeC {\`e} nel registro del server}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Il client viene terminato mentre il server risolve il puzzle}{3}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Il server viene terminato mentre un client aspetta la risposta}{3}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Il server non riesce a risolvere il puzzle}{3}{subsection.3.5}
+\contentsline {section}{\numberline {4}Cambiamenti rispetto alla seconda parte}{3}{section.4}
+\contentsline {subsection}{\numberline {4.1}PuzzleMaker / PuzzleMakerImp}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Serializable}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Gestione puzzle incompleti}{4}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}BadPuzzleException}{4}{subsubsection.4.3.1}
+\contentsline {subsection}{\numberline {4.4}Modifiche alla classe SolverThread}{4}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Caricamento dei pezzi}{5}{subsection.4.5}

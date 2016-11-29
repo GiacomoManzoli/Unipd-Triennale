@@ -1,0 +1,4 @@
+cr0c3	c	VUOTO	VUOTO	VUOTO	dr0c2
+ar0c0	a	VUOTO	cr0c1	VUOTO	VUOTO
+dr0c2	d	VUOTO	cr0c3	VUOTO	cr0c1
+cr0c1	c	VUOTO	dr0c2	VUOTO	ar0c0

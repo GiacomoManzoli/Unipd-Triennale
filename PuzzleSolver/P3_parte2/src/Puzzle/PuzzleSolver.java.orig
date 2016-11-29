@@ -1,0 +1,132 @@
+package Puzzle;
+
+
+<<<<<<< HEAD:P3_parte1/src/Puzzle/PuzzleSolver.java
+import java.nio.file.Path;
+=======
+import java.io.BufferedWriter;
+>>>>>>> interface:P3-Parte1/src/Puzzle/PuzzleSolver.java
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
+public class PuzzleSolver {
+
+<<<<<<< HEAD:P3_parte1/src/Puzzle/PuzzleSolver.java
+	private static List<PuzzleItem> hardCodedData(){
+		List<PuzzleItem> lista = new ArrayList<PuzzleItem>();
+		// 									TOP, RIGHT, BOTTOM, LEFT
+		lista.add(new PuzzleItem("1","C",  PuzzleItem.EMPTY_ID,"2","3",PuzzleItem.EMPTY_ID));
+		lista.add(new PuzzleItem("2","i",  PuzzleItem.EMPTY_ID,PuzzleItem.EMPTY_ID,"4","1"));
+=======
+>>>>>>> interface:P3-Parte1/src/Puzzle/PuzzleSolver.java
+
+	private static List<PuzzleElement> loadData(Path inputPath){
+		Charset charset = StandardCharsets.UTF_8;
+		List<PuzzleElement> items = new ArrayList<>();
+		try (BufferedReader reader = Files.newBufferedReader(inputPath,charset)) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				/* line: linea del file che ho letto.
+				* Ha la forma: id_pezzo \t carattere \t id_nord \t id_est \t id_sud \t id_ovest*/
+				String[] parts = line.split("\t");
+				if (parts.length == 6){
+					items.add(new PuzzleItem(parts[0],parts[1],parts[2],parts[3],parts[4],parts[5]));
+				}else{
+					System.out.println("Errore");
+					return null;
+				}
+ 			}
+		} catch (IOException e) {
+			System.out.println(e.toString());
+			return null;
+		}
+		return items;
+	}
+
+<<<<<<< HEAD:P3_parte1/src/Puzzle/PuzzleSolver.java
+	private static List<PuzzleItem> loadDataFrom(Path path){
+		return null;
+	}
+
+	private static void saveToFile(String s, Path path){
+
+	}
+	
+=======
+	private static void printPuzzle(Path file, Puzzle puzzle){
+		Charset charset = StandardCharsets.UTF_8;
+		try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
+			writer.write(puzzle.getFrase());
+			writer.newLine();
+			writer.newLine();
+			writer.write(puzzle.print());
+			writer.newLine();
+			writer.newLine();
+			writer.write(puzzle.getRowNumber() + " " + puzzle.getColNumber());
+			writer.flush();
+		} catch (IOException e) {
+			System.out.println(e.toString());
+		}
+	}
+
+
+
+>>>>>>> interface:P3-Parte1/src/Puzzle/PuzzleSolver.java
+	public static void main(String[] args) {
+
+		System.out.println("Puzzle Solver Avviato");
+
+		String inputFile="./esempio1";
+		String outputFile ="./soluzione1";
+
+		if (args.length == 2){
+			inputFile = args[0];
+			outputFile = args[1];
+		}
+
+		Path inputPath = Paths.get(inputFile);
+		Path outputPath = Paths.get(outputFile);
+
+
+		//Carica i dati dal file
+<<<<<<< HEAD:P3_parte1/src/Puzzle/PuzzleSolver.java
+		loadDataFrom(null);
+
+		//Risolvi il puzzle
+		List<PuzzleItem> lista = hardCodedData();
+		System.out.println("Puzzle Loaded");
+		Puzzle puzzle = new Puzzle(lista);
+
+
+		System.out.println(puzzle.toString());
+
+		//Salva i dati nel file
+		saveToFile("",null);
+
+=======
+		List<PuzzleElement> lista = loadData(inputPath);
+
+		//Risolvi il puzzle
+		System.out.println("Puzzle Loaded");
+		Puzzle puzzle = new Puzzle(lista);
+
+		System.out.println("Soluzione:");
+		System.out.println(puzzle.getFrase());
+		System.out.println("");
+		System.out.println(puzzle.print());
+		System.out.println("");
+		System.out.println(puzzle.getRowNumber()+" "+puzzle.getColNumber());
+
+		//Salva i dati nel file
+		printPuzzle(outputPath,puzzle);
+>>>>>>> interface:P3-Parte1/src/Puzzle/PuzzleSolver.java
+	}
+
+}

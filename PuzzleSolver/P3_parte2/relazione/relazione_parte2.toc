@@ -1,0 +1,15 @@
+\select@language {italian}
+\contentsline {section}{\numberline {1}Introduzione}{2}
+\contentsline {section}{\numberline {2}Algoritmo parallelo}{2}
+\contentsline {subsection}{\numberline {2.1}Avvio della soluzione}{2}
+\contentsline {subsection}{\numberline {2.2}Thread}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}LoaderThread}{3}
+\contentsline {subsubsection}{\numberline {2.2.2}SolverThread}{3}
+\contentsline {subsection}{\numberline {2.3}Costrutti utilizzati}{4}
+\contentsline {subsection}{\numberline {2.4}Correttezza del parallelismo}{4}
+\contentsline {subsubsection}{\numberline {2.4.1}Comportamento con input errato}{5}
+\contentsline {section}{\numberline {3}Cambiamenti rispetto la prima parte}{5}
+\contentsline {subsection}{\numberline {3.1}PuzzleElementList}{5}
+\contentsline {subsection}{\numberline {3.2}PuzzleRow e PuzzleBlock}{5}
+\contentsline {subsection}{\numberline {3.3}Classe Puzzle}{5}
+\contentsline {subsection}{\numberline {3.4}Gestione input errati}{5}

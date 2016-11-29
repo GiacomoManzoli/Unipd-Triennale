@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduzione}{}% 1
+\BOOKMARK [1][-]{section.2}{Logica client-server}{}% 2
+\BOOKMARK [1][-]{section.3}{Robustezza della soluzione}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Il client tenta di connettersi ad un server spento/inesistente}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Il client tenta di recuperare un remote object che non \350 nel registro del server}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Il client viene terminato mentre il server risolve il puzzle}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Il server viene terminato mentre un client aspetta la risposta}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Il server non riesce a risolvere il puzzle}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Cambiamenti rispetto alla seconda parte}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{PuzzleMaker / PuzzleMakerImp}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Serializable}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Gestione puzzle incompleti}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.3.1}{BadPuzzleException}{subsection.4.3}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Modifiche alla classe SolverThread}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.5}{Caricamento dei pezzi}{section.4}% 15

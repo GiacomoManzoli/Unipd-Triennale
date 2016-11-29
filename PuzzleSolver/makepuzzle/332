@@ -1,0 +1,4 @@
+ir0c0	i	VUOTO	or0c1	ar1c0	VUOTO
+or0c1	o	VUOTO	VUOTO	cr1c1	ir0c0
+ar1c0	a	ir0c0	cr1c1	VUOTO	VUOTO
+cr1c1	c	or0c1	VUOTO	VUOTO	ar1c0

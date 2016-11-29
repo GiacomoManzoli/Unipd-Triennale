@@ -1,0 +1,393 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[italian]{babel}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle=\footnotesize\ttfamily,
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+
+
+\begin{document}
+
+\title{Relazione Progetto PCD - Parte 1}
+\author{Giacomo Manzoli 1049820}
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\section{Introduzione}
+
+Si vuole creare un algoritmo che, partendo da un file contenete la descrizione di tutte le tessere di un puzzle sia in grado di ricostruirlo. \\
+L'algoritmo ideato ricompone il puzzle combinado a due a due i blocchi di pezzi del puzzle finché non si crea un unico blocco che racchiude tutti i pezzi nella loro posizione corretta, dove con blocco di pezzi si intende un'insieme di tessere del puzzle collegate tra loro.\\
+Per evitare complicazioni si sono imposti dei vincoli riguardo a come i pezzi possano essere collegati tra loro, in particolare le tessere del puzzle possono essere combinate in modo che formino solo righe, e solamente le righe complete (le righe che vanno da un bordo all'altro del puzzle) possono essere attaccate verticalemente.\\
+Con queste ipotesi si possono creare solamente blocchi di puzzle di forma regolare che sono più semplici da gestire.
+
+\subsection{Guardando al parallelismo}
+Dato che non vengono fatte ipotesi sul pezzo di partenza è possibile parallelizzare il caricamento dei dati dal file con l’eleborazione.
+Inoltre l’algoritmo risolutivo può essere eseguito contemporaneamete su più thread dato che consiste nel prendere un’elemento casuale da una lista e ne cerca uno compatibile stando però attenti a gestire correttamente l’accesso concorrente ai dati.
+
+\section{Parte ad oggetti}
+
+Si è cercato di realizzare una soluzione che sfrutti al massimo le potenzialità del polimorfismo. In particolare tutte le classi che rappresentano le componenti del puzzle implementano la stessa inferfaccia con lo scopo di rendere il codice dell'algoritmo il più lineare possibile.
+\\
+Per limitare i casi possibili si è scelto di modellare solo alcune delle combinazioni: \texttt{PuzzleItem}, \texttt{PuzzleRow} e \texttt{PuzzleBlock}, di conseguenza i modi in cui questi pezzi possono essere combinati tra loro è limitato, in particolare:
+\begin{itemize}
+\item La combinazione di due \texttt{PuzzleItem} può generare solo una \texttt{PuzzleRow}
+\item La combinazione di un \texttt{PuzzleItem} e una \texttt{PuzzleRow} genera una \texttt{PuzzleRow}
+\item La combinazione di due \texttt{PuzzleRow} genera un \texttt{PuzzleBlock} e può avvenire solamente se le due \texttt{PuzzleRow} sono complete
+\item Due \texttt{PuzzleBlock}, essendo composti solamente da righe complete, possono essere combinati tra loro solamente in modo verticale
+\end{itemize}
+In questo modo risulta più semplice combinare tra loro i vari pezzi dato che se non ci fossero questi vincoli si potrebbero generare blocchi di pezzi irregolari che sono molto più difficili da gestire.
+\\
+Tutte le classi sono raccolte nel package \texttt{Puzzle} con le seguenti visibilità:
+\begin{itemize}
+\item \textbf{public:} \texttt{Puzzle} e \texttt{PuzzleElement}
+\item \textbf{protected:} \texttt{PuzzleItem}, \texttt{PuzzleRow} e \texttt{PuzzleBlock}
+\end{itemize}
+Il programma eseguibile è stato inserito in un package separato.
+%immagine gerarchia delle classi
+
+
+\subsection{(Interfaccia) PuzzleElement}
+
+Rappresenta un elemento generico del puzzle, il quale è identificato da un ID e che può confinare con altri elementi delle stesso tipo che hanno un ID opportuno.
+Un elemento del puzzle può essere una cosa atomica oppure composta da altri elementi del puzzle.
+
+\begin{lstlisting}
+public interface PuzzleElement {
+    public String getTop();
+    public String getRight();
+    public String getBottom();
+    public String getLeft();
+
+    public String getID();
+
+    public boolean canAttach(PuzzleElement item);
+
+    public PuzzleElement attach(PuzzleElement item);
+
+    public boolean isComposed();
+    public boolean isComplete();
+
+    public int getRowCount();
+    public int getColCount();
+
+    public List<PuzzleElement> getComponents();
+
+    public String print();
+}
+\end{lstlisting}
+
+\subsection{(Classe) PuzzleItem}
+
+Questa classe rappresenta una singola tessera del puzzle e implementa l'interfaccia \texttt{PuzzleElement}.
+Di seguito venogno riportate e commentate alcune parti significative del codice.
+
+\begin{lstlisting}
+static final public String EMPTY_ID="VUOTO";
+\end{lstlisting}
+Rappresenta l'id di una tessera che non appartiene al puzzle, le tessere che confinano con quest ID sono quelle che compongono il bordo del puzzle.
+\begin{lstlisting}
+private boolean canAttachHorizzontally(PuzzleElement item) {
+	return	this.getID().equals(item.getRight()) ||
+				this.getID().equals(item.getLeft());
+}
+public boolean canAttach(PuzzleElement item) {
+	return canAttachHorizzontally(item);
+}
+\end{lstlisting}
+Per scelte progettuali due tessere del puzzle si possono attaccare solo orizzontalmente qundi non viene fatto il controllo se si possono attaccare verticalmente o meno.
+
+\begin{lstlisting}
+public PuzzleElement attach(PuzzleElement item) {
+		List<PuzzleElement> newItem = item.getComponents();
+		if (this.canAttachHorizzontally(item)){
+			if (this.getID().equals(item.getLeft()))
+				{ newItem.add(0,this); }
+			else
+				{ newItem.add(this);	}
+			return new PuzzleRow(newItem);
+		}
+		return null;
+	}
+\end{lstlisting}
+Questo metodo crea una nuova riga sfruttando il costruttore di \texttt{PuzzleRow} che accetta una lista di \texttt{PuzzleElement} che rappresenta i componenti della riga.
+\begin{lstlisting}
+	public boolean isComposed(){ return false; }
+	public boolean isComplete() {
+		return 	top.equals(PuzzleItem.EMPTY_ID) &&
+				right.equals(PuzzleItem.EMPTY_ID) &&
+				bottom.equals(PuzzleItem.EMPTY_ID) &&
+				left.equals(PuzzleItem.EMPTY_ID);
+	}
+
+	public int getColCount() { return 1; }
+	public int getRowCount() { return 1; }
+
+\end{lstlisting}
+Per definizione un \texttt{PuzzleItem} è un elemento non composto e quindi è rappresentato in una riga e una colonna.
+Mentre è completo solo quando un il puzzle è composto da un solo elemento.
+
+
+\subsection{(Classe) PuzzleRow}
+
+Questa classe rappresenta una riga del puzzle memorizzata utilizzando una lista di \texttt{PuzzleElement}.
+Anche questa classe implementa l'interfaccia \texttt{PuzzleElement}.
+Nella classe sono presenti due campi dati, \texttt{firstItem} e \texttt{lastItem} che riferiscono il primo e ultimo elemento della riga. 
+Di seguito vengono riportate e commentate alcune parti significative del codice.
+
+\begin{lstlisting}
+public String getID(){ return firstItem.getID();}
+\end{lstlisting}
+Per identificare una riga si è scelto l'ID del primo elemento che la compone, questo perché un elemento che compone la riga appartiene solamente a quella riga, quindi ogni elemento di una riga identifica la riga in cui si trova. Per praticità è stato scelto il primo elemento.
+\begin{lstlisting}
+private boolean canAttachHorizzontally(PuzzleElement item){
+    return	firstItem.getID().equals(item.getRight()) ||
+            lastItem.getID().equals(item.getLeft());
+}
+private boolean canAttachVertically(PuzzleElement item){
+	return	(firstItem.getID().equals(item.getTop()) ||
+            firstItem.getID().equals(item.getBottom())) && isComplete() && (getColCount() == item.getColCount());
+}
+
+public boolean canAttach(PuzzleElement item){
+    return	canAttachHorizzontally(item) ||
+            canAttachVertically(item);
+}
+\end{lstlisting}
+Ad una riga si può attaccare orizzontalmente un \texttt{item} quando l'id dell'elemento della riga coincide con l'id dell'elemento che deve confinare a destra o sinistra del \texttt{PuzzleElement} passato per parametro.
+Lo stesso ragionamento vale anche per \texttt{canAttachVertically} con l'aggiunta del fatto che una riga può essere combinata con un altro \texttt{item} solo se la riga è completa e l'altro elemento ha lo stesso numero di colonne.
+Non si può usare \texttt{item.isComplete()} al posto del test sulle colonne perché \texttt{item} può essere un blocco e si genererebbe un'inconsistenza dato che la chiamata a \texttt{canAttachVertically} ritornerebbe \texttt{false}, questo perché \texttt{item} non può essere completo se gli manca una riga.
+Invece usando il numero di colonne ottengo il risultato corretto perché se \texttt{item} è di tipo \texttt{PuzzleRow} o \texttt{PuzzleItem} e la riga corrente è completa allora \texttt{item} è completo se ha lo stesso numero di colonne di una riga completa, quindi \texttt{isComplete() \&\& (getColCount() == item.getColCount())} viene valutata \texttt{true} solo quando entrambe le righe sono complete.
+Nel caso \texttt{item} sia di tipo \texttt{PuzzleBlock} allora, per definizione, \texttt{item} è composto solo da righe complete quindi \texttt{isComplete() \&\& (getColCount() == item.getColCount())} fornisce il risultato corretto.
+\begin{lstlisting}
+public PuzzleElement attach(PuzzleElement item) {
+    List<PuzzleElement> newItem = new ArrayList<>();
+    if (this.canAttachHorizzontally(item)){
+        newItem.addAll(item.getComponents());
+        if (firstItem.getID().equals(item.getRight())){
+            newItem.addAll(row);
+        }else{
+            newItem.addAll(0, row);
+        }
+        return new PuzzleRow(newItem);
+    }
+    if (this.canAttachVertically(item)){
+        if (item.getRowCount()==1) {
+            newItem.add(item);
+        }else{
+            newItem.addAll(item.getComponents());
+        }
+        if (this.getID().equals(item.getTop())){
+            newItem.add(0, this);
+        }else{
+            newItem.add(this);
+        }
+        return new PuzzleBlock(newItem);
+    }
+    return null;
+}
+\end{lstlisting}
+Nel metodo \texttt{attach} viene costruita una nuova riga o un blocco di righe in base al tipo di match.
+Se la riga corrente e l'item passato per parametro devono essere attaccati verticalmente è necessario discriminare se l'item è una riga o un blocco di righe, viene quindi usato \texttt{getRowCount()} per differenziare i due casi.
+
+\begin{lstlisting}
+public boolean isComplete(){
+    return firstItem.getLeft().equals(PuzzleItem.EMPTY_ID) && lastItem.getRight().equals(PuzzleItem.EMPTY_ID);
+}
+\end{lstlisting}
+Una riga è completa quando sia l'elemento a sinistra di \texttt{firstItem} sia l'emento a destra di \texttt{lastItem} è il bordo, cioè ha id \textit{"vuoto"}.
+
+\subsection{(Classe) PuzzleBlock}
+
+Questa classe rappresenta un blocco di righe del puzzle memorizzate utilizzando una lista di \texttt{PuzzleElement}.
+Anche questa classe implementa l'interfaccia \texttt{PuzzleElement}.
+Nella classe sono presenti due campi dati, \texttt{firstItem} e \texttt{lastItem} che riferiscono la prima e ultima riga del blocco.
+L'implementazione di \texttt{PuzzleBlock} è molto simile a quella di \texttt{PuzzleRow}, nonostante ciò si è scelto di non ereditare da \texttt{PuzzleRow} perché il significato logico delle due classi è diverso e in ogni caso la maggior parte dei metodi di \texttt{PuzzleRow} sarebbero stati ridefiniti in \texttt{PuzzleBox}. 
+Di seguito vengono riportate e commentate alcune parti significative del codice.
+
+\begin{lstlisting}
+public String getID(){ return firstItem.getID();}
+\end{lstlisting}
+Per identificare un blocco si è scelto l'id della prima riga che lo compone, la motivazione di questa scelta è analoga a quella per \texttt{PuzzleRow}.
+
+\begin{lstlisting}
+public boolean canAttach(PuzzleElement item){
+    return  canAttachOnTop(item);
+}
+private boolean canAttachVertically(PuzzleElement item){
+    return  canAttachOnTop(item) || canAttachOnBottom(item);
+}
+private boolean canAttachOnTop(PuzzleElement item){
+    return item.getBottom().equals(firstItem.getID()) && getColCount() == item.getColCount();
+}
+private boolean canAttachOnBottom(PuzzleElement item){
+    return item.getTop().equals(lastItem.getID()) && getColCount() == item.getColCount();
+}
+\end{lstlisting}
+Per definizione, due blocchi di righe non possono essere combinati orizzontalmente, mentre possono essere combinati sopra o sotto se c'è il match degli id.
+Il controllo su \texttt{getColCount} serve per evitare di attaccare al blocco corrente righe incomplete o pezzi singoli, questo perché una riga incompleta avrà sicuramente un numero diverso di colonne rispetto a quelle del blocco perché un blocco viene creato dall'unione di righe complete.
+
+\subsection{(Classe) Puzzle}
+
+Questa classe racchiude l'algoritmo risulutivo, la parte riguardante alla creazione degli oggetti necessari per far funzionare tale algoritmo e alcuni metodi di utilità.
+Un oggetto di tipo \texttt{Puzzle} viene creato usando i dati contenuti nel file passatto come parametro al costruttore mediante il metodo \texttt{loadData}.
+In particolare per creare ogni elemento viene usato un metodo ausiliario \texttt{createElement} il quale data una stringa verifica che sia corretta e nel caso ritorna il \texttt{PuzzleElement} corrispondente.\\
+Può capitare che il puzzle sia composto da n righe e una sola colonna oppure che il puzzle sia composto da un solo pezzo, in entrambi i casi \texttt{createElement} crea un \texttt{PuzzleBlock} dato che l'unica tessera può essere vista come una riga completa che di per se è gia un \texttt{PuzzleBlock}
+\begin{lstlisting}
+private static PuzzleElement createElement(String[] parts) throws Exception {
+	if (!verify(parts[1])){
+        Exception e = new Exception("Problema con la tessera '"+parts[1]+"'");
+        throw e;
+    }
+    PuzzleElement item = new PuzzleItem(parts[0],parts[1],parts[2],parts[3],parts[4],parts[5]);
+    if (item.getLeft().equals(item.getRight())){
+        item = new PuzzleRow(item.getComponents());
+        item = new PuzzleBlock(item.getComponents());
+    }
+    return item;
+}
+\end{lstlisting}
+Per accere ai vari dati relativi al puzzle sono stati messi a disposizione i seguenti metodi pubblici:
+\begin{lstlisting}
+public int getColNumber(){
+    if (solution != null){
+        return solution.getColCount();
+    } else {
+        return -1;
+    }
+}
+public int getRowNumber(){
+    if (solution != null){
+        return solution.getRowCount();
+    } else {
+        return -1;
+    }
+}
+public String getText(){
+    if (solution != null){
+        return solution.print().replaceAll("\n","");
+    } else {
+        return "Soluzione non trovata";
+    }
+}
+public String print(){
+    if (solution != null){
+        return solution.print();
+    } else {
+        return "Soluzione non trovata";
+    }
+}
+\end{lstlisting}
+\subsubsection{Gestione degli errori}
+Nel caso l’algoritmo non riesca a risolvere il puzzle, perché manca un pezzo oppure perché alcuni pezzi inseriti sono stati inseriti in modo incorretto, l'acesso ai campi dell'oggetto \texttt{Puzzle} produce la stampa:
+\begin{center}
+\texttt{Soluzione non trovata}
+\end{center}
+e i metodi \texttt{getColNumber} e \texttt{getRowNumber} ritornano -1.\\
+Nel caso si verifichi un errore durante la lettura la creazione del pezzo a causa di un errore sui dati, il metodo \texttt{createElement} solleva un’eccezzione che blocca la lettura del file.
+
+\subsubsection{Verifica dei dati di input}
+Durante la creazione dei vari pezzi del puzzle viene controllato che il file contenga solamente caratteri, numeri o punteggiatura.\\
+La punteggiatura ammessa viene limitata a: \texttt{!?.,:;()} inoltre vengono considerati come caratteri validi anche lo spazio e i doppi apici.
+\begin{lstlisting}
+private static boolean verify(String s){
+	String validChar="!?.,:;\"( )";
+    		return 	s.length()==1 &&
+				(Character.isLetterOrDigit(s.charAt(0)) || validChar.contains(s));
+}
+\end{lstlisting}
+\pagebreak
+\section{Algoritmo risulutivo}
+\begin{lstlisting}
+private boolean solve(List<PuzzleElement> pezzi){
+	while (pezzi.size() > 1 && !(pezzi.get(0).isComplete() && pezzi.size()==1)){
+		PuzzleElement anItem = pezzi.remove(0);
+		int i=0;
+		while (i < pezzi.size() && !anItem.canAttach(pezzi.get(i))){
+			i++;
+		}
+		if (i != pezzi.size()){
+			PuzzleElement itemToAttach = pezzi.remove(i);
+			pezzi.add(anItem.attach(itemToAttach));
+		} else { return false; }
+	}
+	return pezzi.get(0).isComplete();
+}
+\end{lstlisting}
+
+\subsection{Correttezza}
+\textit{Precondizione:} \texttt{List<PuzzleElement> pezzi} è una lista di PuzzleItem che contiene tutti i pezzi del puzzle.\\
+\textit{Postcondizione:} Se l'algoritmo è riuscito a completrare il puzzle viene ritornato \texttt{true} e l'unico elemento della lista rappresenta la soluzione. In caso contrario viene ritornato \texttt{false} e i valori presenti nella lista non sono significativi.
+\\
+Il ciclo \texttt{while} più esterno viene ripetuto finché c'è più di un pezzo oppure c'è solo un pezzo del puzzle e questo pezzo è completo.
+Questo ciclo, che può potenzialmente essere infinito, ha una fine perché ad ogni iterazione vengono tolti dalla lista due pezzi, combinati tra loro e il risultato rimesso nella lista, perciò ad ogni iterazione il numero di elementi della lista diminuisce di 1.
+Quando viene eseguito il corpo del ciclo ci sono almeno due pezzi che devono essere combinati tra loro, ne viene preso uno a caso, per comodità il primo, e si inizia una ricerca sequenziale di un altro pezzo attaccabile.
+La ricerca, sotto le ipotesi della precondizione, termina sempre con un esito positivo. Nel caso non venga trovato il pezzo, cioè che \texttt{i==pezzi.size()}, viene terminato l'algoritmo con esito negativo.
+Una volta trovato, si combinano i due pezzi e si reinserisce tra i pezzi disponibili il risultato.
+Quando si esce dal ciclo while viene ritornato \texttt{true} se la soluzione è completa oppure se si è nel caso in cui il puzzle è composto da un solo pezzo.
+
+\subsection{Complessità}
+
+Finché ci sono 2 o più elementi del puzzle, ne viene scelto uno e cercato sequenzialmente un altro compatibile, una voltra trovato si crea un nuovo pezzo, ottenuto combinando i due precedentemente trovati. \\
+La ricerca viene fatta in modo sequenziale con una complessità $O(n)$, dove $n$ è il numero di pezzi del puzzle, mentre la combinazione di due pezzi viene fatta in $O(1)$.
+Il tutto viene ripetuto $n$ volte perché si parte da $n$ pezzi ed a ogni iterazione si diminuisce di un pezzo, portando la complessità totale dell'algoritmo a $O(n^2)$.
+
+\section{Compilazione ed Esecuzione}
+Per compilare le varie classi è sufficiente invocare il comando \texttt{make} all'interno della directory \texttt{parte1}.\\
+Le istruzioni di compilazione presenti nel makefile non specificano la versione target, viene quindi scelta la versione di default che deve essere la 7 o superiore come richiesto dalla specifica.\\
+L'invocazione del domando make produrrà la compilazione di tutte le classi nella directory \texttt{bin}.\\
+Per eseguire il programma ci sono due possibilità:
+\begin{enumerate}
+\item Dall'interno della direcotry \texttt{bin} invocare \texttt{java PuzzleSolver.PuzzleSolver percorsoFileInput percorsoFileOutput}
+\item Dalla directory principale, la stessa contenente il makefile eseguire lo script bash \texttt{PuzzleSolver.sh} passando come parametri il percorso dei file di input e di output.
+\end{enumerate}
+Se non viene specifiato alcun parametro verranno usati come input i 10 file di test presenti nella direcotry \texttt{bin}.
+\section{Test}
+
+Per testare l'effettiva funzionalità della soluzione sono stati svolti 10 test al fine di verificare il corretto funzionamento dell'algoritmo anche nei casi limite.
+I test effettuati sono:
+\begin{enumerate}
+\item Puzzle di un elemento solo
+\item Puzzle quadrato con numero di righe pari (4x4)
+\item Puzzle quadrato con numero di righe dispari (5x5)
+\item Puzzle rettangolare con numero di righe maggiore del numero di colonne (6x5)
+\item Puzzle rettangolare con numero di righe inferiore al numero di colonne (5x6)
+\item Puzzle composto da una sola colonna (8x1)
+\item Puzzle composto da una sola riga (1x4)
+\item Puzzle di un solo elemento ma con dati errati, gli elementi di confine avevano id diverso da "VUOTO"
+\item Puzzle con un pezzo mancante
+\item File vuoto
+\end{enumerate}
+In tutti i test si è ottenuto il risultato atteso.
+\\
+Gli ultimi tre test riguardano situazioni che non si possono verificare ma sono stati fatti comunque per verificare la solidità dell'algoritmo.
+
+\end{document}

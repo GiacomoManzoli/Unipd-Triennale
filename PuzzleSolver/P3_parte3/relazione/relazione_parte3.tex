@@ -1,0 +1,141 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[italian]{babel}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+\usepackage{xspace}
+
+\newcommand{\Null}{\texttt{null}\xspace}
+\newcommand{\sync}{\texttt{synchronized}\xspace}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle=\footnotesize\ttfamily,
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+\begin{document}
+
+\title{Relazione Progetto PCD - Parte 3}
+\author{Giacomo Manzoli 1049820}
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\section{Introduzione}
+Questa parte del progetto consiste nel trasformare la soluzione concorrente ideata nella seconda parte in una soluzione distribuita su un'architettura di tipo client-server.
+In particolare viene richiesto che:
+\begin{itemize}
+\item La soluzione utilizzi Java RMI;
+\item Il client si occupi della logica di input/output;
+\item Il server si occupi della logica di risoluzione;
+\item Il client non pubblichi oggetti nel suo registro RMI;
+\item La soluzione sia robusta nei confronti degli errori di comunicazione.
+\end{itemize}
+
+\section{Logica client-server}
+La comunicazione tra il client e il server viene gestita nel seguente modo:
+\begin{enumerate}
+\item Il client carica i pezzi del puzzle all'interno di una \texttt{PuzzleElementList} e invoca il metodo \texttt{makePuzzle(PuzzleElementList)} sull'oggetto reso pubblico dal server;
+\item Il server riceve la \texttt{PuzzleElementList} e la usa per costruire e risolvere il \texttt{Puzzle}, una volta fatto ciò, ritorna al client un oggetto \texttt{Puzzle} contenente il puzzle risolto;
+\item Una volta ricevuto l'oggetto il client riprende l'esecuzione e stampa sul file la soluzione.
+\end{enumerate}
+Per rendere possibile questa soluzione è stato necessario rendere serializzabili tutte le classi che rappresentano i vari componenti del puzzle. Per maggiori informazioni si rimanda alla sezione \ref{serial}.
+
+\section{Robustezza della soluzione}
+Viene richiesto che la soluzione sia robusta e in grado di gestire i vari errori che possono sorgere dalla distribuzione di un programma. \\
+Le seguenti sottosezioni contengono la descrizione di come vengono gestite tutte le situazioni critiche individuate.
+
+\subsection{Il client tenta di connettersi ad un server spento/inesistente}
+In questo caso viene stampato sulla console del client il messaggio:
+\begin{center}
+\textit{Errore di comunicazione con il server.}
+\end{center}
+E sul file di output viene prodotta la stampa di un puzzle senza soluzione\footnote{Un puzzle senza soluzione, quando viene stampato, provoca la stampa di: ''Soluzione non trovata''};
+
+
+
+
+\subsection{Il client tenta di recuperare un remote object che non è nel registro del server}
+In questo caso viene stampato sulla console del client il messaggio:
+\begin{center}
+\textit{Indirizzo del server errato.}
+\end{center}
+E sul file di output viene prodotta la stampa di un puzzle senza soluzione;
+
+\subsection{Il client viene terminato mentre il server risolve il puzzle}
+In questo caso, l'esecuzione del server continua regolarmente senza produrre problemi. Il puzzle risolto non sarà ritornato al client e l'istanza presente sul server verrà distrutta dal \texttt{GarbageCollector};
+
+\subsection{Il server viene terminato mentre un client aspetta la risposta}
+Questa eccezione viene gestita dal client, come se stesse cercando di connettersi ad un server spento;
+
+\subsection{Il server non riesce a risolvere il puzzle}
+Se il server non riesce a risolvere il puzzle, viene inviata al client un'eccezione di tipo \texttt{BadPuzzleException}, in questo modo il client può riprendere la sua esecuzione e stampare sulla console un messaggio d'errore. Anche in questo caso il file prodotto conterrà la stampa di un puzzle senza soluzione. Maggiori informazioni riguardo questo caso si possono trovare nella sezione \ref{badpuzzle}.
+
+
+\section{Cambiamenti rispetto alla seconda parte}
+I cambiamenti necessari per rendere distribuita la versione precedente sono stati minimali. Inoltre, sono stati aggiunti nuovi controlli allo scopo di rendere la soluzione più robusta.
+
+\subsection{PuzzleMaker / PuzzleMakerImp}
+Il server espone, sul registro RMI, un oggetto di tipo \texttt{PuzzleMakerImp}, il client può usare questo oggetto per invocare sul server il metodo \texttt{makePuzzle(PuzzleElementList)} che, data una lista di pezzi di un puzzle, costruisce un oggetto di tipo \texttt{Puzzle} e lo risolve. \\
+Per poter invocare il metodo, il client utilizza l'interfaccia \texttt{PuzzleMaker}. \\
+Al fine di garantire il corretto funzionamento del programma, l'interfaccia \texttt{PuzzleMaker} estende l'interfaccia \texttt{java.rmi.Remote} e la classe \texttt{PuzzleMakerImp} estende la classe \texttt{java.rmi.UnicastRemoteObject}.
+
+\subsection{Serializable}\label{serial}
+Per rendere possibile il passaggio di parametri tramite serializzazione le classi che rappresentano gli elementi del puzzle ora implementano anche l'interfaccia \texttt{Serializable}.\\
+In questo modo, quando avviene il passaggio di parametri tra il client e il server (e viceversa), viene fatta la copia degli oggetti, evitando così la creazione di ulteriori riferimenti remoti che complicherebbero inutilmente la soluzione.\\
+Le classi che implementano \texttt{Serializable} sono:
+\begin{itemize}
+\item \texttt{PuzzleItem};
+\item \texttt{PuzzleRow};
+\item \texttt{PuzzleBlock};
+\item \texttt{Puzzle};
+\item \texttt{PuzzleElementList};
+\item \texttt{BadPuzzleException} (tratta più avanti).
+\end{itemize}
+
+\subsection{Gestione puzzle incompleti}\label{badpuzzle}
+Per evitare che il client rimanga in attesa qualora il puzzle che ha inviato al server non ha soluzione è stato necessario introdurre dei meccanismi di controllo che, controllando lo stato dei \texttt{SolverThread}, stabiliscano se il puzzle corrente ha soluzione. \\
+In particolare, il thread del server sul quale viene eseguito il metodo remoto, controlla ogni 2500\footnote{Si è cercato di prendere un tempo non troppo basso per evitare di fare il test troppo frequentemente quando si sta risolvendo un puzzle complesso.} millisecondi che i \texttt{SolverThread} siano attivi e nel caso che tutti i solver siano andati in \texttt{wait}, interrompe l'algoritmo risolutivo. \\
+Infatti, un \texttt{SolverThread}, si mette in \texttt{wait} solo se non riesce ad avanzare nella risoluzione del puzzle perché gli manca un pezzo, di conseguenza se tutti i \texttt{SolverThread} sono in \texttt{wait} vuol dire che manca almeno un pezzo. \\
+Questa logica di funzionamento è stata implementata dentro il costruttore della classe \texttt{Puzzle}, il quale avvia in automatico il processo di risoluzione.
+
+\subsubsection{BadPuzzleException}
+Quando il server non riesce a risolvere il puzzle perché mancano dei pezzi, invia al client una \texttt{BadPuzzleException}, in questo modo, quando il client riceve un'eccezione di questo tipo può terminare fornendo il messaggio d'errore corretto.
+
+\subsection{Modifiche alla classe SolverThread}
+Per rendere possibile la gestione di puzzle con un pezzo mancante è stato necessario aggiungere del codice al metodo \texttt{run()} in modo che quando un thread di questo tipo non riesce a trovare due pezzi da attaccare vada in sospensione. \\
+Questa sospensione è corretta perché, per come è strutturato il programma, un \texttt{SolverThread} non riesce a trovare due pezzi che si combinano solamente quando mancano dei pezzi, perché la risoluzione del puzzle viene avviata quando si hanno a disposizione tutti i pezzi possibili\footnote{Nella seconda parte del progetto questa affermazione non era vera, in quanto la risoluzione del puzzle avveniva concorrentemente al caricamento dei pezzi}.
+
+\subsection{Caricamento dei pezzi}
+La classe \texttt{LoaderThread} è stata rimossa, in quanto non ha più senso tenere il caricamento del puzzle parallelo alla risoluzione. \\
+La logica di caricamento dei pezzi del puzzle è stata spostata dentro \texttt{PuzzleElementList}.
+\end{document}
